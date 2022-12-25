@@ -42,7 +42,7 @@
     <body class="{% block body_class %}{% endblock %}">
         {% wagtailuserbar %}
 
-        <!--include "includes/header.html"-->
+        {% include "includes/header.html" %}
         <!-- load menu_tags -->
         <!-- flat_menu 'my-main-menu' max_levels=2 template="menus/flat_menu.html" sub_menu_templates="menus/section_menu.html" show_menu_heading=False  fall_back_to_default_site_menus=True -->
 
@@ -52,7 +52,7 @@
             {% block content %}{% endblock %}
         </main>
 
-        <!-- include "includes/footer.html" -->
+        {% include "includes/footer.html" %}
         <!-- load menu_tags -->
         <!-- flat_menu 'my-main-menu' max_levels=1 template="menus/footer.html" show_menu_heading=False  fall_back_to_default_site_menus=True -->
 
