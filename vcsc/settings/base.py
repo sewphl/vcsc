@@ -164,3 +164,19 @@ WAGTAILSEARCH_BACKENDS = {
 # Base URL to use when referring to full URLs within the Wagtail admin backend -
 # e.g. in notification emails. Don't include '/admin' or a trailing slash
 WAGTAILADMIN_BASE_URL = "http://example.com"
+
+# Default RichText Features
+# see 3:28, https://www.youtube.com/watch?v=ei7ot_Wry3o
+# see also https://docs.wagtail.org/en/stable/advanced_topics/customisation/page_editing_interface.html
+
+RICHTEXT_BLOCKTYPES = ['h1', 'h2', 'h3', 'h4', 'h5', 'h6', 'ul', 'ol']
+RICHTEXT_INLINESTYLES = ['bold', 'italic']
+RICHTEXT_ENTITIES = ['image', 'embed', 'link', 'document-link']
+RICHTEXT_MISC = ['hr', 'code', 'superscript', 'subscript', 'strikethrough', 'blockquote']
+
+ALL_RICHTEXT_FEATURES = (
+    RICHTEXT_BLOCKTYPES + 
+    RICHTEXT_INLINESTYLES + 
+    RICHTEXT_ENTITIES + 
+    RICHTEXT_MISC
+)

@@ -16,9 +16,24 @@
         <meta name="description" content="" />
         <meta name="viewport" content="width=device-width, initial-scale=1" />
 
-        {# Global stylesheets #}
-        <link rel="stylesheet" type="text/css" href="{% static 'css/vcsc.css' %}">
+        {# Force all links in the live preview panel to be opened in a new tab #}
+        {% if request.in_preview_panel %}
+        <base target="_blank">
+        {% endif %} 
 
+        <script
+        src="https://code.jquery.com/jquery-3.6.1.js"
+        integrity="sha256-3zlB5s2uwoUzrXK3BT7AX3FyvojsraNFxCc2vC/7pNI="
+        crossorigin="anonymous"></script>
+
+        {# Global stylesheets #}
+        <link rel="stylesheet" type="text/css" href="{% static 'css/bootstrap.css' %}">
+        <link rel="stylesheet" type="text/css" href="{% static 'css/vcsc3.css' %}">
+        
+
+        <!-- Latest compiled and minified CSS -->
+        <!--<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.3.1/dist/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">-->
+        
         {% block extra_css %}
         {# Override this in templates to add extra stylesheets #}
         {% endblock %}
@@ -27,13 +42,29 @@
     <body class="{% block body_class %}{% endblock %}">
         {% wagtailuserbar %}
 
-        {% block content %}{% endblock %}
+        <!--include "includes/header.html"-->
+        <!-- load menu_tags -->
+        <!-- flat_menu 'my-main-menu' max_levels=2 template="menus/flat_menu.html" sub_menu_templates="menus/section_menu.html" show_menu_heading=False  fall_back_to_default_site_menus=True -->
+
+
+        {% block banner %}{% endblock %}
+        <main id="content" class="container-fluid my-4" role="main"> <!--container-->
+            {% block content %}{% endblock %}
+        </main>
+
+        <!-- include "includes/footer.html" -->
+        <!-- load menu_tags -->
+        <!-- flat_menu 'my-main-menu' max_levels=1 template="menus/footer.html" show_menu_heading=False  fall_back_to_default_site_menus=True -->
+
 
         {# Global javascript #}
-        <script type="text/javascript" src="{% static 'js/vcsc.js' %}"></script>
+        <script type="text/javascript" src="{% static 'js/index.js' %}"></script>
+        <!-- Latest compiled and minified JavaScript -->
+        <script src="https://cdn.jsdelivr.net/npm/bootstrap@3.3.7/dist/js/bootstrap.min.js" integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa" crossorigin="anonymous"></script>
+
 
         {% block extra_js %}
-        {# Override this in templates to add extra javascript #}
+        <script type="text/javascript" src="{% static 'js/vcsc.js' %}"></script>
         {% endblock %}
     </body>
 </html>
