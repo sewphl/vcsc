@@ -1,0 +1,273 @@
+html,body
+{
+    width: 100%;
+    height: 100%;
+    margin: 0px;
+    padding: 65px 0 0 0;
+    overflow-x: hidden; 
+}
+
+/*footer*/
+.cc-contact-footer-p {
+   color: #fff !important;
+}
+
+.bg-dark {
+   font-size: 110% !important;
+}
+.cc-footer-link-lg {
+   font-size: 150% !important;
+}
+
+.bg-dark a, .cc-footer-link-lg a {
+   color:rgba(166, 213, 238, 1) !important;
+}
+
+.bg-dark a:hover, .cc-footer-link-lg a:hover {
+   color:rgba(166, 213, 238, .8) !important;
+}
+
+.footer-links a {
+   color:rgba(255, 255, 255, 1) !important;
+}
+
+.footer-links a:hover {
+   color:rgba(255, 255, 255, .8) !important;
+}
+
+
+
+
+/******START IMG-TXT STREAM HORIZONTAL CARDS*******/
+.my-container {
+   margin-left: 5rem !important;
+   margin-right: 5rem !important;
+}
+
+.img-txt-container {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.card-body h3 {
+   color: #212b36 !important;
+   letter-spacing: .1rem;
+}
+
+.img-txt-card h3:hover  {
+   color: #3344dd !important; 
+}
+
+.img-link {
+   border-bottom: 3px solid transparent;
+}
+
+.img-link:hover {
+   border-bottom: 3px solid #3344dd;
+}
+/*******END IMG-TXT STREAM HORIZONTAL CARDS*****/
+
+
+/**************START CARDS************/
+.card-img-top {
+    /*width: 100%;
+    height: 50vh;*/
+    object-fit: contain;
+}
+
+.card {
+   width: 100%;
+   /*border: 1px solid transparent !important;*/
+   border: none !important;
+   border-radius: 0.25rem !important; 
+}
+
+.card-title {
+   font-weight: 500;
+   letter-spacing: .1rem;
+   /*font-size: 120%;*/
+}
+
+p.card-description {
+   /*font-size: 120% !important;*/
+}
+
+.card:hover, .card-body:hover, .card-body a:hover, .card-title:hover {
+   text-decoration: none !important;
+}
+
+.card-body h5, .card-body p {
+   color: #212b36 !important;
+}
+
+.card:hover .card-title {
+   color: #3344dd !important; 
+}
+
+.card:hover .card-description {
+   color: #3344dd !important; 
+}
+
+/*card picture*/
+picture img {
+  width: 100%;
+}
+
+/**************END CARDS************/
+
+/********* start cards_block (used on home page w/ images)*********/
+.card-block .card-text a{
+   color: #212b36 !important;
+ }
+.card-block .card-text a.btn {
+   color: #212b36 !important;
+}
+.card-block:hover .card-title {
+   color: #212b36 !important;
+}
+.card-block:hover .card-text a.btn {
+   color: #3344dd !important; 
+}
+.card-block:hover .card-text a.d-inline {
+   color: #3344dd !important; 
+}
+
+.card-block img {
+   transition: transform .25s;
+   width: 100%;
+ }
+.card-block:hover img {
+   transform: scale(1.05);
+ }
+ .card-block:hover:after {
+   opacity: 1;
+ }
+
+/**************** end cards_block ****************/
+
+/****************START TEXT CARDS****************/
+.cards-text .card-body {
+   text-align: center !important;
+}
+.cards-text .card {
+background-color: rgba(166, 213, 238, .4) !important;
+}
+
+.cards-text .card:hover .card-title {
+   color: #212b36  !important; /*#495057*/
+}
+
+.cards-text .card:hover .card-description {
+   color: #212b36  !important; /*#495057*/
+}
+
+/****************END TEXT CARDS****************/
+
+/**************START RESEARCH CARDS************/
+
+.research-cards .card:hover .research-link {
+   border-bottom: 3px solid #3344dd;
+}
+
+/*https://stackoverflow.com/questions/43816331/bootstrap-4-card-image-zoom*/
+
+.research-cards .card-title, .research-cards .card-description {
+   padding-left: 0 !important;
+   padding-right: 0 !important;
+   width: 100%;
+}
+
+.research-cards .research-link {
+   overflow: hidden;
+   position: relative;
+   border-bottom: 3px solid transparent;
+ }
+ .research-cards .research-link:after {
+   content: '';
+   position: absolute;
+   top: 0; left: 0; right: 0; bottom: 0;
+   background: rgba(255,255,255,0.3);
+   opacity: 0;
+   transition: opacity .25s;
+ }
+ .research-cards .card img {
+   transition: transform .25s;
+   width: 100%;
+ }
+ .research-cards .card:hover img {
+   transform: scale(1.2);
+ }
+ .research-cards .card:hover:after {
+   opacity: 1;
+ }
+
+.research-cards .card-title {
+   margin-bottom: 0;
+}
+
+.research-cards .card-text {
+   margin-top: 0;
+}
+
+/*.research-cards .research-small {
+   line-height: 0.5em !important;
+}*/
+
+
+/************END RESEARCH CARDS******************/
+
+
+/****************START BIO CARDS****************/
+
+.bio-cards .card {
+   background-color: rgba(166, 213, 238, .4) !important;
+   box-shadow: 0 20px 40px -14px rgba(0, 0, 0, 0.25) !important;
+   text-align left !important;
+ }
+
+.bio-cards .card:hover {
+   /*border: 1px solid #d3d3d3 !important;*/
+}
+
+.bio-cards .card:hover .card-body {
+   /*box-shadow: 0 20px 40px -14px rgba(0, 0, 0, 0.25) !important;*/
+}
+
+.bio-cards .bio-link {
+   border-bottom: 3px solid transparent;
+}
+
+.bio-cards .card:hover .bio-link {
+   border-bottom: 3px solid #3344dd;
+}
+
+
+.person-div a:not(.bio-btn) {
+   color: rgba(51, 68, 221, 1) !important; /*#3344dd*/
+   text-decoration:none;
+}
+
+.person-div a:hover:not(.bio-btn:hover) {
+   /*color: rgba(51, 68, 221, .8) !important;*/ /*#3344dd*/
+   text-decoration:underline;
+}
+
+/****************END BIO CARDS****************/
+
+/****************START BIO BUTTONS****************/
+.bio-btn {
+   color: #212b36 !important;
+   background-color: rgba(166, 213, 238, .4) !important;
+ }
+
+.bio-btn:hover {
+      color: #212b36 !important;
+       background-color: rgba(166, 213, 238, .2) !important;
+     }
+
+
+
+/****************END BIO BUTTONS****************/
+
+
