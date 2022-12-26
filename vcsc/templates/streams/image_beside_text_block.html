@@ -1,0 +1,48 @@
+{% load wagtailcore_tags %}
+{% load static wagtailimages_tags %}
+
+<div class="container img-txt-container" style="margin-top:10px;" >
+<div class="card mb-3 img-txt-card" style="max-width: 900px;" > <!--style="max-width: 540px;"-->
+  <div class="row no-gutters ">
+    <div class="col-md-4">
+      {% if self.link.url %}
+        <a href="{{ self.link.url }}" class="d-block img-link">
+      {% endif %}
+      <picture>
+        {% image self.image fill-250x250 as img %}
+        <img class="card-img" src="{{ img.url }}" alt="{{ img.alt }}" style='width: 100%; height: auto;'>
+      </picture>
+      {% if self.link.url %}
+        </a>
+      {% endif %}
+    </div>
+    <div class="col-md-8">
+      <div class="card-body">
+        {% if self.title %}
+        {% if self.link.url %}
+          <a href="{{ self.link.url }}" class="d-block" >
+        {% endif %}
+        <h3 class="" style="margin-top: 0; padding-top: 0;">{{ self.title }}</h3> 
+        {% if self.link.url %}
+          </a>
+        {% endif %}
+      {% endif %}
+      {% if self.subtitle %}
+        <h4 class="">{{ self.subtitle }}</h4>
+      {% endif %}
+      {% if self.text %}
+      <p class="card-text"> <!--cc-iat-text-->
+        {{ self.text | richtext}}
+      </p>
+    {% endif %}
+        <!--<p class="card-text"><small class="text-muted"></small></p>-->
+      </div>
+    </div>
+  </div>
+</div> <!--.card-->
+</div> <!--.container-->
+<div class="container">
+<hr style="max-width: 900px; padding-left: 20px; padding-right:20px;" >
+</div>
+
+

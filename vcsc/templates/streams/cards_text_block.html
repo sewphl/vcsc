@@ -1,0 +1,21 @@
+<!-- Cards Text Block (No Images)-->
+<div class="container">
+<div class="row justify-content-center cards-text">
+  {% for card in self.cards_text %}
+    <div class="card-div col-md-4 col-lg-4 d-flex align-items-stretch{% if not forloop.first %} mt-4 mt-md-0{% endif %}">
+      <div class="card mb-1"> <!--text-center mb-3-->
+        <div class="card-body"> <!--add padding with py-3 px-3-->
+          {% if card.title %}
+            <h5 class="card-title">{{ card.title }}</h5>
+          {% endif %}
+          {% if card.text %}
+            <p class="card-text">{{ card.text }}</p>
+          {% endif %}
+        </div> <!--card-body-->
+      </div> <!--card mb-3-->
+    </div> <!--card-div-->
+  {% endfor %}
+</div>
+</div>
+<br>
+<!-- End Cards Text Block -->

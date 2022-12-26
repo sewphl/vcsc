@@ -28,6 +28,8 @@ INSTALLED_APPS = [
     "search",
     "menus",
     "site_settings",
+    "streams",
+    "flex",
     "wagtail.contrib.forms",
     "wagtail.contrib.modeladmin",
     "wagtail.contrib.redirects",
