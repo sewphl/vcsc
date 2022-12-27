@@ -32,6 +32,7 @@ INSTALLED_APPS = [
     "flex",
     "people",
     "subbanners",
+    "research",
     "wagtail.contrib.forms",
     "wagtail.contrib.modeladmin",
     "wagtail.contrib.redirects",
