@@ -1,0 +1,36 @@
+{% load menu_tags %}
+{% load static %} 
+
+<nav class="navbar navbar-expand-lg navbar-light bg-light fixed-top px-3 py-1 flat-menu flat_menu {{ menu_handle }} {% if menu_heading %}with_heading{% else %}no_heading{% endif %}"> <!--navbar-light bg-light -->
+    {% if menu_heading %}<h4>{{ menu_heading|safe }}</h4>{% endif %}
+    <div class="container">
+    <a class="navbar-brand" href="/">
+        <img src="{% static 'images/vcsc-logo-square-sm.png' %}" alt="Vermont Complex Systems Center">
+      </a>
+    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+        <span class="navbar-toggler-icon"></span>
+    </button>
+      <div class="collapse navbar-collapse" id="navbarSupportedContent">
+    {% if menu_items %}
+    <ul class="navbar-nav mr-auto">
+        {% for item in menu_items %}
+        {% if item.has_children_in_menu %}
+            <li class="nav-item dropdown {{ item.active_class }}">
+                <a class="nav-link dropdown-toggle" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" href="{{ item.href }}">{{ item.text }}</a>
+                <div class="dropdown-menu" aria-labelledby="navbarDropdown">
+                        <a class="dropdown-item {{ item.active_class }} " href="{{ item.href }}">{{ item.text }} Homepage</a>
+                        {% sub_menu item %}            
+            </div>
+            </li>
+        {% else %}
+            <li class="nav-item {{ item.active_class }}">
+                <a class="nav-link" href="{{ item.href }}">{{ item.text }}</a>
+            </li>
+        {% endif %}
+        {% endfor %}
+    </ul>
+
+    {% endif %}
+</div> <!--collapse-->
+</div> <!--container-->
+</nav>
