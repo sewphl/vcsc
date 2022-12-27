@@ -12,12 +12,23 @@
           {{ self.bio | richtext }}
         </p>
         <br>
-      {% if self.external_website %}
-        <a href="{{ self.external_website }}" class="bio-btn btn btn-primary btn-lg mb-2 mb-lg-0">
-        Website
-        </a>
-      {% endif %}
 
+        <div style="position:relative;">
+        {% if self.external_website %}
+        <a href="{{ self.external_website }}" class="bio-btn btn btn-primary btn-lg mb-2 mb-lg-0">
+        Website <i class="fa-solid fa-link"></i>
+        </a>
+        {% endif %}
+
+        {% if self.twitter %}
+
+        <a href="{{ self.twitter }}" style="position:absolute; top:0;" class="px-1">
+          <i  class="fa-brands fa-square-twitter fa-3x"></i>
+        </a>
+        {% endif %}
+      </div>
+
+      <hr>
       {% if press.all %}
       <div>
         <br>

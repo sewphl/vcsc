@@ -74,3 +74,4 @@ npm-debug.log*
 .pytest_cache/
 media/
 vcscvenv/
+vcsc/static/fontawesomefree/*

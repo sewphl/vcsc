@@ -125,6 +125,9 @@ class PeoplePerson(Orderable, ClusterableModel):
     external_website = models.URLField(
         blank=True,
     )
+    twitter = models.URLField(
+        blank=True,
+    )
 
     person_role = ParentalManyToManyField("people.PeopleRole", blank=False)
     research_type = ParentalManyToManyField("research.ResearchType", blank=True)
@@ -149,6 +152,7 @@ class PeoplePerson(Orderable, ClusterableModel):
                 ImageChooserPanel("person_img"),
                 PageChooserPanel("internal_page"), 
                 FieldPanel("external_website"),
+                FieldPanel("twitter"),
             ],
             heading="Person",
         ),
