@@ -31,6 +31,7 @@ INSTALLED_APPS = [
     "streams",
     "flex",
     "people",
+    "subbanners",
     "wagtail.contrib.forms",
     "wagtail.contrib.modeladmin",
     "wagtail.contrib.redirects",
