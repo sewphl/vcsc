@@ -25,31 +25,35 @@ from wagtail.fields import RichTextField
 from wagtail.admin.panels import FieldPanel
 
 from streams import blocks
-#from research import models as research_models
+from research import models as research_models
 
 
-#class PeopleListingPage(Page):
-#    """People listing page"""
-#    subpage_types = ["people.PeoplePersonPage"]
-#    template = "people/people_listing_page.html"
+class PeopleListingPageCore(Page):
+    """People listing page: Core Team"""
+    parent_page_types = ["subbanners.SubbannerPage"]
+    subpage_types = ["people.PeoplePersonPage"]
+    template = "people/people_listing_page.html"
+    max_count = 1
 
-#    def child_pages(self):
-#        return PeoplePersonPage.objects.live().child_of(self)
+    def child_pages(self):
+        return PeoplePersonPage.objects.live().child_of(self)
 
-#    def get_context(self, request, *args, **kwargs):
-#        """Adding custom stuff to our context."""
-#        context = super().get_context(request, *args, **kwargs)
-#        context["person_role"] = PeopleRole.objects.all()
-#        context["person"] = PeoplePerson.objects.all()
-#        #context['person_page'] = PeoplePersonPage.objects.all() 
-#        return context 
+    def get_context(self, request, *args, **kwargs):
+        """Adding custom stuff to our context."""
+        context = super().get_context(request, *args, **kwargs)
+        context["person_role"] = PeopleRole.objects.all()
+        context["people_all"] = PeoplePerson.objects.all()
+        #context['person_page'] = PeoplePersonPage.objects.all() 
+        context["person"] = PeoplePerson.objects.filter(person_role__in=PeopleRole.objects.filter(slug='core-team'))
+        return context 
     
-#    class Meta:
-#        verbose_name = "People listing page"
-#        verbose_name_plural = "People listing pages"
+    class Meta:
+        verbose_name = "People listing page: Core Team"
+        verbose_name_plural = "People listing pages: Core Team"
 
 
 class PeoplePersonPage(Page):
+    ##parent_page_types =
     ##do not allow child pages:
     subpage_types = []
     template = "people/person_page.html"
@@ -72,11 +76,11 @@ class PeoplePersonPage(Page):
         context["person"] = PeoplePerson.objects.all()
         context['person_page'] = PeoplePersonPage.objects.all() 
         ##From Research: 
-        #context["researchitems"] = research_models.ResearchItem.objects.all()
-        #context["research_type"] = research_models.ResearchType.objects.all()
-        #context["press"] = research_models.ResearchItem.objects.filter(research_type__in=research_models.ResearchType.objects.filter(slug='press'), authors__in=PeoplePerson.objects.filter(name=self))
-        #context["publications"] = research_models.ResearchItem.objects.filter(research_type__in=research_models.ResearchType.objects.filter(slug='publications'), authors__in=PeoplePerson.objects.filter(name=self))
-        #context["media"] = research_models.ResearchItem.objects.filter(research_type__in=research_models.ResearchType.objects.filter(slug='media'), authors__in=PeoplePerson.objects.filter(name=self))
+        context["researchitems"] = research_models.ResearchItem.objects.all()
+        context["research_type"] = research_models.ResearchType.objects.all()
+        context["press"] = research_models.ResearchItem.objects.filter(research_type__in=research_models.ResearchType.objects.filter(slug='press'), authors__in=PeoplePerson.objects.filter(name=self))
+        context["publications"] = research_models.ResearchItem.objects.filter(research_type__in=research_models.ResearchType.objects.filter(slug='publications'), authors__in=PeoplePerson.objects.filter(name=self))
+        context["media"] = research_models.ResearchItem.objects.filter(research_type__in=research_models.ResearchType.objects.filter(slug='media'), authors__in=PeoplePerson.objects.filter(name=self))
         
         return context 
     
@@ -123,7 +127,7 @@ class PeoplePerson(Orderable, ClusterableModel):
     )
 
     person_role = ParentalManyToManyField("people.PeopleRole", blank=False)
-    #research_type = ParentalManyToManyField("research.ResearchType", blank=True)
+    research_type = ParentalManyToManyField("research.ResearchType", blank=True)
     authors = ParentalManyToManyField("people.PeoplePerson", blank=True)
 
         
