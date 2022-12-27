@@ -1,0 +1,49 @@
+
+{% extends "base.html" %}
+{% load wagtailimages_tags wagtailcore_tags %}
+
+
+  {% block content %}
+<div class="container">
+<div class="row">
+  <div class="col-sm-12">
+    <h1 class="cc-inner-title">{{ page.title }}</h1>
+
+<div class="row mt-4 bio-cards ">
+  {% for card in person %}
+  <div class="col-md-6 col-lg-4 d-flex align-items-stretch">
+    <div class="card mb-3" > <!--text-center-->
+      {% if card.internal_page %}
+        <a href="{{ card.internal_page.url }}" class="bio-link">
+    {% endif %}
+        <picture>  <!--fill-573x369 -->
+          {% image card.person_img fill-400x369 as card_img %}
+          <img src="{{ card_img.url }}" alt="{{ card_img.alt }}" class="lazy card-img-top">
+        </picture>
+        {% if card.internal_page %}
+            </a>
+        {% endif %}
+      <div class="card-body py-3"> <!--px-3 adds padding to left/right of card-body-->
+        {% if card.internal_page %}
+        <a href="{{ card.internal_page.url }}" class="bio-link">
+            {% endif %}
+          <p class="card-title" >{{ card.name }}</p>
+          <p class="card-description">{{ card.title }}</p>
+          <p class="card-text"><small class="text-muted">
+            <!--for e in card.person_role.all ... e.role ... endfor-->
+            </small>
+          </p>
+        </a>
+      </div>
+    </div>
+  </div>
+  {% endfor %}
+</div> 
+
+</div> <!--container-->
+
+  {% for block in page.body %}
+    {% include_block block %}
+  {% endfor %}
+
+{% endblock content %}

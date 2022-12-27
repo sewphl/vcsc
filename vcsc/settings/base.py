@@ -30,6 +30,7 @@ INSTALLED_APPS = [
     "site_settings",
     "streams",
     "flex",
+    "people",
     "wagtail.contrib.forms",
     "wagtail.contrib.modeladmin",
     "wagtail.contrib.redirects",
