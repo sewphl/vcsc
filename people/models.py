@@ -52,6 +52,31 @@ class PeopleListingPageCore(Page):
         verbose_name_plural = "People listing pages: Core Team"
 
 
+class PeopleListingPageStudent(Page):
+    """People listing page: Students"""
+    parent_page_types = ["subbanners.SubbannerPage"]
+    subpage_types = ["people.PeoplePersonPageStudents"]
+    template = "people/people_listing_page_students.html"
+    max_count = 1
+
+    def child_pages(self):
+        return PeoplePersonPage.objects.live().child_of(self)
+
+    def get_context(self, request, *args, **kwargs):
+        """Adding custom stuff to our context."""
+        context = super().get_context(request, *args, **kwargs)
+        context["person_role"] = PeopleRole.objects.all()
+        context["people_all"] = PeoplePerson.objects.all()
+        #context['person_page'] = PeoplePersonPage.objects.all() 
+        context["person_phd"] = PeoplePerson.objects.filter(person_role__in=PeopleRole.objects.filter(slug='students-phd'))
+        context["person_masters"] = PeoplePerson.objects.filter(person_role__in=PeopleRole.objects.filter(slug='students-masters'))
+        return context 
+    
+    class Meta:
+        verbose_name = "People listing page: Students"
+        verbose_name_plural = "People listing pages: Students"
+
+
 class PeoplePersonPage(Page):
     ##parent_page_types =
     ##do not allow child pages:
@@ -88,6 +113,45 @@ class PeoplePersonPage(Page):
     class Meta:
         verbose_name = "Person page"
         verbose_name_plural = "Person pages"
+
+class PeoplePersonPageStudents(Page):
+    ##parent_page_types =
+    ##do not allow child pages:
+    subpage_types = []
+    template = "people/person_page.html"
+
+    body = StreamField([
+            ("add_person", SnippetChooserBlock(
+            target_model="people.PeoplePerson",
+            template="streams/person_block_student.html",
+        )),
+    ], null=True, blank=True)
+
+    content_panels = Page.content_panels + [
+        StreamFieldPanel("body"),
+    ]
+
+    def get_context(self, request, *args, **kwargs):
+        """Adding custom stuff to our context."""
+        context = super().get_context(request, *args, **kwargs)
+        context["person_role"] = PeopleRole.objects.all()
+        context["person"] = PeoplePerson.objects.all()
+        context['person_page'] = PeoplePersonPage.objects.all() 
+        ##From Research: 
+        context["researchitems"] = research_models.ResearchItem.objects.all()
+        context["research_type"] = research_models.ResearchType.objects.all()
+        context["research_labs"] = research_models.ResearchLab.objects.all()
+        context["press"] = research_models.ResearchItem.objects.filter(research_type__in=research_models.ResearchType.objects.filter(slug='press'), authors__in=PeoplePerson.objects.filter(name=self))
+        context["publications"] = research_models.ResearchItem.objects.filter(research_type__in=research_models.ResearchType.objects.filter(slug='publications'), authors__in=PeoplePerson.objects.filter(name=self))
+        context["media"] = research_models.ResearchItem.objects.filter(research_type__in=research_models.ResearchType.objects.filter(slug='media'), authors__in=PeoplePerson.objects.filter(name=self))
+        context["person_phd"] = PeoplePerson.objects.filter(person_role__in=PeopleRole.objects.filter(slug='students-phd'))
+        context["person_masters"] = PeoplePerson.objects.filter(person_role__in=PeopleRole.objects.filter(slug='students-masters'))
+        
+        return context 
+    
+    class Meta:
+        verbose_name = "Person page (students)"
+        verbose_name_plural = "Person pages (students)"
 
 
 #@register_snippet  # uncomment to use a decorator instead of a function

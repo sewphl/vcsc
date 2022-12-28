@@ -8,10 +8,24 @@
         <p class="cc-inner-subtitle cc-service-subtitle">
           {{ self.title }}
         </p>
+        {% if self.bio %}
         <p>
           {{ self.bio | richtext }}
         </p>
         <br>
+        {% endif %}
+
+        <div>
+          {% if self.research_labs.all %}
+            
+            <p><strong>Research Lab(s)</strong>:
+            {% for e in self.research_labs.all %}
+              {{ e.lab_name }}{% if not forloop.last %}, {% endif %}
+            {% endfor %}
+            </p>
+            <br>
+            {% endif %}
+        </div>
 
         <div style="position:relative;">
         {% if self.external_website %}
@@ -27,20 +41,6 @@
         </a>
         {% endif %}
       </div>
-
-      <hr>
-      {% if press.all %}
-      <div>
-        <br>
-        {% if self.research_labs.all %}
-          <h4>Research Lab(s)</h4>
-          <p>
-          {% for e in self.research_labs.all %}
-            {{ e.lab_name }}{% if not forloop.last %}, {% endif %}
-          {% endfor %}
-          </p>
-      </div>
-      {% endif %}
     </div>
 
     <div class="col-lg-6">
