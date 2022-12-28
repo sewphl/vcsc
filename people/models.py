@@ -59,7 +59,7 @@ class PeoplePersonPage(Page):
     template = "people/person_page.html"
 
     body = StreamField([
-                ("add_person", SnippetChooserBlock(
+            ("add_person", SnippetChooserBlock(
             target_model="people.PeoplePerson",
             template="streams/person_block.html",
         )),
@@ -78,6 +78,7 @@ class PeoplePersonPage(Page):
         ##From Research: 
         context["researchitems"] = research_models.ResearchItem.objects.all()
         context["research_type"] = research_models.ResearchType.objects.all()
+        context["research_labs"] = research_models.ResearchLab.objects.all()
         context["press"] = research_models.ResearchItem.objects.filter(research_type__in=research_models.ResearchType.objects.filter(slug='press'), authors__in=PeoplePerson.objects.filter(name=self))
         context["publications"] = research_models.ResearchItem.objects.filter(research_type__in=research_models.ResearchType.objects.filter(slug='publications'), authors__in=PeoplePerson.objects.filter(name=self))
         context["media"] = research_models.ResearchItem.objects.filter(research_type__in=research_models.ResearchType.objects.filter(slug='media'), authors__in=PeoplePerson.objects.filter(name=self))
@@ -132,14 +133,16 @@ class PeoplePerson(Orderable, ClusterableModel):
     person_role = ParentalManyToManyField("people.PeopleRole", blank=False)
     research_type = ParentalManyToManyField("research.ResearchType", blank=True)
     authors = ParentalManyToManyField("people.PeoplePerson", blank=True)
+    research_labs = ParentalManyToManyField("research.ResearchLab", blank=True)
 
         
     panels = [
         MultiFieldPanel(
             [
                 FieldPanel("person_role", widget=forms.CheckboxSelectMultiple),
+                FieldPanel("research_labs", widget=forms.CheckboxSelectMultiple),
             ],
-            heading="Person role(s)"
+            heading="Person role(s) and lab(s)"
         ),
         MultiFieldPanel(
             [

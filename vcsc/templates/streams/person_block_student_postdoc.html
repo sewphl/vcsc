@@ -1,0 +1,54 @@
+
+{% load wagtailimages_tags wagtailcore_tags %}
+
+<div class="container person-div">
+<div class="row mb-3">
+    <div class="col-lg-6">
+        <h1 class="cc-inner-title">{{ self.name }}</h1>
+        <p class="cc-inner-subtitle cc-service-subtitle">
+          {{ self.title }}
+        </p>
+        <p>
+          {{ self.bio | richtext }}
+        </p>
+        <br>
+
+        <div style="position:relative;">
+        {% if self.external_website %}
+        <a href="{{ self.external_website }}" class="bio-btn btn btn-primary btn-lg mb-2 mb-lg-0">
+        Website <i class="fa-solid fa-link"></i>
+        </a>
+        {% endif %}
+
+        {% if self.twitter %}
+
+        <a href="{{ self.twitter }}" style="position:absolute; top:0;" class="px-1 social">
+          <i  class="fa-brands fa-square-twitter fa-3x"></i>
+        </a>
+        {% endif %}
+      </div>
+
+      <hr>
+      {% if press.all %}
+      <div>
+        <br>
+        {% if self.research_labs.all %}
+          <h4>Research Lab(s)</h4>
+          <p>
+          {% for e in self.research_labs.all %}
+            {{ e.lab_name }}{% if not forloop.last %}, {% endif %}
+          {% endfor %}
+          </p>
+      </div>
+      {% endif %}
+    </div>
+
+    <div class="col-lg-6">
+      <picture> <!--fill-573x369 -->
+        {% image self.person_img fill-573x369 as img %}
+        <!--style='width: 100%; height: auto;' -->
+        <img src="{{ img.url }}" alt="{{ img.alt }}">
+      </picture>
+    </div>
+  </div>
+</div>
