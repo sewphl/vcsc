@@ -36,8 +36,6 @@ html,body
 }
 
 
-
-
 /******START IMG-TXT STREAM HORIZONTAL CARDS*******/
 .my-container {
    margin-left: 5rem !important;
@@ -243,12 +241,12 @@ background-color: rgba(166, 213, 238, .4) !important;
 }
 
 
-.person-div a:not(.bio-btn) {
+.person-div a:not(.bio-btn, .social) {
    color: rgba(51, 68, 221, 1) !important; /*#3344dd*/
    text-decoration:none;
 }
 
-.person-div a:hover:not(.bio-btn:hover) {
+.person-div a:hover:not(.bio-btn:hover, .social:hover) {
    /*color: rgba(51, 68, 221, .8) !important;*/ /*#3344dd*/
    text-decoration:underline;
 }
@@ -266,7 +264,14 @@ background-color: rgba(166, 213, 238, .4) !important;
        background-color: rgba(166, 213, 238, .2) !important;
      }
 
+/* font awesome icons in a tags */
+a.social {
+   color: #212b36 ! important;
+}
 
+a.social:hover {
+   color: #3344dd !important; 
+}
 
 /****************END BIO BUTTONS****************/
 
