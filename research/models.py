@@ -217,10 +217,12 @@ class ResearchLab(models.Model):
         max_length=500,
         help_text="A slug to identify research items by this lab",
     )
+    lab_website = models.URLField(blank=True, null=True)
 
     panels = [
         FieldPanel("lab_name"),
         FieldPanel("slug"),
+        FieldPanel("lab_website"),
     ]
 
     class Meta:
