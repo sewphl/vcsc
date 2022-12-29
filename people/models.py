@@ -33,7 +33,7 @@ class PeopleListingPageCore(Page):
     parent_page_types = ["subbanners.SubbannerPage"]
     subpage_types = ["people.PeoplePersonPage"]
     template = "people/people_listing_page.html"
-    max_count = 1
+    max_count = 1 
 
     lead_text = RichTextField(
         blank=True,
@@ -59,6 +59,70 @@ class PeopleListingPageCore(Page):
     class Meta:
         verbose_name = "People listing page: Core Team"
         verbose_name_plural = "People listing pages: Core Team"
+
+class PeopleListingPageExternalFaculty(Page):
+    """People listing page: External Faculty"""
+    parent_page_types = ["subbanners.SubbannerPage"]
+    subpage_types = ["people.PeoplePersonPage"]
+    template = "people/people_listing_page.html"
+    max_count = 1 
+
+    lead_text = RichTextField(
+        blank=True,
+        help_text = 'Short lead text, if needed',
+    )
+
+    def child_pages(self):
+        return PeoplePersonPage.objects.live().child_of(self)
+
+    def get_context(self, request, *args, **kwargs):
+        """Adding custom stuff to our context."""
+        context = super().get_context(request, *args, **kwargs)
+        context["person_role"] = PeopleRole.objects.all()
+        context["people_all"] = PeoplePerson.objects.all()
+        #context['person_page'] = PeoplePersonPage.objects.all() 
+        context["person"] = PeoplePerson.objects.filter(person_role__in=PeopleRole.objects.filter(slug='external-faculty'))
+        return context 
+    
+    content_panels = Page.content_panels + [
+        FieldPanel("lead_text"),
+    ]
+
+    class Meta:
+        verbose_name = "People listing page: External Faculty"
+        verbose_name_plural = "People listing pages: External Faculty"
+
+class PeopleListingPagePostdoc(Page):
+    """People listing page: Postdocs"""
+    parent_page_types = ["subbanners.SubbannerPage"]
+    subpage_types = ["people.PeoplePersonPage"]
+    template = "people/people_listing_page.html"
+    max_count = 1
+
+    lead_text = RichTextField(
+        blank=True,
+        help_text = 'Short lead text, if needed',
+    )
+
+    def child_pages(self):
+        return PeoplePersonPage.objects.live().child_of(self)
+
+    def get_context(self, request, *args, **kwargs):
+        """Adding custom stuff to our context."""
+        context = super().get_context(request, *args, **kwargs)
+        context["person_role"] = PeopleRole.objects.all()
+        context["people_all"] = PeoplePerson.objects.all()
+        #context['person_page'] = PeoplePersonPage.objects.all() 
+        context["person"] = PeoplePerson.objects.filter(person_role__in=PeopleRole.objects.filter(slug='postdocs'))
+        return context 
+    
+    content_panels = Page.content_panels + [
+        FieldPanel("lead_text"),
+    ]
+
+    class Meta:
+        verbose_name = "People listing page: Postdocs"
+        verbose_name_plural = "People listing pages: Postdocs"
     
 
 
@@ -131,8 +195,8 @@ class PeoplePersonPage(Page):
         return context 
     
     class Meta:
-        verbose_name = "Person page"
-        verbose_name_plural = "Person pages"
+        verbose_name = "Person page: Core Team, Postdocs, External Faculty"
+        verbose_name_plural = "Person pages: Core Team, Postdocs, External Faculty"
 
 class PeoplePersonPageStudents(Page):
     ##parent_page_types =
@@ -170,8 +234,8 @@ class PeoplePersonPageStudents(Page):
         return context 
     
     class Meta:
-        verbose_name = "Person page (students)"
-        verbose_name_plural = "Person pages (students)"
+        verbose_name = "Person page: Students"
+        verbose_name_plural = "Person pages: Students"
 
 
 #@register_snippet  # uncomment to use a decorator instead of a function

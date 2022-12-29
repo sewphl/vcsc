@@ -8,12 +8,6 @@
         <p class="cc-inner-subtitle cc-service-subtitle">
           {{ self.title }}
         </p>
-        {% if self.bio %}
-        <p>
-          {{ self.bio | richtext }}
-        </p>
-        <br>
-        {% endif %}
 
         <div>
           {% if self.research_labs.all %}
@@ -30,6 +24,13 @@
             <br>
             {% endif %}
         </div>
+
+        {% if self.bio %}
+        <p>
+          {{ self.bio | richtext }}
+        </p>
+        <br>
+        {% endif %}
 
         {% if self.external_website %}
           <div class="flex-row pb-1">
