@@ -8,6 +8,7 @@ from wagtail.core.models import Page
 from wagtail.images.blocks import ImageChooserBlock
 from wagtail.images.edit_handlers import ImageChooserPanel
 from wagtail.snippets.blocks import SnippetChooserBlock
+from wagtail.fields import RichTextField
 
 from home.models import NEW_TABLE_OPTIONS
 from streams import blocks
@@ -18,10 +19,15 @@ class SubbannerPage(Page):
     template = "subbanners/subbanner_page.html"
     parent_page_types = ["home.HomePage"]
 
-    lead_text = models.CharField(
+    banner_lead_text = models.CharField(
         max_length = 140, 
         blank = True, 
         help_text = 'Subheading text under banner title',
+    )
+
+    lead_text = RichTextField(
+        blank=True,
+        help_text = 'Short lead text, if needed',
     )
 
     banner_background_image = models.ForeignKey(
@@ -57,7 +63,8 @@ class SubbannerPage(Page):
     ], null=True, blank=True)
 
     content_panels = Page.content_panels + [
-        FieldPanel("lead_text"), 
+        FieldPanel("banner_lead_text"), 
+        FieldPanel("lead_text"),
         ImageChooserPanel("banner_background_image"),
         StreamFieldPanel("body"),
     ]
