@@ -28,7 +28,7 @@
             <p><strong>Research Lab(s)</strong>:
             {% for e in self.research_labs.all %}
             {% if e.lab_website %}
-              <a href="{{e.lab_website}}" >{{ e.lab_name }}</a>{% if not forloop.last %}, {% endif %}
+              <a href="{{e.lab_website}}" target="_blank" >{{ e.lab_name }}</a>{% if not forloop.last %}, {% endif %}
             {% else %}
               {{ e.lab_name }}{% if not forloop.last %}, {% endif %}
             {% endif %}
@@ -44,7 +44,6 @@
         </p>
         <br>
         {% endif %}
-
         {% if self.external_website %}
           <div class="flex-row pb-1">
           <a href="{{ self.external_website }}" class="mb-2 bio-btn btn btn-primary btn-lg mb-lg-0"> <!--btn-lg mb-lg-0-->
@@ -127,7 +126,7 @@
           {% endif %}
         </div>
         {% endif %}
-
+        <hr>
     </div>
 
     <div class="col-lg-6">
