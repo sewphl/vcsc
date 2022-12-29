@@ -193,6 +193,36 @@ class PeoplePerson(Orderable, ClusterableModel):
     twitter = models.URLField(
         blank=True,
     )
+    youtube = models.URLField(
+        blank=True,
+    )
+    linkedin = models.URLField(
+        blank=True,
+    )
+    instagram = models.URLField(
+        blank=True,
+    )
+    github = models.URLField(
+        blank=True,
+    )
+    gitlab = models.URLField(
+        blank=True,
+    )
+    strava = models.URLField(
+        blank=True,
+    )
+    google_scholar = models.URLField(
+        blank=True,
+    )
+    arxiv = models.URLField(
+        blank=True,
+    )
+    research_gate = models.URLField(
+        blank=True,
+    )
+    orcid = models.URLField(
+        blank=True,
+    )
 
     person_role = ParentalManyToManyField("people.PeopleRole", blank=False)
     research_type = ParentalManyToManyField("research.ResearchType", blank=True)
@@ -220,6 +250,18 @@ class PeoplePerson(Orderable, ClusterableModel):
                 PageChooserPanel("internal_page"), 
                 FieldPanel("external_website"),
                 FieldPanel("twitter"),
+                FieldPanel("youtube"),
+                FieldPanel("linkedin"),
+                FieldPanel("instagram"),
+                FieldPanel("github"),
+                FieldPanel("gitlab"),
+                FieldPanel("strava"),
+                FieldPanel("google_scholar"),
+                FieldPanel("arxiv"),
+                FieldPanel("research_gate"),
+                FieldPanel("orcid"),
+
+
             ],
             heading="Person",
         ),

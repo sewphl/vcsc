@@ -13,20 +13,88 @@
         </p>
         <br>
 
-        <div style="position:relative;">
         {% if self.external_website %}
-        <a href="{{ self.external_website }}" class="bio-btn btn btn-primary btn-lg mb-2 mb-lg-0">
-        Website <i class="fa-solid fa-link"></i>
-        </a>
+          <div class="flex-row pb-1">
+          <a href="{{ self.external_website }}" class="mb-2 bio-btn btn btn-primary btn-lg mb-lg-0"> <!--btn-lg mb-lg-0-->
+          Website <i class="fa-solid fa-link"></i>
+          </a>
+          </div>
         {% endif %}
 
-        {% if self.twitter %}
+        {% if self.twitter or self.youtube or self.linkedin or self.instagram or self.github or self.gitlab or self.strava %}
+          <div class="flex-row">
+          {% if self.twitter %}
+            <a href="{{ self.twitter }}" class="social pr-1">
+            <i  class="fa-brands fa-square-twitter fa-3x"></i>
+            </a>
+          {% endif %}
 
-        <a href="{{ self.twitter }}" style="position:absolute; top:0;" class="px-1 social">
-          <i  class="fa-brands fa-square-twitter fa-3x"></i>
-        </a>
+          {% if self.youtube %}
+            <a href="{{ self.youtube }}" class="social pr-1">
+            <i  class="fa-brands fa-square-youtube fa-3x"></i>
+            </a>
+          {% endif %}
+
+          {% if self.instagram %}
+          <a href="{{ self.instagram }}" class="social pr-1">
+          <i  class="fa-brands fa-square-instagram fa-3x"></i>
+          </a>
+          {% endif %}
+
+          {% if self.linkedin %}
+          <a href="{{ self.linkedin }}" class="social pr-1">
+          <i  class="fa-brands fa-linkedin fa-3x"></i>
+          </a>
+          {% endif %}
+
+          {% if self.github %}
+          <a href="{{ self.github }}" class="social pr-1">
+          <i  class="fa-brands fa-square-github fa-3x"></i>
+          </a>
+          {% endif %}
+
+          {% if self.gitlab %}
+          <a href="{{ self.gitlab }}" class="social pr-1">
+          <i  class="fa-brands fa-square-gitlab fa-3x"></i>
+          </a>
+          {% endif %}
+
+          {% if self.strava %}
+          <a href="{{ self.strava }}" class="social pr-1">
+          <i  class="fa-brands fa-strava fa-3x"></i>
+          </a>
+          {% endif %}
+      
+          </div>
         {% endif %}
-      </div>
+
+        {% if self.google_scholar or self.arxiv or self.research_gate or self.orcid %}
+        <div class="flex-row">
+          {% if self.google_scholar %}
+          <a href="{{ self.google_scholar }}" class="social pr-1">
+          <i class="ai ai-google-scholar-square ai-3x"></i>
+          </a>
+          {% endif %}
+
+          {% if self.arxiv %}
+          <a href="{{ self.arxiv }}" class="social pr-1">
+          <i class="ai ai-arxiv-square ai-3x"></i>
+          </a>
+          {% endif %}
+
+          {% if self.research_gate %}
+          <a href="{{ self.research_gate }}" class="social pr-1">
+          <i class="ai ai-researchgate-square ai-3x"></i>
+          </a>
+          {% endif %}
+
+          {% if self.orcid %}
+          <a href="{{ self.orcid }}" class="social pr-1">
+          <i class="ai ai-orcid-square ai-3x"></i>
+          </a>
+          {% endif %}
+        </div>
+        {% endif %}
 
       <hr>
       {% if press.all %}
