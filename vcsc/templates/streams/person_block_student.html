@@ -9,9 +9,22 @@
           {{ self.title }}
         </p>
 
-        <div>
-          {% if self.research_labs.all %}
-            
+
+          {% if self.authors.all or self.research_labs.all %}
+          <div>            
+          {% if self.authors.all %}
+            <p><strong>Research Advisor(s)</strong>:
+            {% for e in self.authors.all %}
+            {% if e.external_website %}
+              <a href="{{e.external_website}}" target="_blank">{{ e.name }}</a>{% if not forloop.last %}, {% endif %}
+            {% else %}
+              {{ e.name }}{% if not forloop.last %}, {% endif %}
+            {% endif %}
+            {% endfor %}
+            </p>
+            {% endif %}
+
+            {% if self.research_labs.all %}
             <p><strong>Research Lab(s)</strong>:
             {% for e in self.research_labs.all %}
             {% if e.lab_website %}
@@ -21,9 +34,9 @@
             {% endif %}
             {% endfor %}
             </p>
-            <br>
             {% endif %}
         </div>
+        {% endif %}
 
         {% if self.bio %}
         <p>

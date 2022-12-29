@@ -319,12 +319,17 @@ class PeoplePerson(Orderable, ClusterableModel):
             [
                 FieldPanel("person_role", widget=forms.CheckboxSelectMultiple),
                 FieldPanel("research_labs", widget=forms.CheckboxSelectMultiple),
+                FieldPanel(
+                    "authors", 
+                    heading="research advisor(s)", 
+                    widget=forms.SelectMultiple,
+                    help_text="For students only, add research advisor(s)",
+                    ),
             ],
-            heading="Person role(s) and lab(s)"
+            heading="Person role(s) and lab(s), and (students only) advisor(s)"
         ),
         MultiFieldPanel(
             [
-                #FieldPanel("website"),
                 FieldPanel("name"),
                 FieldPanel("last_name"),
                 FieldPanel("slug"),
