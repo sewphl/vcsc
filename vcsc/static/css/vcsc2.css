@@ -12,6 +12,19 @@ html,body
    color: #fff !important;
 }
 
+.lead#lead {
+   color: #212b36 !important;
+}
+
+.lead#lead a {
+color: #3344dd !important;
+}
+
+.lead#lead a:hover {
+   color: #3344dd !important;
+   text-decoration: underline !important;
+   
+
 .bg-dark {
    font-size: 110% !important;
 }

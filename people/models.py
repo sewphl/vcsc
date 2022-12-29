@@ -35,6 +35,11 @@ class PeopleListingPageCore(Page):
     template = "people/people_listing_page.html"
     max_count = 1
 
+    lead_text = RichTextField(
+        blank=True,
+        help_text = 'Short lead text, if needed',
+    )
+
     def child_pages(self):
         return PeoplePersonPage.objects.live().child_of(self)
 
@@ -47,9 +52,14 @@ class PeopleListingPageCore(Page):
         context["person"] = PeoplePerson.objects.filter(person_role__in=PeopleRole.objects.filter(slug='core-team'))
         return context 
     
+    content_panels = Page.content_panels + [
+        FieldPanel("lead_text"),
+    ]
+
     class Meta:
         verbose_name = "People listing page: Core Team"
         verbose_name_plural = "People listing pages: Core Team"
+    
 
 
 class PeopleListingPageStudent(Page):
@@ -58,6 +68,11 @@ class PeopleListingPageStudent(Page):
     subpage_types = ["people.PeoplePersonPageStudents"]
     template = "people/people_listing_page_students.html"
     max_count = 1
+
+    lead_text = RichTextField(
+        blank=True,
+        help_text = 'Short lead text, if needed',
+    )
 
     def child_pages(self):
         return PeoplePersonPage.objects.live().child_of(self)
@@ -72,9 +87,14 @@ class PeopleListingPageStudent(Page):
         context["person_masters"] = PeoplePerson.objects.filter(person_role__in=PeopleRole.objects.filter(slug='students-masters'))
         return context 
     
+    content_panels = Page.content_panels + [
+        FieldPanel("lead_text"),
+    ]
+
     class Meta:
         verbose_name = "People listing page: Students"
         verbose_name_plural = "People listing pages: Students"
+
 
 
 class PeoplePersonPage(Page):
@@ -119,7 +139,7 @@ class PeoplePersonPageStudents(Page):
     ##do not allow child pages:
     subpage_types = []
     template = "people/person_page.html"
-
+    
     body = StreamField([
             ("add_person", SnippetChooserBlock(
             target_model="people.PeoplePerson",
