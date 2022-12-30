@@ -127,7 +127,7 @@ class PeopleListingPagePostdoc(Page):
 class PeopleListingPageAlumni(Page):
     """People listing page: Alumni"""
     parent_page_types = ["subbanners.SubbannerPage"]
-    subpage_types = ["people.PeoplePersonPage"]
+    subpage_types = ["people.PeoplePersonPageAlumni"]
     template = "people/people_listing_page.html"
     max_count = 1 
 
@@ -267,6 +267,43 @@ class PeoplePersonPageStudents(Page):
         verbose_name = "Person page: Students"
         verbose_name_plural = "Person pages: Students"
 
+class PeoplePersonPageAlumni(Page):
+    ##parent_page_types =
+    ##do not allow child pages:
+    subpage_types = []
+    template = "people/person_page.html"
+    
+    body = StreamField([
+            ("add_person", SnippetChooserBlock(
+            target_model="people.PeoplePerson",
+            template="streams/person_block_alumni.html",
+        )),
+    ], null=True, blank=True)
+
+    content_panels = Page.content_panels + [
+        StreamFieldPanel("body"),
+    ]
+
+    def get_context(self, request, *args, **kwargs):
+        """Adding custom stuff to our context."""
+        context = super().get_context(request, *args, **kwargs)
+        context["person_role"] = PeopleRole.objects.all()
+        context["person"] = PeoplePerson.objects.all()
+        context['person_page'] = PeoplePersonPage.objects.all() 
+        ##From Research: 
+        context["researchitems"] = research_models.ResearchItem.objects.all()
+        context["research_type"] = research_models.ResearchType.objects.all()
+        context["research_labs"] = research_models.ResearchLab.objects.all()
+        context["press"] = research_models.ResearchItem.objects.filter(research_type__in=research_models.ResearchType.objects.filter(slug='press'), authors__in=PeoplePerson.objects.filter(name=self))
+        context["publications"] = research_models.ResearchItem.objects.filter(research_type__in=research_models.ResearchType.objects.filter(slug='publications'), authors__in=PeoplePerson.objects.filter(name=self))
+        context["media"] = research_models.ResearchItem.objects.filter(research_type__in=research_models.ResearchType.objects.filter(slug='media'), authors__in=PeoplePerson.objects.filter(name=self))
+        
+        return context 
+    
+    class Meta:
+        verbose_name = "Person page: Alumni"
+        verbose_name_plural = "Person pages: Alumni"
+
 
 #@register_snippet  # uncomment to use a decorator instead of a function
 class PeoplePerson(Orderable, ClusterableModel):
@@ -286,16 +323,19 @@ class PeoplePerson(Orderable, ClusterableModel):
         blank=True,
         help_text="Brief bio (please limit number of hyperlinks included, as these need to be maintained and tend to go stale)",
        )
-    thesis_topic = RichTextField(
+    thesis_topic = models.CharField(
         blank=True,
+        max_length=500,
         help_text="For alumni only: thesis topic",
        )
-    current_employer = RichTextField(
+    current_employer = models.CharField(
         blank=True,
+        max_length=200,
         help_text="For alumni only: current employer",
        )
-    current_role = RichTextField(
+    current_role = models.CharField(
         blank=True,
+        max_length=200,
         help_text="For alumni only: current role", 
     )
     person_img = models.ForeignKey(
@@ -358,9 +398,15 @@ class PeoplePerson(Orderable, ClusterableModel):
 
     person_role = ParentalManyToManyField("people.PeopleRole", blank=False)
     research_type = ParentalManyToManyField("research.ResearchType", blank=True)
+    ##Note: Authors is also used for advisor dropdown (listing all people):
     authors = ParentalManyToManyField("people.PeoplePerson", blank=True)
     research_labs = ParentalManyToManyField("research.ResearchLab", blank=True)
-
+    ##many to many (if want to allow for multiple degrees and years)
+    #alumni_year = ParentalManyToManyField("people.PeopleGradYearAlumni", blank=True)
+    #alumni_degree = ParentalManyToManyField("people.PeopleDegreeAlumni", blank=True)
+    ##for now, set as many to one using foreign key:
+    alumni_year = models.ForeignKey("people.PeopleGradYearAlumni", null=True, blank=True, on_delete=models.SET_NULL)
+    alumni_degree = models.ForeignKey("people.PeopleDegreeAlumni", null=True, blank=True, on_delete=models.SET_NULL)
         
     panels = [
         MultiFieldPanel(
@@ -390,6 +436,8 @@ class PeoplePerson(Orderable, ClusterableModel):
                     "current_role",
                     heading="For alumni only: Current role at organization above",
                 ),
+                FieldPanel("alumni_degree", widget=forms.RadioSelect),
+                FieldPanel("alumni_year", widget=forms.RadioSelect),
             ],
             heading="For alumni only: Thesis, employment, and degree info",
         ),
@@ -462,3 +510,53 @@ class PeopleRole(models.Model):
         return self.role
 
 register_snippet(PeopleRole)
+
+class PeopleDegreeAlumni(models.Model):
+    """Alumni degree type (Postdoc, PhD, MS, or BS) for a snippet"""
+    alumni_degree_type = models.CharField(max_length=100)
+    slug = models.SlugField(
+        verbose_name="slug",
+        allow_unicode=True,
+        max_length=100,
+        help_text="A slug to identify alumni degrees (Postdoc, PhD, MS, or BS)",
+    )
+
+    panels = [
+        FieldPanel("alumni_degree_type"),
+        FieldPanel("slug"),
+    ]
+
+    class Meta:
+        verbose_name = "Alumni Degree Type"
+        verbose_name_plural = "Alumni Degree Types"
+        ordering = ["alumni_degree_type"]
+
+    def __str__(self):
+        return self.alumni_degree_type
+
+register_snippet(PeopleDegreeAlumni)
+
+class PeopleGradYearAlumni(models.Model):
+    """Alumni graduation year for a snippet"""
+    alumni_graduation_year = models.CharField(max_length=50)
+    slug = models.SlugField(
+        verbose_name="slug",
+        allow_unicode=True,
+        max_length=50,
+        help_text="A slug to identify alumni graduation years",
+    )
+
+    panels = [
+        FieldPanel("alumni_graduation_year"),
+        FieldPanel("slug"),
+    ]
+
+    class Meta:
+        verbose_name = "Alumni Graduation Year"
+        verbose_name_plural = "Alumni Graduation Years"
+        ordering = ["alumni_graduation_year"]
+
+    def __str__(self):
+        return self.alumni_graduation_year
+
+register_snippet(PeopleGradYearAlumni)
