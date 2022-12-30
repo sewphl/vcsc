@@ -307,6 +307,12 @@ class PeoplePerson(Orderable, ClusterableModel):
     orcid = models.URLField(
         blank=True,
     )
+    academia = models.URLField(
+        blank=True,
+    )
+    philpapers = models.URLField(
+        blank=True,
+    )
 
     person_role = ParentalManyToManyField("people.PeopleRole", blank=False)
     research_type = ParentalManyToManyField("research.ResearchType", blank=True)
@@ -321,7 +327,7 @@ class PeoplePerson(Orderable, ClusterableModel):
                 FieldPanel("research_labs", widget=forms.CheckboxSelectMultiple),
                 FieldPanel(
                     "authors", 
-                    heading="research advisor(s)", 
+                    heading="For students only: research advisor(s)", 
                     widget=forms.SelectMultiple,
                     help_text="For students only, add research advisor(s)",
                     ),
@@ -349,7 +355,8 @@ class PeoplePerson(Orderable, ClusterableModel):
                 FieldPanel("arxiv"),
                 FieldPanel("research_gate"),
                 FieldPanel("orcid"),
-
+                FieldPanel("academia"),
+                FieldPanel("philpapers"),
 
             ],
             heading="Person",

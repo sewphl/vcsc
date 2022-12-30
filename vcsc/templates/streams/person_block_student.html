@@ -124,6 +124,18 @@
           <i class="ai ai-orcid-square ai-3x"></i>
           </a>
           {% endif %}
+
+          {% if self.academia %}
+          <a href="{{ self.academia }}" class="social pr-1">
+          <i class="ai ai-academia-square ai-3x"></i>
+          </a>
+          {% endif %}
+
+          {% if self.philpapers %}
+          <a href="{{ self.philpapers }}" class="social pr-1">
+          <i class="ai ai-philpapers-square ai-3x"></i>
+          </a>
+          {% endif %}
         </div>
         {% endif %}
         <hr>
