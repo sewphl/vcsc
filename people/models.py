@@ -124,7 +124,37 @@ class PeopleListingPagePostdoc(Page):
         verbose_name = "People listing page: Postdocs"
         verbose_name_plural = "People listing pages: Postdocs"
     
+class PeopleListingPageAlumni(Page):
+    """People listing page: Alumni"""
+    parent_page_types = ["subbanners.SubbannerPage"]
+    subpage_types = ["people.PeoplePersonPage"]
+    template = "people/people_listing_page.html"
+    max_count = 1 
 
+    lead_text = RichTextField(
+        blank=True,
+        help_text = 'Short lead text, if needed',
+    )
+
+    def child_pages(self):
+        return PeoplePersonPage.objects.live().child_of(self)
+
+    def get_context(self, request, *args, **kwargs):
+        """Adding custom stuff to our context."""
+        context = super().get_context(request, *args, **kwargs)
+        context["person_role"] = PeopleRole.objects.all()
+        context["people_all"] = PeoplePerson.objects.all()
+        #context['person_page'] = PeoplePersonPage.objects.all() 
+        context["person"] = PeoplePerson.objects.filter(person_role__in=PeopleRole.objects.filter(slug='alumni'))
+        return context 
+    
+    content_panels = Page.content_panels + [
+        FieldPanel("lead_text"),
+    ]
+
+    class Meta:
+        verbose_name = "People listing page: Alumni"
+        verbose_name_plural = "People listing pages: Alumni"
 
 class PeopleListingPageStudent(Page):
     """People listing page: Students"""
@@ -195,8 +225,8 @@ class PeoplePersonPage(Page):
         return context 
     
     class Meta:
-        verbose_name = "Person page: Core Team, Postdocs, External Faculty"
-        verbose_name_plural = "Person pages: Core Team, Postdocs, External Faculty"
+        verbose_name = "Person page: Core Team, Postdocs, External Faculty, Alumni"
+        verbose_name_plural = "Person pages: Core Team, Postdocs, External Faculty, Alumni"
 
 class PeoplePersonPageStudents(Page):
     ##parent_page_types =
@@ -254,8 +284,20 @@ class PeoplePerson(Orderable, ClusterableModel):
     title = models.CharField(max_length=500, blank=False, null=True)
     bio = RichTextField(
         blank=True,
-        help_text="Job title",
+        help_text="Brief bio (please limit number of hyperlinks included, as these need to be maintained and tend to go stale)",
        )
+    thesis_topic = RichTextField(
+        blank=True,
+        help_text="For alumni only: thesis topic",
+       )
+    current_employer = RichTextField(
+        blank=True,
+        help_text="For alumni only: current employer",
+       )
+    current_role = RichTextField(
+        blank=True,
+        help_text="For alumni only: current role", 
+    )
     person_img = models.ForeignKey(
         "wagtailimages.Image",
         on_delete=models.SET_NULL,
@@ -327,12 +369,29 @@ class PeoplePerson(Orderable, ClusterableModel):
                 FieldPanel("research_labs", widget=forms.CheckboxSelectMultiple),
                 FieldPanel(
                     "authors", 
-                    heading="For students only: research advisor(s)", 
+                    heading="For students/alumni: Research advisor(s) (select multiple advisors using Command button on Mac)", 
                     widget=forms.SelectMultiple,
-                    help_text="For students only, add research advisor(s)",
+                    #help_text="For students/alumni: Research advisor(s)",
                     ),
             ],
-            heading="Person role(s) and lab(s), and (students only) advisor(s)"
+            heading="Person role(s), lab(s), and advisor(s)",
+        ),
+        MultiFieldPanel(
+            [
+                FieldPanel(
+                    "thesis_topic",
+                    heading="For alumni only: Thesis topic",
+                ),
+                FieldPanel(
+                    "current_employer",
+                    heading="For alumni only: Current employer",
+                ),
+                FieldPanel(
+                    "current_role",
+                    heading="For alumni only: Current role at organization above",
+                ),
+            ],
+            heading="For alumni only: Thesis, employment, and degree info",
         ),
         MultiFieldPanel(
             [
