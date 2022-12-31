@@ -43,13 +43,15 @@
           
         {% if self.authors.all %}
           <p><strong>Research Advisor(s)</strong>:
-          {% for e in self.authors.all %}
-          {% if e.external_website %}
-            <a href="{{e.external_website}}" target="_blank">{{ e.name }}</a>{% if not forloop.last %}, {% endif %}
-          {% else %}
-            {{ e.name }}{% if not forloop.last %}, {% endif %}
-          {% endif %}
-          {% endfor %}
+            {% for e in self.authors.all %}
+            {% if e.internal_page %}
+              <a href="{{e.internal_page.url}}" target="_blank">{{ e.name }}</a>{% if not forloop.last %}, {% endif %}
+            {% elif e.external_website %}
+              <a href="{{e.external_website}}" target="_blank">{{ e.name }}</a>{% if not forloop.last %}, {% endif %}            
+            {% else %}
+              {{ e.name }}{% if not forloop.last %}, {% endif %}
+            {% endif %}
+            {% endfor %}
           </p>
           {% endif %}
 
