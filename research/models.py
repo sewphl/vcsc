@@ -12,6 +12,7 @@ from wagtail.admin.edit_handlers import (
     FieldPanel,
     MultiFieldPanel,
     InlinePanel,
+    PageChooserPanel,
 )
 from wagtail.admin.edit_handlers import StreamFieldPanel
 from wagtail.contrib.routable_page.models import RoutablePageMixin, route
@@ -217,12 +218,26 @@ class ResearchLab(models.Model):
         max_length=500,
         help_text="A slug to identify research items by this lab",
     )
-    lab_website = models.URLField(blank=True, null=True)
+
+    external_website = models.URLField(
+        blank=True,
+        help_text="Add lab website URL here (unless lab's website is part of this VCSC website, in which case, see the field below."
+    )
+
+    internal_page = models.ForeignKey(
+        "wagtailcore.Page",
+        blank=True,
+        null=True,
+        related_name="+",
+        help_text="If lab website is a page on the VCSC website, add the link here.",
+        on_delete=models.SET_NULL,
+    )
 
     panels = [
         FieldPanel("lab_name"),
         FieldPanel("slug"),
-        FieldPanel("lab_website"),
+        FieldPanel("external_website"),
+        PageChooserPanel("internal_page"),
     ]
 
     class Meta:
