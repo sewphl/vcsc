@@ -233,11 +233,21 @@ class ResearchLab(models.Model):
         on_delete=models.SET_NULL,
     )
 
+    lab_logo = models.ForeignKey(
+        "wagtailimages.Image",
+        on_delete=models.SET_NULL,
+        null=True,
+        blank=True,
+        related_name="+",
+    )
+
     panels = [
         FieldPanel("lab_name"),
         FieldPanel("slug"),
         FieldPanel("external_website"),
         PageChooserPanel("internal_page"),
+
+        ImageChooserPanel("lab_logo"),
     ]
 
     class Meta:
