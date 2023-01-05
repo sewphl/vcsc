@@ -1,0 +1,82 @@
+{% extends "base.html" %}
+{% load wagtailcore_tags %}
+{% load static wagtailimages_tags %}
+
+{% block content %}
+<div class="container">
+<div class="row">
+  <div class="col-sm-12">
+    <h1 class="cc-inner-title">{{ page.title }}</h1>
+    {% if page.lead_text %}
+      <span class="lead" id="lead">
+        {{ page.lead_text | richtext }}
+      </span>
+    {% endif %}
+    </div>
+    </div>
+    </div>
+
+  {% for lab in research_labs %}
+<div class="container img-txt-container" style="margin-top:10px;" >
+<div class="card mb-3 img-txt-card" style="max-width: 1100px;" > <!--style="max-width: 540px;"-->
+  <div class="row no-gutters ">
+    <div class="col-md-4">
+      {% if lab.internal_page %}
+        <a href="{{ lab.internal_page.url }}" class="d-block img-link">
+      {% elif lab.external_website %}
+        <a href="{{ lab.external_website }}" class="d-block img-link">
+      {% endif %}
+      {% if lab.lab_logo %}
+      <picture>
+        {% image lab.lab_logo fill-400x400 as img %}
+        <img class="card-img" src="{{ img.url }}" alt="{{ img.alt }}" style='width: 100%; height: auto;'>
+      </picture>
+      {% endif %}
+      {% if lab.internal_page or lab.external_website %}
+        </a>
+      {% endif %}
+    </div>
+    <div class="col-md-8">
+      <div class="card-body">
+        {% if lab.lab_name %}
+        {% if lab.internal_page %}
+          <a href="{{ lab.internal_page.url }}" class="d-block" >
+        {% elif lab.external_website %}
+          <a href="{{ lab.external_website }}" class="d-block" >
+        {% endif %}
+        <h3 class="" style="margin-top: 0; padding-top: 0;">{{ lab.lab_name }}</h3> 
+        {% if lab.internal_page or lab.external_website %}
+          </a>
+        {% endif %}
+      {% endif %}
+      {% if lab.subtitle %}
+        <h6 class="">Group Leads: {{ lab.subtitle }}</h6>
+      {% endif %}
+      {% if lab.lab_bio %}
+      <p class="card-text"> <!--cc-iat-text-->
+        {{ lab.lab_bio | richtext}}
+      </p>
+    {% endif %}
+        <!--<p class="card-text"><small class="text-muted"></small></p>-->
+      </div>
+    </div>
+  </div>
+</div> <!--.card-->
+</div> <!--.container-->
+
+
+<div class="container">
+<hr style="max-width: 900px; padding-left: 20px; padding-right:20px;" >
+</div>
+
+
+{% endfor %}
+
+{% for block in page.body %}
+{% include_block block %}
+{% endfor %}
+
+{% endblock content %}
+
+
+

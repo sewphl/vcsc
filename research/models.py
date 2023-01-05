@@ -19,6 +19,7 @@ from wagtail.contrib.routable_page.models import RoutablePageMixin, route
 from wagtail.core import blocks as wagtail_blocks
 from wagtail.core.fields import StreamField
 from wagtail.core.models import Page, Orderable
+from wagtail.fields import RichTextField
 from wagtail.images.edit_handlers import ImageChooserPanel
 from wagtail.images.blocks import ImageChooserBlock
 from wagtail.snippets.models import register_snippet
@@ -145,6 +146,35 @@ class ResearchPublicationsListingPage(RoutablePageMixin, Page):
     #    context['publications'] = context['publications']
     #    return render(request, "research/latest_posts.html", context)
 
+
+class ResearchGroupListingPage(Page):
+    """Research Group Listing Page"""
+    parent_page_types = ["subbanners.SubbannerPage"]
+    #subpage_types = []
+    template = "research/research_group_listing_page.html"
+    max_count = 1 
+
+    lead_text = RichTextField(
+        blank=True,
+        help_text = 'Short lead text, if needed',
+    )
+
+    def get_context(self, request, *args, **kwargs):
+        """Adding custom stuff to our context."""
+        context = super().get_context(request, *args, **kwargs)
+        context["research_labs"] = ResearchLab.objects.all()
+        context["researchitems"] = ResearchItem.objects.all()
+        context["authors"] = people_models.PeoplePerson.objects.all()
+
+        return context 
+    
+    content_panels = Page.content_panels + [
+        FieldPanel("lead_text"),
+    ]
+
+    class Meta:
+        verbose_name = "Research Group Listing Page"
+        verbose_name_plural = "Research Group Listing Pages"
     
 #@register_snippet  # uncomment to use a decorator instead of a function
 class ResearchItem(Orderable, ClusterableModel):
@@ -241,13 +271,19 @@ class ResearchLab(models.Model):
         related_name="+",
     )
 
+    lab_bio = RichTextField(
+        blank=True,
+        help_text="Brief lab bio (please limit number of hyperlinks included, as these need to be maintained and tend to go stale)",
+       )
+
     panels = [
         FieldPanel("lab_name"),
         FieldPanel("slug"),
         FieldPanel("external_website"),
         PageChooserPanel("internal_page"),
-
+        FieldPanel("lab_bio"),
         ImageChooserPanel("lab_logo"),
+
     ]
 
     class Meta:
