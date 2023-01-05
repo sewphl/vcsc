@@ -239,7 +239,7 @@ class ResearchItem(Orderable, ClusterableModel):
 
 register_snippet(ResearchItem)
 
-class ResearchLab(models.Model):
+class ResearchLab(Orderable, ClusterableModel):
     """Research lab for a snippet"""
     lab_name = models.CharField(max_length=500)
     slug = models.SlugField(
@@ -276,6 +276,9 @@ class ResearchLab(models.Model):
         help_text="Brief lab bio (please limit number of hyperlinks included, as these need to be maintained and tend to go stale)",
        )
 
+    
+    group_leads = ParentalManyToManyField("people.PeoplePerson", blank=True)
+
     panels = [
         FieldPanel("lab_name"),
         FieldPanel("slug"),
@@ -283,8 +286,17 @@ class ResearchLab(models.Model):
         PageChooserPanel("internal_page"),
         FieldPanel("lab_bio"),
         ImageChooserPanel("lab_logo"),
+        FieldPanel(
+            "group_leads", 
+            heading="Select multiple group leads using Command button on Mac", 
+            widget=forms.CheckboxSelectMultiple,
+            #help_text="Group leads",
+        ),
 
     ]
+
+    def clean(self):
+        super().clean()
 
     class Meta:
         verbose_name = "Research Lab"
