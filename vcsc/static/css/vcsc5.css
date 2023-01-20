@@ -17,15 +17,15 @@ html,body
    letter-spacing: normal;
 }
 
-.lead#lead a {
+.lead#lead a, .group_lead a {
 color: #3344dd !important;
 }
 
-.lead#lead a:hover {
+.lead#lead a:hover, .group_lead a:hover {
    color: #3344dd !important;
    text-decoration: underline !important;
 }   
-
+ 
 .bg-dark {
    font-size: 110% !important;
 }
@@ -105,7 +105,7 @@ p.card-description {
    /*font-size: 120% !important;*/
 }
 
-.card:hover, .card-body:hover, .card-body a:hover, .card-title:hover {
+.card:hover, .card-body:hover, .card-title:hover {  /*.card-body a:hover, */
    text-decoration: none !important;
 }
 

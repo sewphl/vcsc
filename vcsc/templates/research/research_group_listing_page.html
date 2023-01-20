@@ -51,7 +51,7 @@
       {% endif %}
 
       {% if lab.group_leads.all %}
-      <p><strong>Group Lead(s)</strong>:
+      <p class="group_lead"><strong>Group Lead(s)</strong>:
       {% for e in lab.group_leads.all %}
       {% if e.internal_page %}
         <a href="{{e.internal_page.url}}" target="_blank">{{ e.name }}</a>{% if not forloop.last %}, {% endif %}
