@@ -69,8 +69,22 @@
       <p class="card-text"> <!--cc-iat-text-->
         {{ lab.lab_bio | richtext}}
       </p>
-    {% endif %}
+      {% endif %}
         <!--<p class="card-text"><small class="text-muted"></small></p>-->
+    
+      {% if lab.internal_page %}
+        <div class="flex-row pb-1">
+        <a href="{{ lab.internal_page.url }}" class="mb-2 bio-btn btn btn-primary btn-lg mb-lg-0"> <!--btn-lg mb-lg-0-->
+        Website <i class="fa-solid fa-link"></i>
+        </a>
+        </div>  
+      {% elif lab.external_website %}
+        <div class="flex-row pb-1">
+        <a href="{{ lab.external_website }}" class="mb-2 bio-btn btn btn-primary btn-lg mb-lg-0"> <!--btn-lg mb-lg-0-->
+        Website <i class="fa-solid fa-link"></i>
+        </a>
+        </div>
+      {% endif %}
       </div>
     </div>
   </div>
