@@ -288,7 +288,7 @@ class ResearchLab(Orderable, ClusterableModel):
         ImageChooserPanel("lab_logo"),
         FieldPanel(
             "group_leads", 
-            heading="Select multiple group leads using Command button on Mac", 
+            #heading="Select multiple group leads using Command button on Mac", 
             widget=forms.CheckboxSelectMultiple,
             #help_text="Group leads",
         ),

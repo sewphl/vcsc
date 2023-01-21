@@ -17,11 +17,11 @@ html,body
    letter-spacing: normal;
 }
 
-.lead#lead a, .group_lead a {
+.card-body a, .lead#lead a, .group_lead a {
 color: #3344dd !important;
 }
 
-.lead#lead a:hover, .group_lead a:hover {
+.card-body a:hover, .lead#lead a:hover, .group_lead a:hover {
    color: #3344dd !important;
    text-decoration: underline !important;
 }   

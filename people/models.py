@@ -412,7 +412,11 @@ class PeoplePerson(Orderable, ClusterableModel):
         MultiFieldPanel(
             [
                 FieldPanel("person_role", widget=forms.CheckboxSelectMultiple),
-                FieldPanel("research_labs", widget=forms.CheckboxSelectMultiple),
+                FieldPanel(
+                    "research_labs", 
+                    heading="For students/alumni: Research Labs(s)",
+                    widget=forms.CheckboxSelectMultiple,
+                    ),
                 FieldPanel(
                     "authors", 
                     heading="For students/alumni: Research advisor(s) (select multiple advisors using Command button on Mac)", 
