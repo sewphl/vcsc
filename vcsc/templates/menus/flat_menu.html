@@ -7,24 +7,26 @@
     <a class="navbar-brand" href="/">
         <img src="{% static 'images/vcsc-logo-square-sm.png' %}" alt="Vermont Complex Systems Center">
       </a>
+    <!--
     <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
         <span class="navbar-toggler-icon"></span>
     </button>
-      <div class="collapse navbar-collapse" id="navbarSupportedContent">
+    -->
+      <div role="navigation" class="collapse navbar-collapse" id="navbarSupportedContent" aria-label="Main">
     {% if menu_items %}
-    <ul class="navbar-nav mr-auto">
+    <ul role="menu" class="navbar-nav mr-auto" aria-label="Main">
         {% for item in menu_items %}
         {% if item.has_children_in_menu %}
-            <li class="nav-item dropdown {{ item.active_class }}">
-                <a class="nav-link dropdown-toggle" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" href="{{ item.href }}">{{ item.text }}</a>
+            <li role="presentation" class="nav-item dropdown {{ item.active_class }}">
+                <a role="menuitem" class="nav-link dropdown-toggle" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" href="{{ item.href }}">{{ item.text }}</a>
                 <div class="dropdown-menu" aria-labelledby="navbarDropdown">
-                        <a class="dropdown-item {{ item.active_class }} " href="{{ item.href }}">{{ item.text }} Homepage</a>
+                        <a role="menuitem" class="dropdown-item {{ item.active_class }} " href="{{ item.href }}">{{ item.text }} Homepage</a>
                         {% sub_menu item %}            
             </div>
             </li>
         {% else %}
-            <li class="nav-item {{ item.active_class }}">
-                <a class="nav-link" href="{{ item.href }}">{{ item.text }}</a>
+            <li role="presentation" class="nav-item {{ item.active_class }}">
+                <a role="menuitem" class="nav-link" href="{{ item.href }}">{{ item.text }}</a>
             </li>
         {% endif %}
         {% endfor %}

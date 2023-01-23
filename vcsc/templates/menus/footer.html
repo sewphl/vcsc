@@ -1,6 +1,6 @@
 {% load static menu_tags wagtailcore_tags cache %}
 
-  <section class="py-4 mt-lg-5 mt-0" style='background-image: url("{% static 'images/grey-pattern.png' %}");'>  <!--change to contact-overlay.png for transparent bg-->
+  <section role="region" aria-label="Footer CTA" class="py-4 mt-lg-5 mt-0" style='background-image: url("{% static 'images/grey-pattern.png' %}");'>  <!--change to contact-overlay.png for transparent bg-->
     <div class="container-fluid">
       <div class="container">
       <div class="row align-items-center">
@@ -27,24 +27,24 @@
 
     <div class="container">
     <div class="row mx-lg-n3">
-      <div class="px-lg-3 col-lg-3 col-md-6 col-sm-12 footer-links">
+      <div role="navigation" aria-label="Footer" class="px-lg-3 col-lg-3 col-md-6 col-sm-12 footer-links">
         <!--<div class="cc-footer-title"></div>-->
         <!--cache goes here-->
           {% for item in menu_items %}
-            <a class="cc-footer-link-lg d-block" href="{{ item.href }}" {% if item.open_in_new_tab %}target="_blank"{% endif %}>{{ item.text }}</a>
+            <a role="menuitem" class="cc-footer-link-lg d-block" href="{{ item.href }}" {% if item.open_in_new_tab %}target="_blank"{% endif %}>{{ item.text }}</a>
           {% endfor %} 
         <!--end cache here-->
       </div>
       
         <div class="px-lg-2 col-lg-3 col-md-6 col-sm-12">
-          <div class="cc-footer-title">Contact</div>
+          <div role="region" aria-label="Contact" class="cc-footer-title">Contact</div>
           {{ settings.site_settings.ContactSettings.contact|richtext }}
         </div>
-        <div class="px-lg-4 col-lg-3 col-md-6 col-sm-12">
+        <div role="region" aria-label="Explore" class="px-lg-4 col-lg-3 col-md-6 col-sm-12">
           <div class="cc-footer-title">Explore</div>
           {{ settings.site_settings.ExploreSettings.explore|richtext }}
         </div>
-        <div class="px-lg-3 col-lg-3 col-md-6 col-sm-12 lg-txt">
+        <div role="region" aria-label="Social Icons and Copyright" class="px-lg-3 col-lg-3 col-md-6 col-sm-12 lg-txt">
           {% cache 2592000 footer_social_settings %}
             {% if settings.site_settings.SocialMediaSettings.facebook %}
               <a href="{{ settings.site_settings.SocialMediaSettings.facebook }}" class="cc-footer-social-icon">
