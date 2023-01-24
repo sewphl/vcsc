@@ -23,7 +23,8 @@ color: #3344dd !important;
 
 .card-body a:hover, .lead#lead a:hover, .group_lead a:hover {
    color: #3344dd !important;
-   text-decoration: underline !important;
+   text-decoration: none !important;
+   /*text-decoration: underline !important;*/
 }   
  
 .bg-dark {
