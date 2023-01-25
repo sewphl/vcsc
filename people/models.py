@@ -192,7 +192,7 @@ class PeopleListingPageStudent(Page):
 
 
 class PeoplePersonPage(Page):
-    ##parent_page_types =
+    parent_page_types = ["people.PeopleListingPageCore","people.PeopleListingPageExternalFaculty","people.PeopleListingPagePostdoc"]
     ##do not allow child pages:
     subpage_types = []
     template = "people/person_page.html"
@@ -225,11 +225,11 @@ class PeoplePersonPage(Page):
         return context 
     
     class Meta:
-        verbose_name = "Person page: Core Team, Postdocs, External Faculty, Alumni"
-        verbose_name_plural = "Person pages: Core Team, Postdocs, External Faculty, Alumni"
+        verbose_name = "Person page: Core Team, Postdocs, External Faculty"
+        verbose_name_plural = "Person pages: Core Team, Postdocs, External Faculty"
 
 class PeoplePersonPageStudents(Page):
-    ##parent_page_types =
+    parent_page_types = ["people.PeopleListingPageStudent"]
     ##do not allow child pages:
     subpage_types = []
     template = "people/person_page.html"
@@ -268,7 +268,7 @@ class PeoplePersonPageStudents(Page):
         verbose_name_plural = "Person pages: Students"
 
 class PeoplePersonPageAlumni(Page):
-    ##parent_page_types =
+    parent_page_types = ["people.PeopleListingPageAlumni"]
     ##do not allow child pages:
     subpage_types = []
     template = "people/person_page.html"
