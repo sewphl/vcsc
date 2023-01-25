@@ -16,7 +16,7 @@ from vcsc.settings.base import ALL_RICHTEXT_FEATURES
 
 
 class FlexPage(Page):
-    parent_page_types = ["home.HomePage", "flex.FlexPage"]
+    parent_page_types = ["home.HomePage", "flex.FlexPage","subbanners.SubbannerPage"]
     body = StreamField([
         ("title", blocks.TitleBlock()),
         ("cards", blocks.CardsBlock()),
