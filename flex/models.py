@@ -20,6 +20,7 @@ class FlexPage(Page):
     body = StreamField([
         ("title", blocks.TitleBlock()),
         ("cards", blocks.CardsBlock()),
+        ("cards_text", blocks.CardsTextBlock()),
         ("image_and_text", blocks.ImageAndTextBlock()),
         ("image_beside_text", blocks.ImageBesideTextBlock()),
         ("cta", blocks.CallToActionBlock()),

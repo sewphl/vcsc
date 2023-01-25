@@ -163,6 +163,11 @@ picture img {
 .cards-text .card-body {
    text-align: center !important;
 }
+
+.cards-text a:hover {
+   text-decoration: underline !important;
+}
+
 .cards-text .card {
 background-color: rgba(166, 213, 238, .4) !important;
 }
