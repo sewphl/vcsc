@@ -13,7 +13,7 @@
           </p>
         </div>
         <div class="col-lg-4 text-lg-right text-center">
-          <a href="{% if settings.site_settings.FooterCTASettings.button_internal_page %}{{ settings.site_settings.FooterCTASettings.button_internal_page.url }}{% elif settings.site_settings.FooterCTASettings.button_external_page %}{{ settings.site_settings.FooterCTASettings.button_external_page }}{% else %}/{% endif %}" class="btn btn-light btn-lg mt-lg-0 mt-3">
+          <a href="{% if settings.site_settings.FooterCTASettings.button_internal_page %}{{ settings.site_settings.FooterCTASettings.button_internal_page.url }}{% elif settings.site_settings.FooterCTASettings.button_external_page %}{{ settings.site_settings.FooterCTASettings.button_external_page }}{% else %}/{% endif %}" class="btn btn-light btn-lg mt-lg-0 mt-3 footerCTAbutton">
             {{ settings.site_settings.FooterCTASettings.button_text }}
           </a>
         </div> <!--...text-lg-left text-center-->
@@ -67,7 +67,7 @@
               </a>
             {% endif %}
           {% endcache %}
-          <div class="cc-footer-copy">&copy; {% now "Y" %}, VT Complex Systems Center</div>
+          <div class="cc-footer-copy">&copy; {% now "Y" %}, Vermont Complex Systems Center at UVM</div>
       </div>
     </div>
   </div> <!--container-->

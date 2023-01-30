@@ -12,6 +12,18 @@ html,body
    color: #fff !important;
 }
 
+.footerCTAbutton {
+   color: #212b36 !important;
+   background-color: rgba(166, 213, 238, 1) !important;
+ }
+
+.footerCTAbutton:hover {
+      color: #212b36 !important;
+       background-color: #fff !important;
+     }
+
+/*end footer*/
+
 .lead#lead {
    color: #212b36 !important;
    letter-spacing: normal;
