@@ -19,7 +19,7 @@ html,body
 
 .footerCTAbutton:hover {
       color: #212b36 !important;
-       background-color: #fff !important;
+       background-color:rgba(166, 213, 238, .8) !important;
      }
 
 /*end footer*/
