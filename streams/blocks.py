@@ -43,7 +43,7 @@ class LinkValue(blocks.StructValue):
 class Link(blocks.StructBlock):
     link_text = blocks.CharBlock(
         max_length=50,
-        default='More Details'
+        default='More Details',
     )
     internal_page = blocks.PageChooserBlock(
         required=False
@@ -177,6 +177,33 @@ class ImageBesideTextBlock(blocks.StructBlock):
         features=ALL_RICHTEXT_FEATURES,
     )
     link = Link()
+
+    class Meta:
+        template = "streams/image_beside_text_block.html"
+        icon = "image"
+        label = "Horizontal Card w/ Image"
+
+
+class ImageBesideTextBlockNoLink(blocks.StructBlock):
+    image = ImageChooserBlock(help_text="Image will be automagically cropped to 786px x 552px")
+    title  = blocks.CharBlock(
+        max_length=60, 
+        help_text="Max length of 60 characters", 
+        required=False
+    )
+    subtitle  = blocks.CharBlock(
+        max_length=200, 
+        help_text="Max length of 200 characters", 
+        required=False
+    )
+    #text = blocks.CharBlock(
+    #    max_length=140, 
+    #    required=True
+    #)
+    text = RichTextBlock(
+        required=True,
+        features=ALL_RICHTEXT_FEATURES,
+    )
 
     class Meta:
         template = "streams/image_beside_text_block.html"

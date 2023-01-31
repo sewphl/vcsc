@@ -22,7 +22,8 @@ class FlexPage(Page):
         ("cards", blocks.CardsBlock()),
         ("cards_text", blocks.CardsTextBlock()),
         ("image_and_text", blocks.ImageAndTextBlock()),
-        ("image_beside_text", blocks.ImageBesideTextBlock()),
+        ("horizontal_card", blocks.ImageBesideTextBlock()),
+        ("image_beside_text",blocks.ImageBesideTextBlockNoLink()),
         ("cta", blocks.CallToActionBlock()),
         #("pricing_table", blocks.PricingTableBlock(
         #    table_options=NEW_TABLE_OPTIONS,

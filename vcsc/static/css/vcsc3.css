@@ -80,7 +80,7 @@ color: #3344dd !important;
    letter-spacing: .1rem;
 }
 
-.img-txt-card h3:hover  {
+.img-txt-card a.d-block h3:hover  {
    color: #3344dd !important; 
 }
 
