@@ -173,7 +173,7 @@ picture img {
 
 /****************START TEXT CARDS****************/
 .cards-text .card-body {
-   text-align: center !important;
+   text-align: left !important;
 }
 
 .cards-text a:hover {
@@ -190,6 +190,10 @@ background-color: rgba(166, 213, 238, .4) !important;
 
 .cards-text .card:hover .card-description {
    color: #212b36  !important; /*#495057*/
+}
+
+.img-txt-card a:hover {
+   text-decoration: underline !important;
 }
 
 /****************END TEXT CARDS****************/
