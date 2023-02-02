@@ -14,13 +14,12 @@ from wagtail.admin.edit_handlers import (
     InlinePanel,
     PageChooserPanel,
 )
-from wagtail.admin.edit_handlers import StreamFieldPanel
+from wagtail.admin.edit_handlers import StreamFieldPanel, FieldPanel
 from wagtail.contrib.routable_page.models import RoutablePageMixin, route
 from wagtail.core import blocks as wagtail_blocks
 from wagtail.core.fields import StreamField
 from wagtail.core.models import Page, Orderable
 from wagtail.fields import RichTextField
-from wagtail.images.edit_handlers import ImageChooserPanel
 from wagtail.images.blocks import ImageChooserBlock
 from wagtail.snippets.models import register_snippet
 from wagtail.snippets.edit_handlers import SnippetChooserPanel 
@@ -211,8 +210,7 @@ class ResearchItem(Orderable, ClusterableModel):
                 FieldPanel("url"),
                 FieldPanel("title"),
                 FieldPanel("date", widget=date_widget),
-
-                ImageChooserPanel("img"),
+                FieldPanel("img"),
             ],
             heading="Add research type, source, url, title, date, and image:",
         ),
@@ -285,7 +283,7 @@ class ResearchLab(Orderable, ClusterableModel):
         FieldPanel("external_website"),
         PageChooserPanel("internal_page"),
         FieldPanel("lab_bio"),
-        ImageChooserPanel("lab_logo"),
+        FieldPanel("lab_logo"),
         FieldPanel(
             "group_leads", 
             #heading="Select multiple group leads using Command button on Mac", 
