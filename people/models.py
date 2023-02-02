@@ -5,15 +5,15 @@ from django import forms            # the default Django widgets live here
 from modelcluster.models import ClusterableModel
 from modelcluster.fields import ParentalKey, ParentalManyToManyField
 from wagtail.admin import widgets   # to use Wagtail's special datetime widget
-from wagtail.admin.edit_handlers import (
+from wagtail.admin.panels import (
     FieldPanel,
     MultiFieldPanel,
     InlinePanel,
     PageChooserPanel, 
 )
 from wagtail.core import blocks as wagtail_blocks
-from wagtail.core.fields import StreamField
-from wagtail.core.models import Page, Orderable
+from wagtail.fields import StreamField
+from wagtail.models import Page, Orderable
 from wagtail.images.blocks import ImageChooserBlock
 from wagtail.snippets.models import register_snippet
 from wagtail.snippets.edit_handlers import SnippetChooserPanel 

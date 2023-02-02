@@ -2,8 +2,8 @@ from django.db import models
 from django_extensions.db.fields import AutoSlugField
 from modelcluster.models import ClusterableModel
 from modelcluster.fields import ParentalKey
-from wagtail.core.models import Orderable
-from wagtail.admin.edit_handlers import FieldPanel, PageChooserPanel, InlinePanel
+from wagtail.models import Orderable
+from wagtail.admin.panels import FieldPanel, PageChooserPanel, InlinePanel
 
 # Create your models here.
 
