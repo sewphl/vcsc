@@ -14,7 +14,6 @@ from wagtail.admin.edit_handlers import (
 from wagtail.core import blocks as wagtail_blocks
 from wagtail.core.fields import StreamField
 from wagtail.core.models import Page, Orderable
-from wagtail.images.edit_handlers import ImageChooserPanel
 from wagtail.images.blocks import ImageChooserBlock
 from wagtail.snippets.models import register_snippet
 from wagtail.snippets.edit_handlers import SnippetChooserPanel 
@@ -450,7 +449,7 @@ class PeoplePerson(Orderable, ClusterableModel):
                 FieldPanel("slug"),
                 FieldPanel("title"),
                 FieldPanel("bio"),
-                ImageChooserPanel("person_img"),
+                FieldPanel("person_img"),
                 PageChooserPanel("internal_page"), 
                 FieldPanel("external_website"),
                 FieldPanel("twitter"),
