@@ -1,12 +1,11 @@
 from django.db import models
 
-from wagtail.admin.edit_handlers import StreamFieldPanel, FieldPanel, PageChooserPanel
+from wagtail.admin.edit_handlers import FieldPanel, PageChooserPanel
 from wagtail.core import blocks as wagtail_blocks
 from wagtail.core.blocks import RichTextBlock
 from wagtail.core.fields import StreamField
 from wagtail.core.models import Page
 from wagtail.images.blocks import ImageChooserBlock
-from wagtail.images.edit_handlers import ImageChooserPanel
 from wagtail.snippets.blocks import SnippetChooserBlock
 from wagtail.fields import RichTextField
 
@@ -65,8 +64,8 @@ class SubbannerPage(Page):
     content_panels = Page.content_panels + [
         FieldPanel("banner_lead_text"), 
         FieldPanel("lead_text"),
-        ImageChooserPanel("banner_background_image"),
-        StreamFieldPanel("body"),
+        FieldPanel("banner_background_image"),
+        FieldPanel("body"),
     ]
 
     class Meta:
