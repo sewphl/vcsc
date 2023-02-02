@@ -10,9 +10,7 @@ from wagtail.admin.edit_handlers import (
     MultiFieldPanel,
     InlinePanel,
     PageChooserPanel, 
-    StreamFieldPanel
 )
-from wagtail.admin.edit_handlers import StreamFieldPanel
 from wagtail.core import blocks as wagtail_blocks
 from wagtail.core.fields import StreamField
 from wagtail.core.models import Page, Orderable
@@ -205,7 +203,7 @@ class PeoplePersonPage(Page):
     ], null=True, blank=True)
 
     content_panels = Page.content_panels + [
-        StreamFieldPanel("body"),
+        FieldPanel("body"),
     ]
 
     def get_context(self, request, *args, **kwargs):
@@ -242,7 +240,7 @@ class PeoplePersonPageStudents(Page):
     ], null=True, blank=True)
 
     content_panels = Page.content_panels + [
-        StreamFieldPanel("body"),
+        FieldPanel("body"),
     ]
 
     def get_context(self, request, *args, **kwargs):
@@ -281,7 +279,7 @@ class PeoplePersonPageAlumni(Page):
     ], null=True, blank=True)
 
     content_panels = Page.content_panels + [
-        StreamFieldPanel("body"),
+        FieldPanel("body"),
     ]
 
     def get_context(self, request, *args, **kwargs):
