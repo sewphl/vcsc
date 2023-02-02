@@ -6,9 +6,8 @@ from wagtail.models import Page
 from wagtail.core import blocks as wagtail_blocks
 from wagtail.core.fields import StreamField
 from wagtail.core.blocks import RichTextBlock
-from wagtail.admin.edit_handlers import FieldPanel, PageChooserPanel  #, StreamFieldPanel
+from wagtail.admin.edit_handlers import FieldPanel, PageChooserPanel  
 from wagtail.images.blocks import ImageChooserBlock
-#from wagtail.images.edit_handlers import ImageChooserPanel
 from wagtail.snippets.blocks import SnippetChooserBlock
 from streams import blocks
 from wagtail.rich_text import RichText

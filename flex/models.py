@@ -1,6 +1,6 @@
 ##from django.db import models
 
-from wagtail.admin.edit_handlers import StreamFieldPanel
+from wagtail.admin.edit_handlers import FieldPanel
 from wagtail.core import blocks as wagtail_blocks
 from wagtail.core.blocks import RichTextBlock
 from wagtail.core.fields import StreamField
@@ -43,7 +43,7 @@ class FlexPage(Page):
     ], null=True, blank=True)
 
     content_panels = Page.content_panels + [
-        StreamFieldPanel("body"),
+        FieldPanel("body"),
     ]
 
     class Meta:
