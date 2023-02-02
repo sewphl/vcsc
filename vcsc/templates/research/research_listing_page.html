@@ -32,14 +32,14 @@
   {% for card in cards %}
   <div class="col-md-6 col-lg-4 d-flex align-items-stretch">
     <div class="card mb-3" > <!--text-center-->
-      <a href="{{ card.url }}" class="research-link">
+      <a href="{{ card.url }}" class="research-link" target="_blank">
         <picture>  <!--fill-573x369 -->
           {% image card.img fill-400x369 as card_img %}
           <img src="{{ card_img.url }}" alt="{{ card_img.alt }}" class="lazy card-img-top">
         </picture>
       </a>
       <div class="card-body py-3"> <!--px-3 adds padding to left/right of card-body-->
-        <a href="{{ card.url }}">
+        <a href="{{ card.url }}" target="_blank">
           <p class="card-title" >{{ card.title }}</p>
           <p class="card-text">
             <small>
