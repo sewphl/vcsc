@@ -3,7 +3,7 @@ from django import forms
 from django.forms.utils import ErrorList
 
 from wagtail.core import blocks
-from wagtail.core.blocks import RichTextBlock
+from wagtail.blocks import RichTextBlock
 from wagtail.images.blocks import ImageChooserBlock
 from wagtail.contrib.table_block.blocks import TableBlock
 from wagtail.blocks.struct_block import StructBlockValidationError
@@ -230,7 +230,7 @@ class PricingTableBlock(TableBlock):
 
 class AlignedParagraphBlock(blocks.StructBlock):
     alignment = blocks.ChoiceBlock([('text-left', 'Left'), ('text-center', 'Center'), ('text-right', 'Right')])
-    paragraph = blocks.RichTextBlock(
+    paragraph = RichTextBlock(
         required=True,
         features=ALL_RICHTEXT_FEATURES,
     )
