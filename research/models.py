@@ -15,7 +15,7 @@ from wagtail.admin.panels import (
     PageChooserPanel,
 )
 from wagtail.contrib.routable_page.models import RoutablePageMixin, route
-from wagtail.core import blocks as wagtail_blocks
+
 from wagtail.fields import StreamField
 from wagtail.models import Page, Orderable
 from wagtail.fields import RichTextField

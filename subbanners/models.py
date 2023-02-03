@@ -1,8 +1,7 @@
 from django.db import models
 
 from wagtail.admin.panels import FieldPanel, PageChooserPanel
-from wagtail.core import blocks as wagtail_blocks
-from wagtail.core.blocks import RichTextBlock
+from wagtail.blocks import RichTextBlock
 from wagtail.fields import StreamField
 from wagtail.models import Page
 from wagtail.images.blocks import ImageChooserBlock
@@ -10,7 +9,7 @@ from wagtail.snippets.blocks import SnippetChooserBlock
 from wagtail.fields import RichTextField
 
 from home.models import NEW_TABLE_OPTIONS
-from streams import blocks
+from streams import blocks as stream_blocks
 
 from vcsc.settings.base import ALL_RICHTEXT_FEATURES
 
@@ -39,15 +38,15 @@ class SubbannerPage(Page):
     )
 
     body = StreamField([
-        ("title", blocks.TitleBlock()),
-        ("cards", blocks.CardsBlock()),
-        ("image_and_text", blocks.ImageAndTextBlock()),
-        ("image_beside_text", blocks.ImageBesideTextBlock()),
-        ("cta", blocks.CallToActionBlock()),
-        #("pricing_table", blocks.PricingTableBlock(
+        ("title", stream_blocks.TitleBlock()),
+        ("cards", stream_blocks.CardsBlock()),
+        ("image_and_text", stream_blocks.ImageAndTextBlock()),
+        ("image_beside_text", stream_blocks.ImageBesideTextBlock()),
+        ("cta", stream_blocks.CallToActionBlock()),
+        #("pricing_table", stream_blocks.PricingTableBlock(
         #    table_options=NEW_TABLE_OPTIONS,
         #)),
-        ("richtext", wagtail_blocks.RichTextBlock(
+        ("richtext", RichTextBlock(
             template="streams/simple_richtext_block.html",
             features=ALL_RICHTEXT_FEATURES,
         )),
@@ -55,7 +54,7 @@ class SubbannerPage(Page):
             help_text='This image will be cropped to 1200px by 775px',
             template="streams/large_image_block.html"
         )),
-        ("align_content", blocks.AlignedParagraphBlock(
+        ("align_content", stream_blocks.AlignedParagraphBlock(
             help_text='Align (left/right/center) text and images',
             template="streams/aligned_paragraph.html"
         )),

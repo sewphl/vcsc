@@ -2,8 +2,17 @@ from django import forms
 ##from django.core.exceptions import ValidationError
 from django.forms.utils import ErrorList
 
-from wagtail.core import blocks
-from wagtail.blocks import RichTextBlock
+from wagtail.blocks import (
+    RichTextBlock, 
+    CharBlock, 
+    StructBlock, 
+    StructValue, 
+    URLBlock, 
+    PageChooserBlock, 
+    TextBlock, 
+    ListBlock, 
+    ChoiceBlock,
+)
 from wagtail.images.blocks import ImageChooserBlock
 from wagtail.contrib.table_block.blocks import TableBlock
 from wagtail.blocks.struct_block import StructBlockValidationError
@@ -12,8 +21,8 @@ from wagtail.admin.panels import FieldPanel
 
 from vcsc.settings.base import ALL_RICHTEXT_FEATURES
 
-class TitleBlock(blocks.StructBlock):
-    text = blocks.CharBlock(
+class TitleBlock(StructBlock):
+    text = CharBlock(
         required=True,
         max_length=None,
         help_text="Text to display",
@@ -27,7 +36,7 @@ class TitleBlock(blocks.StructBlock):
         label = "Title"
         help_text = "Centered text to display on the page"
 
-class LinkValue(blocks.StructValue):
+class LinkValue(StructValue):
     """Additional logic for our links."""
 
     def url(self) -> str:
@@ -40,15 +49,15 @@ class LinkValue(blocks.StructValue):
         return ""
 
 
-class Link(blocks.StructBlock):
-    link_text = blocks.CharBlock(
+class Link(StructBlock):
+    link_text = CharBlock(
         max_length=50,
         default='More Details',
     )
-    internal_page = blocks.PageChooserBlock(
+    internal_page = PageChooserBlock(
         required=False
     )
-    external_link = blocks.URLBlock(
+    external_link = URLBlock(
         required=False
     )
 
@@ -72,12 +81,12 @@ class Link(blocks.StructBlock):
 
         return super().clean(value)
 
-class Card(blocks.StructBlock):
-    title = blocks.CharBlock(
+class Card(StructBlock):
+    title = CharBlock(
         max_length=100,
         help_text="Bold title text for this card. Max length of 100 characters.",
     )
-    text = blocks.TextBlock(
+    text = TextBlock(
         max_length=255,
         help_text="Optional text for this card. Max length is 255 characters.",
         required=False
@@ -87,9 +96,9 @@ class Card(blocks.StructBlock):
     )
     link = Link(help_text="Enter a link or select a page")
 
-class CardsBlock(blocks.StructBlock):
+class CardsBlock(StructBlock):
 
-    cards = blocks.ListBlock(
+    cards = ListBlock(
         Card()
     )
 
@@ -98,14 +107,14 @@ class CardsBlock(blocks.StructBlock):
         icon = "image"
         label = "Standard Cards"
 
-class CardText(blocks.StructBlock):
-    title = blocks.CharBlock(
+class CardText(StructBlock):
+    title = CharBlock(
         max_length=100,
         help_text="Optional bold title text for this card. Max length of 100 characters.",
         required=False
     )
 
-    #text = blocks.TextBlock(
+    #text = TextBlock(
     #    max_length=800,
     #    help_text="Paragraph text for this card. Max length of 800 characters.",
     #    required=True
@@ -117,9 +126,9 @@ class CardText(blocks.StructBlock):
         )
     
 
-class CardsTextBlock(blocks.StructBlock):
+class CardsTextBlock(StructBlock):
 
-    cards_text = blocks.ListBlock(
+    cards_text = ListBlock(
         CardText()
     )
 
@@ -128,16 +137,16 @@ class CardsTextBlock(blocks.StructBlock):
         icon = "edit"
         label = "Card with Text Only"
 
-class RadioSelectBlock(blocks.ChoiceBlock):
+class RadioSelectBlock(ChoiceBlock):
     def __init__(self, *args, **kwargs):
         super().__init__(*args, **kwargs)
         self.field.widget = forms.RadioSelect(
             choices=self.field.widget.choices
         )
 
-class ImageAndTextBlock(blocks.StructBlock):
+class ImageAndTextBlock(StructBlock):
     image = ImageChooserBlock(help_text="Image will be automagically cropped to 786px x 552px")
-    ##note: originally = blocks.ChoiceBlock (dropdown) instead of RadioSelectBlock;
+    ##note: originally = ChoiceBlock (dropdown) instead of RadioSelectBlock;
     ##this is still a ChoiceBlock, but field widget is different (radio button)
     image_alignment = RadioSelectBlock(  
         choices=(
@@ -147,8 +156,8 @@ class ImageAndTextBlock(blocks.StructBlock):
         default="left",
         help_text="Image on the left with text on the right. Or image on right with text on left." 
     )
-    title  = blocks.CharBlock(max_length=60, help_text="Max length of 60 characters")
-    text = blocks.CharBlock(max_length=140, required=False)
+    title  = CharBlock(max_length=60, help_text="Max length of 60 characters")
+    text = CharBlock(max_length=140, required=False)
     link = Link()
 
     class Meta:
@@ -156,19 +165,19 @@ class ImageAndTextBlock(blocks.StructBlock):
         icon = "image"
         label = "Image & Text"
 
-class ImageBesideTextBlock(blocks.StructBlock):
+class ImageBesideTextBlock(StructBlock):
     image = ImageChooserBlock(help_text="Image will be automagically cropped to 786px x 552px")
-    title  = blocks.CharBlock(
+    title  = CharBlock(
         max_length=60, 
         help_text="Max length of 60 characters", 
         required=False
     )
-    subtitle  = blocks.CharBlock(
+    subtitle  = CharBlock(
         max_length=200, 
         help_text="Max length of 200 characters", 
         required=False
     )
-    #text = blocks.CharBlock(
+    #text = CharBlock(
     #    max_length=140, 
     #    required=True
     #)
@@ -184,19 +193,19 @@ class ImageBesideTextBlock(blocks.StructBlock):
         label = "Horizontal Card w/ Image"
 
 
-class ImageBesideTextBlockNoLink(blocks.StructBlock):
+class ImageBesideTextBlockNoLink(StructBlock):
     image = ImageChooserBlock(help_text="Image will be automagically cropped to 786px x 552px")
-    title  = blocks.CharBlock(
+    title  = CharBlock(
         max_length=60, 
         help_text="Max length of 60 characters", 
         required=False
     )
-    subtitle  = blocks.CharBlock(
+    subtitle  = CharBlock(
         max_length=200, 
         help_text="Max length of 200 characters", 
         required=False
     )
-    #text = blocks.CharBlock(
+    #text = CharBlock(
     #    max_length=140, 
     #    required=True
     #)
@@ -210,8 +219,8 @@ class ImageBesideTextBlockNoLink(blocks.StructBlock):
         icon = "image"
         label = "Image Beside Text"
 
-class CallToActionBlock(blocks.StructBlock):
-    title = blocks.CharBlock(max_length=200, help_text="Max length of 200 characters.")
+class CallToActionBlock(StructBlock):
+    title = CharBlock(max_length=200, help_text="Max length of 200 characters.")
     link = Link()
 
     class Meta:
@@ -228,8 +237,8 @@ class PricingTableBlock(TableBlock):
         icon = "table"
         help_text = "Your pricing tables should always have 4 columns."
 
-class AlignedParagraphBlock(blocks.StructBlock):
-    alignment = blocks.ChoiceBlock([('text-left', 'Left'), ('text-center', 'Center'), ('text-right', 'Right')])
+class AlignedParagraphBlock(StructBlock):
+    alignment = ChoiceBlock([('text-left', 'Left'), ('text-center', 'Center'), ('text-right', 'Right')])
     paragraph = RichTextBlock(
         required=True,
         features=ALL_RICHTEXT_FEATURES,

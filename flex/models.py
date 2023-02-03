@@ -1,15 +1,14 @@
 ##from django.db import models
 
 from wagtail.admin.panels import FieldPanel
-from wagtail.core import blocks as wagtail_blocks
-from wagtail.core.blocks import RichTextBlock
+from wagtail.blocks import RichTextBlock
 from wagtail.fields import StreamField
 from wagtail.models import Page
 from wagtail.images.blocks import ImageChooserBlock
 from wagtail.snippets.blocks import SnippetChooserBlock
 
 from home.models import NEW_TABLE_OPTIONS
-from streams import blocks
+from streams import blocks as stream_blocks
 
 from vcsc.settings.base import ALL_RICHTEXT_FEATURES
 
@@ -18,17 +17,17 @@ from vcsc.settings.base import ALL_RICHTEXT_FEATURES
 class FlexPage(Page):
     parent_page_types = ["home.HomePage", "flex.FlexPage","subbanners.SubbannerPage"]
     body = StreamField([
-        ("title", blocks.TitleBlock()),
-        ("cards", blocks.CardsBlock()),
-        ("cards_text", blocks.CardsTextBlock()),
-        ("image_and_text", blocks.ImageAndTextBlock()),
-        ("horizontal_card", blocks.ImageBesideTextBlock()),
-        ("image_beside_text",blocks.ImageBesideTextBlockNoLink()),
-        ("cta", blocks.CallToActionBlock()),
-        #("pricing_table", blocks.PricingTableBlock(
+        ("title", stream_blocks.TitleBlock()),
+        ("cards", stream_blocks.CardsBlock()),
+        ("cards_text", stream_blocks.CardsTextBlock()),
+        ("image_and_text", stream_blocks.ImageAndTextBlock()),
+        ("horizontal_card", stream_blocks.ImageBesideTextBlock()),
+        ("image_beside_text",stream_blocks.ImageBesideTextBlockNoLink()),
+        ("cta", stream_blocks.CallToActionBlock()),
+        #("pricing_table", stream_blocks.PricingTableBlock(
         #    table_options=NEW_TABLE_OPTIONS,
         #)),
-        ("richtext", wagtail_blocks.RichTextBlock(
+        ("richtext", RichTextBlock(
             template="streams/simple_richtext_block.html",
             features=ALL_RICHTEXT_FEATURES,
         )),
@@ -36,7 +35,7 @@ class FlexPage(Page):
             help_text='This image will be cropped to 1200px by 775px',
             template="streams/large_image_block.html"
         )),
-        ("align_content", blocks.AlignedParagraphBlock(
+        ("align_content", stream_blocks.AlignedParagraphBlock(
             help_text='Align (left/right/center) text and images',
             template="streams/aligned_paragraph.html"
         )),

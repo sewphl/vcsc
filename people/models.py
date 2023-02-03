@@ -11,7 +11,6 @@ from wagtail.admin.panels import (
     InlinePanel,
     PageChooserPanel, 
 )
-from wagtail.core import blocks as wagtail_blocks
 from wagtail.fields import StreamField
 from wagtail.models import Page, Orderable
 from wagtail.images.blocks import ImageChooserBlock
