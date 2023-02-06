@@ -42,6 +42,9 @@ client/node_modules
 *.sqlite3
 *.sql
 *.psql
+*.pgsql
+*.db3
+*.dbs
 *.json
 
 ### Local static files
