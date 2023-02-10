@@ -38,6 +38,7 @@ INSTALLED_APPS = [
     "wagtail.contrib.redirects",
     "wagtail.contrib.settings",
     "wagtail.contrib.routable_page",
+    "wagtail.api.v2",
     "wagtail.embeds",
     "wagtail.sites",
     "wagtail.users",
@@ -58,6 +59,7 @@ INSTALLED_APPS = [
     "django.contrib.staticfiles",
 
     "fontawesomefree",
+    "rest_framework",
 ]
 
 MIDDLEWARE = [
