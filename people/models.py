@@ -4,6 +4,8 @@ from django import forms            # the default Django widgets live here
 
 from modelcluster.models import ClusterableModel
 from modelcluster.fields import ParentalKey, ParentalManyToManyField
+
+from wagtail.api import APIField
 from wagtail.admin import widgets   # to use Wagtail's special datetime widget
 from wagtail.admin.panels import (
     FieldPanel,
@@ -47,7 +49,11 @@ class PeopleListingPageCore(Page):
         #context['person_page'] = PeoplePersonPage.objects.all() 
         context["person"] = PeoplePerson.objects.filter(person_role__in=PeopleRole.objects.filter(slug='core-team'))
         return context 
-    
+
+    api_fields = [
+        APIField("lead_text"),        
+    ]    
+
     content_panels = Page.content_panels + [
         FieldPanel("lead_text"),
     ]

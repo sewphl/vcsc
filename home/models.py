@@ -2,6 +2,7 @@ from django.core.cache import cache
 from django.core.cache.utils import make_template_fragment_key
 from django.db import models
 
+from wagtail.api import APIField
 from wagtail.models import Page
 from wagtail.fields import StreamField
 from wagtail.blocks import RichTextBlock
@@ -100,6 +101,12 @@ class HomePage(Page):
             template="streams/aligned_paragraph.html"
         )),
     ], null=True, blank=True)
+
+    api_fields = [
+        APIField("button_text"),
+        APIField("banner_background_image"),
+        
+    ]
 
     content_panels = Page.content_panels + [
         FieldPanel("lead_text"), ##regular text field
