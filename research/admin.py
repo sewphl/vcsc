@@ -14,5 +14,5 @@ class ResearchAdmin(ModelAdmin):
     menu_order = 289
     add_to_settings_menu = False
     exclude_from_explorer = False
-    list_display = ("title","source")
-    search_fields = ("title","source")
+    list_display = ("title","research_type","date","source")
+    search_fields = ("title","research_type","date","source")

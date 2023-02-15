@@ -199,12 +199,13 @@ class ResearchItem(Orderable, ClusterableModel):
 
     research_labs = ParentalManyToManyField("research.ResearchLab", blank=False)
     authors = ParentalManyToManyField("people.PeoplePerson", blank=True)
-    research_type = ParentalManyToManyField("research.ResearchType", blank=True)
-    
+    #research_type = ParentalManyToManyField("research.ResearchType", blank=True)
+    research_type = models.ForeignKey("research.ResearchType", null=True, blank=False, on_delete=models.SET_NULL)
     panels = [
         MultiFieldPanel(
             [
-                FieldPanel("research_type", widget=forms.CheckboxSelectMultiple),
+                #FieldPanel("research_type", widget=forms.CheckboxSelectMultiple),
+                FieldPanel("research_type", widget=forms.RadioSelect),
                 FieldPanel("source"),
                 FieldPanel("url"),
                 FieldPanel("title"),
@@ -232,6 +233,7 @@ class ResearchItem(Orderable, ClusterableModel):
     class Meta:  # noqa
         verbose_name = "Research Item"
         verbose_name_plural = "Research Items"
+        ordering = ["-date"]
 
 
 register_snippet(ResearchItem)
