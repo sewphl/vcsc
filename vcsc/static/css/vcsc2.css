@@ -75,12 +75,12 @@ color: #3344dd !important;
   justify-content: center;
 }
 
-.card-body h3 {
+.card-body h2 {
    color: #212b36 !important;
    letter-spacing: .1rem;
 }
 
-.img-txt-card a.d-block h3:hover  {
+.img-txt-card a.d-block h2:hover  {
    color: #3344dd !important; 
 }
 
