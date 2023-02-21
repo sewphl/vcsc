@@ -22,13 +22,13 @@
         {% if self.link.url %}
           <a href="{{ self.link.url }}" class="d-block" >
         {% endif %}
-        <h3 class="" style="margin-top: 0; padding-top: 0;">{{ self.title }}</h3> 
+        <h2 class="" style="margin-top: 0; padding-top: 0;">{{ self.title }}</h2> 
         {% if self.link.url %}
           </a>
         {% endif %}
       {% endif %}
       {% if self.subtitle %}
-        <h4 class="">{{ self.subtitle }}</h4>
+        <h3 class="">{{ self.subtitle }}</h3>
       {% endif %}
       {% if self.text %}
       <p class="card-text"> <!--cc-iat-text-->
