@@ -24,7 +24,7 @@
       {% if lab.internal_page %}
         <a href="{{ lab.internal_page.url }}" class="d-block img-link">
       {% elif lab.external_website %}
-        <a href="{{ lab.external_website }}" class="d-block img-link">
+        <a href="{{ lab.external_website }}" target="blank" class="d-block img-link">
       {% endif %}
       {% if lab.lab_logo %}
       <picture>
@@ -42,7 +42,7 @@
         {% if lab.internal_page %}
           <a href="{{ lab.internal_page.url }}" class="d-block" >
         {% elif lab.external_website %}
-          <a href="{{ lab.external_website }}" class="d-block" >
+          <a href="{{ lab.external_website }}" target="blank" class="d-block" >
         {% endif %}
         <h2 class="" style="margin-top: 0; padding-top: 0;">{{ lab.lab_name }}</h2> 
         {% if lab.internal_page or lab.external_website %}
@@ -54,7 +54,7 @@
       <p class="group_lead"><strong>Group Lead(s)</strong>:
       {% for e in lab.group_leads.all %}
       {% if e.internal_page %}
-        <a href="{{e.internal_page.url}}" target="_blank">{{ e.name }}</a>{% if not forloop.last %}, {% endif %}
+        <a href="{{e.internal_page.url}}" >{{ e.name }}</a>{% if not forloop.last %}, {% endif %}
       {% elif e.external_website %}
         <a href="{{e.external_website}}" target="_blank">{{ e.name }}</a>{% if not forloop.last %}, {% endif %}            
       {% else %}
@@ -80,7 +80,7 @@
         </div>  
       {% elif lab.external_website %}
         <div class="flex-row pb-1">
-        <a href="{{ lab.external_website }}" class="mb-2 bio-btn btn btn-primary btn-lg mb-lg-0"> <!--btn-lg mb-lg-0-->
+        <a href="{{ lab.external_website }}" target="blank" class="mb-2 bio-btn btn btn-primary btn-lg mb-lg-0"> <!--btn-lg mb-lg-0-->
         Website <i class="fa-solid fa-link"></i>
         </a>
         </div>
