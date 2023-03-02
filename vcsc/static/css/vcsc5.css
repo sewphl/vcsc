@@ -271,14 +271,13 @@ background-color: rgba(166, 213, 238, .4) !important;
    /*box-shadow: 0 20px 40px -14px rgba(0, 0, 0, 0.25) !important;*/
 }
 
-.bio-cards .bio-link {
+.bio-cards .bio-img {
    border-bottom: 3px solid transparent;
 }
 
-.bio-cards .card:hover .bio-link {
+.bio-card:hover .bio-img {        
    border-bottom: 3px solid #3344dd;
 }
-
 
 .person-div a:not(.bio-btn, .social) {
    color: rgba(51, 68, 221, 1) !important; /*#3344dd*/
