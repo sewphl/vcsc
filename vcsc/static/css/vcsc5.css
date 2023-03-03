@@ -136,9 +136,11 @@ p.card-description {
    color: #3344dd !important; 
 }
 
+/*
 .card:hover .card-description {
    color: #3344dd !important; 
 }
+*/
 
 /*card picture*/
 picture img {
