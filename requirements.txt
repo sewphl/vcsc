@@ -2,3 +2,4 @@ Django>=4.1,<4.2
 wagtail==4.2
 fontawesomefree==6.2.1
 pyscopg2
+django-allauth==0.52.0
