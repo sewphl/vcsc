@@ -61,6 +61,8 @@ client/node_modules
 # Local files
 local.py
 .env
+*.env
+
 
 nginx-error.log
 
