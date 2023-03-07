@@ -50,13 +50,13 @@
         {% endif %}
         {% if self.external_website %}
           <div class="flex-row pb-1">
-          <a href="{{ self.external_website }}" class="mb-2 bio-btn btn btn-primary btn-lg mb-lg-0"> <!--btn-lg mb-lg-0-->
+          <a href="{{ self.external_website }}" class="mb-2 bio-btn btn btn-primary btn-lg mb-lg-0 rounded-pill"> <!--btn-lg mb-lg-0-->
           Website <i class="fa-solid fa-link"></i>
           </a>
           </div>
         {% endif %}
 
-        {% if self.twitter or self.youtube or self.linkedin or self.instagram or self.github or self.gitlab or self.strava %}
+        {% if self.twitter or self.youtube or self.mastodon or self.linkedin or self.instagram or self.github or self.gitlab or self.strava %}
           <div class="flex-row">
           {% if self.twitter %}
             <a href="{{ self.twitter }}" class="social pr-1">
@@ -67,6 +67,12 @@
           {% if self.youtube %}
             <a href="{{ self.youtube }}" class="social pr-1">
             <i  class="fa-brands fa-square-youtube fa-3x"></i>
+            </a>
+          {% endif %}
+
+          {% if self.mastodon %}
+            <a href="{{ self.mastodon }}" class="social pr-1">
+            <i  class="fa-brands fa-mastodon fa-3x"></i>
             </a>
           {% endif %}
 

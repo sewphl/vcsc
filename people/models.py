@@ -364,6 +364,9 @@ class PeoplePerson(Orderable, ClusterableModel):
     youtube = models.URLField(
         blank=True,
     )
+    mastodon = models.URLField(
+        blank=True,
+    )
     linkedin = models.URLField(
         blank=True,
     )
@@ -459,6 +462,7 @@ class PeoplePerson(Orderable, ClusterableModel):
                 FieldPanel("external_website"),
                 FieldPanel("twitter"),
                 FieldPanel("youtube"),
+                FieldPanel("mastodon"),
                 FieldPanel("linkedin"),
                 FieldPanel("instagram"),
                 FieldPanel("github"),
