@@ -19,13 +19,19 @@
     <!-- a_special_link --> 
     <!-- </h2> -->
   
-   Research Labs:
-          <small>
-              {% for l in research_labs %}
-                  <a href="{% routablepageurl page 'lab_view' l.slug %}">
-                      {{ l.lab_name }}
-                  </a>{% if not forloop.last %}, {% endif %}
-              {% endfor %}
+    <!--Dropdown: Filter by Research Lab-->
+              <div class="dropdown show">
+                <a class="btn btn-secondary dropdown-toggle" href="#" role="button" id="dropdownMenuLink" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                  Filter by Research Lab
+                </a>
+
+                <div class="dropdown-menu" aria-labelledby="dropdownMenuLink">
+                  <a class="dropdown-item" href="{% pageurl page %}">All labs</a>
+                  {% for l in research_labs %}
+                  <a class="dropdown-item" href="{% routablepageurl page 'lab_view' l.slug %}">{{ l.lab_name }}</a>
+                  {% endfor %}
+                </div>
+              </div>
 
 
 <div class="row mt-4 research-cards">
