@@ -80,6 +80,34 @@ class Link(StructBlock):
             ##raise ValidationError("Validation error in link", params=errors)
 
         return super().clean(value)
+    
+class LinkOptional(StructBlock):
+    link_text = CharBlock(
+        max_length=50,
+        default='More Details',
+    )
+    internal_page = PageChooserBlock(
+        required=False
+    )
+    external_link = URLBlock(
+        required=False
+    )
+
+    class Meta:
+        value_class = LinkValue
+
+    def clean(self, value):
+        internal_page = value.get("internal_page")
+        external_link = value.get("external_link")
+        errors = {}
+        if internal_page and external_link:
+            errors["internal_page"] = ErrorList(["Both of these fields cannot be filled; please select only one option."])
+            errors["external_link"] = ErrorList(["Both of these fields cannot be filled; please select only one option."])
+
+        if errors:
+            raise StructBlockValidationError(errors)
+
+        return super().clean(value)
 
 class Card(StructBlock):
     title = CharBlock(
@@ -113,7 +141,6 @@ class CardText(StructBlock):
         help_text="Optional bold title text for this card. Max length of 100 characters.",
         required=False
     )
-
     #text = TextBlock(
     #    max_length=800,
     #    help_text="Paragraph text for this card. Max length of 800 characters.",
@@ -124,13 +151,15 @@ class CardText(StructBlock):
         required=True,
         features=ALL_RICHTEXT_FEATURES,
         )
-    
 
+    link = LinkOptional(help_text="Enter a link or select a page")
+    
 class CardsTextBlock(StructBlock):
 
     cards_text = ListBlock(
         CardText()
     )
+
 
     class Meta:
         template = "streams/cards_text_block.html"

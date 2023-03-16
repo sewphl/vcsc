@@ -11,6 +11,11 @@
           {% if card.text %}
             <p class="card-text">{{ card.text }}</p>
           {% endif %}
+          <div class="flex-row pb-1 text-link">
+            {% if card.link.url %}<a href="{{ card.link.url }}" class="center mt-1 mb-2 card-text-btn btn btn-primary btn-lg mb-lg-0 rounded-pill">
+              {{ card.link.link_text }}
+            </a>{% endif %}
+            </div>
         </div> <!--card-body-->
       </div> <!--card mb-3-->
     </div> <!--card-div-->

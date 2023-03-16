@@ -170,6 +170,10 @@ picture img {
 /**************** end cards_block ****************/
 
 /****************START TEXT CARDS****************/
+.text-link {
+   text-align: center !important;
+}
+
 .cards-text .card-body {
    text-align: left !important;
 }
@@ -189,6 +193,16 @@ background-color: rgba(166, 213, 238, .4) !important;
 .cards-text .card:hover .card-description {
    color: #212b36  !important; /*#495057*/
 }
+
+.card-text-btn, a.card-text-btn {
+   color: #f6f6f6 !important;
+   background-color: rgba(33, 43, 54, 1) !important;
+ }
+
+.card-text-btn:hover, a.card-text-btn:hover {
+      color: #f6f6f6 !important;
+      background-color: rgba(33, 43, 54, .8) !important;
+     }
 
 
 /****************END TEXT CARDS****************/
