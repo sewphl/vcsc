@@ -28,7 +28,7 @@
 
         {# Global stylesheets #}
         <link rel="stylesheet" type="text/css" href="{% static 'css/bootstrap2.css' %}">
-        <link rel="stylesheet" type="text/css" href="{% static 'css/vcsc1.css' %}">
+        <link rel="stylesheet" type="text/css" href="{% static 'css/vcsc5.css' %}">
 
         <!--academic icons-->
         <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/jpswalsh/academicons@1/css/academicons.min.css">
@@ -52,6 +52,7 @@
 
         {% block banner %}{% endblock %}
         <main id="content" class="container-fluid my-4" role="main"> 
+            <div class="container">
             {% if request.user.is_authenticated %}
                 Hello {{ request.user.username }},
                 <a href="{% url 'account_logout' %}">Logout?</a>
@@ -59,8 +60,10 @@
                 Hi guest! 
                 <a href="{% url 'account_login' %}">Login?</a>
             {% endif %}
+            </div>
             <!--container-->
             {% block content %}{% endblock %}
+
         </main>
 
         <!-- include "includes/footer.html" -->
