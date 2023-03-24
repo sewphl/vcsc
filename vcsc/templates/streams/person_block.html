@@ -123,7 +123,7 @@
         <h4>Selected Press</h4>
         {% for e in press.all %}
           <p>
-          <a href=" {{ e.url }}">{{e.title}}</a><br>
+          <a href="{{ e.url }}" target="_blank">{{e.title}}</a><br>
           {{e.source}}, {{e.date}}<br>
           <!--for author in e.authors.all ... author ... endfor -->
           </p>
@@ -135,7 +135,7 @@
         <h4>Selected Publications</h4>
         {% for e in publications.all %}
           <p>
-          <a href=" {{ e.url }}">{{e.title}}</a><br>
+          <a href="{{ e.url }}" target="_blank">{{e.title}}</a><br>
           {{e.source}}, {{e.date}}<br>
           <!--for author in e.authors.all ... author ... endfor -->
           </p>
