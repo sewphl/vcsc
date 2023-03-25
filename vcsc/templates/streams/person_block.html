@@ -120,7 +120,7 @@
       {% if press.all %}
       <div>
         <br>
-        <h4>Selected Press</h4>
+        <h2>Selected Press</h2>
         {% for e in press.all %}
           <p>
           <a href="{{ e.url }}" target="_blank">{{e.title}}</a><br>
@@ -132,7 +132,7 @@
       {% endif %}
       {% if publications.all %}
       <div class="selected-research">
-        <h4>Selected Publications</h4>
+        <h2>Selected Publications</h2>
         {% for e in publications.all %}
           <p>
           <a href="{{ e.url }}" target="_blank">{{e.title}}</a><br>
