@@ -4,36 +4,29 @@
 
 {% block banner %}
 
-    {% image page.banner_background_image fill-1600x800 as bg_img %}
 
-    <div class="jumbotron jumbotron-fluid text-light py-5 d-flex align-items-centre" style="background: linear-gradient(180.43deg, rgba(0,0,0,0.60) 0%, rgba(0,0,0,0.80) 100%), url({{ bg_img.url }});">
-        <class class="my-container">
-            <div class="row">
-                <div class="col-xl-8 col-lg-9 container">
-                    <h1 class="display-3 cc-home-banner-title">{{ page.title }}</h1>
-                        {% if page.banner_lead_text %}
-                            <p class="lead">{{ page.banner_lead_text }}</p>
-                        {% endif %}
-                </div>
-            </div>
-        </class>
-    </div>
-
-    <div class="container">
-        <div class="row">
-            <div class="col-sm-12">
-            {% if page.lead_text %}
-                <span class="lead" id="lead">
-                {{ page.lead_text | richtext }}
-                </span>
-            {% endif %}
-            </div>
-        </div>
-    </div>
+        <div class="banner-div">
+            <picture>  
+                {% image page.banner_background_image fill-1600x600 as bg_img %}
+                <img src="{{ bg_img.url }}" alt="{{ bg_img.alt }}" style="height: 100% !important; ">
+              </picture>
             
-{% endblock banner %}
+    </div>
 
+{% endblock banner %}
 {% block content %}
+<div class="container">
+    <div class="row">
+      <div class="col-sm-12">
+        <h1 class="cc-inner-title">{{ page.title }}</h1>
+        {% if page.lead_text %}
+          <span class="lead" id="lead">
+            {{ page.lead_text | richtext }}
+          </span>
+        {% endif %}
+        </div>
+        </div>
+        </div>
 
   {% for block in page.body %}
     {% include_block block %}

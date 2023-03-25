@@ -7,6 +7,22 @@ html,body
     overflow-x: hidden; 
 }
 
+@media (min-width:451px) and (max-width:550px) {
+   .banner-div {
+      padding-top: 1rem !important; 
+   }
+ }
+@media (min-width:401px) and (max-width:450px) {
+   .banner-div {
+      padding-top: 6rem !important; 
+   }
+ }
+@media screen and (max-width: 400px) {
+   .banner-div {
+      padding-top: 3rem !important; 
+   }
+ }
+
 /*footer*/
 .cc-contact-footer-p {
    color: #fff !important;
