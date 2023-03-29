@@ -189,8 +189,7 @@
       <hr>
       {% if press.all %}
       <div>
-        <br>
-        <h2>Selected Press</h2>
+        <h3>Selected Press</h3>
         {% for e in press.all %}
           <p>
           <a href="{{ e.url }}" target="_blank">{{e.title}}</a><br>
@@ -202,7 +201,7 @@
       {% endif %}
       {% if publications.all %}
       <div class="selected-research">
-        <h2>Selected Publications</h2>
+        <h3>Selected Publications</h3>
         {% for e in publications.all %}
           <p>
           <a href="{{ e.url }}" target="_blank">{{e.title}}</a><br>
