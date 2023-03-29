@@ -1,8 +1,15 @@
 
 {% load wagtailimages_tags wagtailcore_tags %}
 
-<div class="container person-div">
+<div class="container person-div mt-4">
 <div class="row mb-3">
+  <div class="col-lg-6 mb-2">
+    <picture> <!--fill-573x369 -->
+      {% image self.person_img fill-400x400 as img %}
+      <!--style='width: 100%; height: auto;' -->
+      <img src="{{ img.url }}" alt="{{ img.alt }}">
+    </picture>
+  </div>
     <div class="col-lg-6">
         <h1 class="cc-inner-title">{{ self.name }}</h1>
         <p class="cc-inner-subtitle cc-service-subtitle">
@@ -142,14 +149,6 @@
         {% endfor %}
       </div>
       {% endif %}
-    </div>
-
-    <div class="col-lg-6">
-      <picture> <!--fill-573x369 -->
-        {% image self.person_img fill-400x400 as img %}
-        <!--style='width: 100%; height: auto;' -->
-        <img src="{{ img.url }}" alt="{{ img.alt }}">
-      </picture>
     </div>
   </div>
 </div>
