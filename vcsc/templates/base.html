@@ -51,19 +51,17 @@
 
 
         {% block banner %}{% endblock %}
-        <main id="content" class="container-fluid my-4" role="main"> 
-            <div class="container">
-            {% if request.user.is_authenticated %}
-                Hello {{ request.user.username }},
-                <a href="{% url 'account_logout' %}">Logout?</a>
-            {% else %}
-                Hi guest! 
-                <a href="{% url 'account_login' %}">Login?</a>
-            {% endif %}
-            </div>
-            <!--container-->
+        <main id="content" class="container-fluid my-2" role="main"> 
             {% block content %}{% endblock %}
-
+            <div class="container">
+                {% if request.user.is_authenticated %}
+                    Hello {{ request.user.username }},
+                    <a href="{% url 'account_logout' %}">Logout?</a>
+                {% else %}
+                    Hi guest! 
+                    <a href="{% url 'account_login' %}">Login?</a>
+                {% endif %}
+            </div>
         </main>
 
         <!-- include "includes/footer.html" -->
