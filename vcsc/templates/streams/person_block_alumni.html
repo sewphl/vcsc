@@ -186,31 +186,40 @@
 
         </div>
         {% endif %}
-      <hr>
-      {% if press.all %}
-      <div>
-        <h3>Selected Press</h3>
-        {% for e in press.all %}
-          <p>
-          <a href="{{ e.url }}" target="_blank">{{e.title}}</a><br>
-          {{e.source}}, {{e.date}}<br>
-          <!--for author in e.authors.all ... author ... endfor -->
-          </p>
-        {% endfor %}
-      </div>
-      {% endif %}
-      {% if publications.all %}
-      <div class="selected-research">
-        <h3>Selected Publications</h3>
-        {% for e in publications.all %}
-          <p>
-          <a href="{{ e.url }}" target="_blank">{{e.title}}</a><br>
-          {{e.source}}, {{e.date}}<br>
-          <!--for author in e.authors.all ... author ... endfor -->
-          </p>
-        {% endfor %}
-      </div>
-      {% endif %}
+
     </div>
   </div>
+
+  {% if publications.all or press.all %}
+<div class="row mb-3">
+  <hr>
+{% endif %}
+{% if publications.all %}
+<div class="selected-research col-lg-6 ">
+  <h3>Selected Publications</h3>
+  {% for e in publications.all %}
+    <p>
+    <a href="{{ e.url }}" target="_blank">{{e.title}}</a><br>
+    {{e.source}}, {{e.date}}<br>
+    <!--for author in e.authors.all ... author ... endfor -->
+    </p>
+  {% endfor %}
+</div>
+{% endif %}
+  {% if press.all %}
+  <div class="col-lg-6 ">
+    <h3>Selected Press</h3>
+    {% for e in press.all %}
+      <p>
+      <a href="{{ e.url }}" target="_blank">{{e.title}}</a><br>
+      {{e.source}}, {{e.date}}<br>
+      <!--for author in e.authors.all ... author ... endfor -->
+      </p>
+    {% endfor %}
+  </div>
+  {% endif %}
+  {% if publications.all or press.all %}
+</div>
+{% endif %}
+
 </div>
