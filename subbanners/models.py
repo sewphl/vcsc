@@ -15,7 +15,7 @@ from vcsc.settings.base import ALL_RICHTEXT_FEATURES
 
 class SubbannerPage(Page):
     template = "subbanners/subbanner_page.html"
-    parent_page_types = ["home.HomePage"]
+    parent_page_types = ["home.HomePage","subbanners.SubbannerPage"]
 
     banner_lead_text = models.CharField(
         max_length = 140, 
@@ -40,6 +40,7 @@ class SubbannerPage(Page):
     body = StreamField([
         ("title", stream_blocks.TitleBlock()),
         ("cards", stream_blocks.CardsBlock()),
+        ("cards_text", stream_blocks.CardsTextBlock()),
         ("image_and_text", stream_blocks.ImageAndTextBlock()),
         ("image_beside_text", stream_blocks.ImageBesideTextBlock()),
         ("cta", stream_blocks.CallToActionBlock()),
