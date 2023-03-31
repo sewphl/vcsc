@@ -42,7 +42,8 @@ class SubbannerPage(Page):
         ("cards", stream_blocks.CardsBlock()),
         ("cards_text", stream_blocks.CardsTextBlock()),
         ("image_and_text", stream_blocks.ImageAndTextBlock()),
-        ("image_beside_text", stream_blocks.ImageBesideTextBlock()),
+        ("horizontal_card", stream_blocks.ImageBesideTextBlock()),
+        ("image_beside_text",stream_blocks.ImageBesideTextBlockNoLink()),
         ("cta", stream_blocks.CallToActionBlock()),
         #("pricing_table", stream_blocks.PricingTableBlock(
         #    table_options=NEW_TABLE_OPTIONS,
