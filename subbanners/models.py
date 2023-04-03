@@ -17,6 +17,12 @@ class SubbannerPage(Page):
     template = "subbanners/subbanner_page.html"
     parent_page_types = ["home.HomePage","subbanners.SubbannerPage"]
 
+    def get_context(self, request, *args, **kwargs):
+        """Adding custom stuff to our context."""
+        context = super().get_context(request, *args, **kwargs)
+        context["parent_page"] = self.get_parent()
+        return context 
+
     banner_lead_text = models.CharField(
         max_length = 140, 
         blank = True, 

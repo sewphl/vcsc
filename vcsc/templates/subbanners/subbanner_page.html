@@ -18,7 +18,11 @@
 <div class="container">
     <div class="row">
       <div class="col-sm-12">
+        {% if parent_page.id == 3 %} 
         <h1 class="cc-inner-title">{{ page.title }}</h1>
+        {% else %}
+        <h1 style="text-align: center;">{{ page.title }}</h1>
+        {% endif %}
         {% if page.lead_text %}
           <span class="lead" id="lead">
             {{ page.lead_text | richtext }}
