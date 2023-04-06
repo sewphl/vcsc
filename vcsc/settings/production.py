@@ -1,6 +1,6 @@
-from __future__ import absolute_import, unicode_literals
-from .base import *
+exec('from __future__ import absolute_import, unicode_literals')
 
+from .base import *
 import os
 from dotenv import load_dotenv
 
