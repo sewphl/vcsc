@@ -84,4 +84,10 @@ media/
 vcscvenv/
 vcsc/static/fontawesomefree/*
 
+# AWS
+*aws-elastic-beanstalk-cli-setup/*
 
+# Elastic Beanstalk Files
+.elasticbeanstalk/*
+!.elasticbeanstalk/*.cfg.yml
+!.elasticbeanstalk/*.global.yml
