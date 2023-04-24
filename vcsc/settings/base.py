@@ -72,6 +72,9 @@ INSTALLED_APPS = [
     "allauth.account",
     "allauth.socialaccount",
 
+    "whitenoise.runserver_nostatic",
+    "django.contrib.staticfiles",
+
     "fontawesomefree",
     "rest_framework",
 ]
@@ -87,7 +90,12 @@ MIDDLEWARE = [
     "django.middleware.clickjacking.XFrameOptionsMiddleware",
     "django.middleware.security.SecurityMiddleware",
     "wagtail.contrib.redirects.middleware.RedirectMiddleware",
+    
+    "django.middleware.security.SecurityMiddleware",
+    "whitenoise.middleware.WhiteNoiseMiddleware",
 ]
+
+STATICFILES_STORAGE = "whitenoise.storage.CompressedManifestStaticFilesStorage"
 
 ROOT_URLCONF = "vcsc.urls"
 
