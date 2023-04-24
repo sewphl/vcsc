@@ -20,6 +20,7 @@ __pycache__/
 /docs/_build/
 /.tox/
 /venv
+/venv/
 /node_modules/
 npm-debug.log*
 *.idea/
@@ -81,6 +82,7 @@ npm-debug.log*
 .cache/
 .pytest_cache/
 media/
+/media/
 vcscvenv/
 vcsc/static/fontawesomefree/*
 
