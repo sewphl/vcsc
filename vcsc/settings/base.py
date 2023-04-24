@@ -73,7 +73,6 @@ INSTALLED_APPS = [
     "allauth.socialaccount",
 
     "whitenoise.runserver_nostatic",
-    "django.contrib.staticfiles",
 
     "fontawesomefree",
     "rest_framework",
