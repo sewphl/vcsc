@@ -28,18 +28,18 @@ ALLOWED_HOSTS = ['*']
 
 # Parse database configuration from $DATABASE_URL
 import dj_database_url
-##DATABASES['default'] =  dj_database_url.config()
+DATABASES['default'] =  dj_database_url.config()
 
-DATABASES = {
-    'default': {
-        'ENGINE': 'django.db.backends.postgresql_psycopg2',
-        'NAME': 'dbpsql',
-        'USER': os.getenv('DB_USER'),
-        'PASSWORD': os.getenv('DB_PASSWORD'),
-        'HOST': '',
-        'PORT': '',
-    }
-}
+#DATABASES = {
+#    'default': {
+#        'ENGINE': 'django.db.backends.postgresql_psycopg2',
+#        'NAME': 'dbpsql',
+#        'USER': os.getenv('DB_USER'),
+#        'PASSWORD': os.getenv('DB_PASSWORD'),
+#        'HOST': '',
+#        'PORT': '',
+#    }
+#}
 
 import sentry_sdk
 from sentry_sdk.integrations.django import DjangoIntegration
