@@ -36,7 +36,7 @@ DATABASES = {
         'NAME': 'dbpsql',
         'USER': os.getenv('DB_USER'),
         'PASSWORD': os.getenv('DB_PASSWORD'),
-        'HOST': 'localhost',
+        'HOST': '',
         'PORT': '',
     }
 }
