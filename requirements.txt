@@ -21,6 +21,7 @@ draftjs-exporter==2.1.7
 et-xmlfile==1.1.0
 fontawesome-free==5.15.4
 fontawesomefree==6.2.1
+gunicorn==20.1.0
 html5lib==1.1
 idna==3.4
 l18n==2021.3
