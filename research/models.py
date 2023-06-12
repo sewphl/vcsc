@@ -21,7 +21,6 @@ from wagtail.models import Page, Orderable
 from wagtail.fields import RichTextField
 from wagtail.images.blocks import ImageChooserBlock
 from wagtail.snippets.models import register_snippet
-from wagtail.snippets.edit_handlers import SnippetChooserPanel 
 from wagtail.snippets.blocks import SnippetChooserBlock
 
 from people import models as people_models
@@ -218,7 +217,6 @@ class ResearchItem(Orderable, ClusterableModel):
             [
                 #InlinePanel('research_labs', label='labs'),
                 #InlinePanel("research_labs", label="Labs", min_num=1, max_num=5),
-                #SnippetChooserPanel("research_labs"),
                 FieldPanel("research_labs", widget=forms.CheckboxSelectMultiple),
                 FieldPanel("authors", widget=forms.CheckboxSelectMultiple),
             ],
