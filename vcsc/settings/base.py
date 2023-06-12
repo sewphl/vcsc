@@ -211,10 +211,8 @@ STATICFILES_DIRS = [
 # See https://docs.djangoproject.com/en/4.0/ref/contrib/staticfiles/#manifeststaticfilesstorage
 STATICFILES_STORAGE = "django.contrib.staticfiles.storage.ManifestStaticFilesStorage"
 
-STATIC_ROOT = os.path.join(BASE_DIR, "static")
-STATIC_URL = "/static/"
-#STATIC_URL = '/vcsc/static/'
-#STATIC_ROOT = '/vcsc/static'
+STATIC_ROOT = os.path.join(BASE_DIR, "vcsc/static")
+STATIC_URL = "/vcsc/static/"
 
 MEDIA_ROOT = os.path.join(BASE_DIR, "media")
 MEDIA_URL = "/media/"
