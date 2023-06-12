@@ -96,15 +96,15 @@ MIDDLEWARE = [
 
 ## With Django < 4.2:
 ##STATICFILES_STORAGE = "django.contrib.staticfiles.storage.ManifestStaticFilesStorage"
-STATICFILES_STORAGE = "whitenoise.storage.CompressedManifestStaticFilesStorage"
+##STATICFILES_STORAGE = "whitenoise.storage.CompressedManifestStaticFilesStorage"
 
 ## With Django 4.2+:
-##STORAGES = {
-##    # ...
-##    "staticfiles": {
-##        "BACKEND": "whitenoise.storage.CompressedManifestStaticFilesStorage",
-##    },
-##}
+STORAGES = {
+    # ...
+    "staticfiles": {
+        "BACKEND": "whitenoise.storage.CompressedManifestStaticFilesStorage",
+    },
+}
 
 ROOT_URLCONF = "vcsc.urls"
 
