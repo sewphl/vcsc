@@ -101,7 +101,7 @@ MIDDLEWARE = [
 ## With Django 4.2+:
 STORAGES = {
     # ...
-    "staticfiles": {
+    "static": {
         "BACKEND": "whitenoise.storage.CompressedManifestStaticFilesStorage",
     },
 }
