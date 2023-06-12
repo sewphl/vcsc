@@ -72,7 +72,7 @@ INSTALLED_APPS = [
     "allauth.account",
     "allauth.socialaccount",
 
-    ##"whitenoise.runserver_nostatic",
+    "whitenoise.runserver_nostatic",
 
     "fontawesomefree",
     "rest_framework",
