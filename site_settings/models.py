@@ -3,12 +3,12 @@ from django.core.cache.utils import make_template_fragment_key
 from django.db import models
 
 from wagtail.admin.panels import FieldPanel, PageChooserPanel
-from wagtail.contrib.settings.models import BaseSetting, register_setting
+from wagtail.contrib.settings.models import BaseSiteSetting, register_setting
 from wagtail.fields import RichTextField
 
 
 @register_setting
-class ContactSettings(BaseSetting):
+class ContactSettings(BaseSiteSetting):
 
     contact = RichTextField(
         blank=True,
@@ -27,7 +27,7 @@ class ContactSettings(BaseSetting):
 
 
 @register_setting
-class HoursSettings(BaseSetting):
+class HoursSettings(BaseSiteSetting):
 
     hours = RichTextField(
         blank=True,
@@ -45,7 +45,7 @@ class HoursSettings(BaseSetting):
         return super().save(*args, **kwargs)
 
 @register_setting
-class ExploreSettings(BaseSetting):
+class ExploreSettings(BaseSiteSetting):
 
     explore = RichTextField(
         blank=True,
@@ -64,7 +64,7 @@ class ExploreSettings(BaseSetting):
 
 
 @register_setting
-class SocialMediaSettings(BaseSetting):
+class SocialMediaSettings(BaseSiteSetting):
 
     facebook = models.URLField(
         blank=True,
@@ -97,7 +97,7 @@ class SocialMediaSettings(BaseSetting):
 
 
 @register_setting
-class FooterCTASettings(BaseSetting):
+class FooterCTASettings(BaseSiteSetting):
 
     title = models.CharField(max_length=100)
     subtitle = models.CharField(max_length=250)
