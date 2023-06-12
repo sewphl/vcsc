@@ -11,3 +11,5 @@ django-allauth
 django_extensions
 
 whitenoise
+
+dj_database_url
