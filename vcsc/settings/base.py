@@ -150,7 +150,7 @@ WSGI_APPLICATION = "vcsc.wsgi.application"
 
 DATABASES = {
     'default': {
-        'ENGINE': 'django.db.backends.postgresql_psycopg3',
+        'ENGINE': 'django.db.backends.postgresql_psycopg2',
         'NAME': 'dbpsql',
         'USER': os.getenv('DB_USER'),
         'PASSWORD': os.getenv('DB_PASSWORD'),
