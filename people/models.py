@@ -204,7 +204,7 @@ class PeoplePersonPage(Page):
             target_model="people.PeoplePerson",
             template="streams/person_block.html",
         )),
-    ], null=True, blank=True)
+    ], null=True, blank=True, use_json_field=True)
 
     content_panels = Page.content_panels + [
         FieldPanel("body"),
@@ -241,7 +241,7 @@ class PeoplePersonPageStudents(Page):
             target_model="people.PeoplePerson",
             template="streams/person_block_student.html",
         )),
-    ], null=True, blank=True)
+    ], null=True, blank=True, use_json_field=True)
 
     content_panels = Page.content_panels + [
         FieldPanel("body"),
@@ -280,7 +280,7 @@ class PeoplePersonPageAlumni(Page):
             target_model="people.PeoplePerson",
             template="streams/person_block_alumni.html",
         )),
-    ], null=True, blank=True)
+    ], null=True, blank=True, use_json_field=True)
 
     content_panels = Page.content_panels + [
         FieldPanel("body"),

@@ -66,7 +66,7 @@ class SubbannerPage(Page):
             help_text='Align (left/right/center) text and images',
             template="streams/aligned_paragraph.html"
         )),
-    ], null=True, blank=True)
+    ], null=True, blank=True, use_json_field=True)
 
     content_panels = Page.content_panels + [
         FieldPanel("banner_lead_text"), 
