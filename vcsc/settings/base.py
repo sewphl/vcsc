@@ -19,8 +19,6 @@ from dotenv import load_dotenv
 #env = os.environ.copy()
 load_dotenv()
 
-os.environ['GOOGLE_APPLICATION_CREDENTIALS'] ='$HOME/.config/gcloud/application_default_credentials.json'
-
 PROJECT_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 BASE_DIR = os.path.dirname(PROJECT_DIR)
 
