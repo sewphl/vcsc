@@ -10,7 +10,7 @@ For the full list of settings and their values, see
 https://docs.djangoproject.com/en/4.0/ref/settings/
 """
 from __future__ import absolute_import, unicode_literals
-##from google.cloud import storage
+from google.cloud import storage
 from google.oauth2 import service_account
 
 # Build paths inside the project like this: os.path.join(BASE_DIR, ...)
@@ -229,6 +229,26 @@ MEDIA_URL = "/media/"
 
 GS_BUCKET_NAME = "vcsc-bucket"
 GS_DEFAULT_ACL = "publicRead"
+
+## From StackOverflow: https://stackoverflow.com/questions/47446480/how-to-use-google-api-credentials-json-on-heroku
+
+# the json credentials stored as env variable
+json_str = os.environ.get('GOOGLE_APPLICATION_CREDENTIALS')
+# project name
+gcp_project = os.environ.get('GCP_PROJECT') 
+
+# generate json - if there are errors here remove newlines
+json_data = json.loads(json_str)
+# the private_key needs to replace \n parsed as string literal with escaped newlines
+json_data['private_key'] = json_data['private_key'].replace('\\n', '\n')
+
+# use service_account to generate credentials object
+credentials = service_account.Credentials.from_service_account_info(
+    json_data)
+
+# pass credentials AND project name to new client object
+storage_client = storage.Client(
+    project=gcp_project, credentials=credentials)
 
 
 # Wagtail settings
