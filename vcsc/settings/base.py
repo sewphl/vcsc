@@ -10,6 +10,7 @@ For the full list of settings and their values, see
 https://docs.djangoproject.com/en/4.0/ref/settings/
 """
 from __future__ import absolute_import, unicode_literals
+from google.oauth2 import service_account
 
 # Build paths inside the project like this: os.path.join(BASE_DIR, ...)
 import os
@@ -209,7 +210,18 @@ STATICFILES_DIRS = [
 # ManifestStaticFilesStorage is recommended in production, to prevent outdated
 # JavaScript / CSS assets being served from cache (e.g. after a Wagtail upgrade).
 # See https://docs.djangoproject.com/en/4.0/ref/contrib/staticfiles/#manifeststaticfilesstorage
-STATICFILES_STORAGE = "django.contrib.staticfiles.storage.ManifestStaticFilesStorage"
+
+# Prior to django-storages[google]:
+#STATICFILES_STORAGE = "django.contrib.staticfiles.storage.ManifestStaticFilesStorage"
+# With django-storages[google]: django >= 4.2
+#STORAGES = {"staticfiles": {"BACKEND": "storages.backends.gcloud.GoogleCloudStorage"}}
+# With django-storages[google]: django < 4.2
+STATICFILES_STORAGE = "storages.backends.gcloud.GoogleCloudStorage"
+
+# django < 4.2
+DEFAULT_FILE_STORAGE = "storages.backends.gcloud.GoogleCloudStorage"
+# django >= 4.2
+#STORAGES = {"default": {"BACKEND": "storages.backends.gcloud.GoogleCloudStorage"}}
 
 STATIC_ROOT = os.path.join(BASE_DIR, "static")
 STATIC_URL = "/static/"
@@ -217,9 +229,11 @@ STATIC_URL = "/static/"
 MEDIA_ROOT = os.path.join(BASE_DIR, "media")
 MEDIA_URL = "/media/"
 
+GS_BUCKET_NAME = "vcsc-bucket"
+GS_DEFAULT_ACL = "publicRead"
+
 
 # Wagtail settings
-
 WAGTAIL_SITE_NAME = "vcsc"
 
 # Search
