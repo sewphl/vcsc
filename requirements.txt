@@ -14,6 +14,7 @@ django_extensions
 
 whitenoise
 django-storages[google]
+google-auth
 
 dj_database_url
 gunicorn

@@ -10,6 +10,7 @@ For the full list of settings and their values, see
 https://docs.djangoproject.com/en/4.0/ref/settings/
 """
 from __future__ import absolute_import, unicode_literals
+from google.cloud import storage
 from google.oauth2 import service_account
 
 # Build paths inside the project like this: os.path.join(BASE_DIR, ...)
@@ -92,6 +93,26 @@ MIDDLEWARE = [
     "django.middleware.security.SecurityMiddleware",
     "whitenoise.middleware.WhiteNoiseMiddleware",
 ]
+
+############ From StackOverflow: https://stackoverflow.com/questions/47446480/how-to-use-google-api-credentials-json-on-heroku
+
+# the json credentials stored as config var 
+json_str = os.environ.get('GOOGLE_APPLICATION_CREDENTIALS')
+# project name
+gcp_project = os.environ.get('GCP_PROJECT') 
+
+# generate json
+json_data = json.loads(json_str)
+
+# use service_account to generate credentials object
+credentials = service_account.Credentials.from_service_account_info(
+    json_data)
+
+# pass credentials AND project name to new client object
+storage_client = storage.Client(
+    project=gcp_project, credentials=credentials)
+
+############
 
 ## With Django < 4.2:
 ##STATICFILES_STORAGE = "django.contrib.staticfiles.storage.ManifestStaticFilesStorage"
