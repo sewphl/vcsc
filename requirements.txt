@@ -17,4 +17,4 @@ django-storages[google]
 google-auth
 
 dj_database_url
-gunicorn
+gunicorn==20.1.0
