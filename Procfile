@@ -1,1 +1,1 @@
-web: gunicorn vcsc.wsgi --log-file -
+web: gunicorn vcsc.wsgi
