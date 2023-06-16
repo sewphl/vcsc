@@ -235,7 +235,7 @@ gcp_project = os.environ.get('GCP_PROJECT')
 #json_data = json.loads(json_str)
 #with open(json_str, 'r') as j:
 #     json_data = json.loads(j.read())
-with open(json_str, encoding='utf-8', errors='ignore') as j:
+with open(os.environ.get('GOOGLE_CREDENTIALS'), encoding='utf-8', errors='ignore') as j:
      json_data = json.load(j, strict=False)
 # the private_key needs to replace \n parsed as string literal with escaped newlines
 json_data['private_key'] = json_data['private_key'].replace('\\n', '\n')
