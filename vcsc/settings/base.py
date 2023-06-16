@@ -235,7 +235,7 @@ CREDENTIALS_DICT = {
     "type": os.environ["TYPE"],
     "project_id": os.environ["PROJECT_ID"],
     "private_key_id": os.environ["PRIVATE_KEY_ID"],
-    "private_key": os.environ["PRIVATE_KEY"],
+    "private_key": os.environ["PRIVATE_KEY"].replace('\\n', '\n'),
     "client_email": os.environ["CLIENT_EMAIL"],
     "client_id": os.environ["CLIENT_ID"],
     "auth_uri": os.environ["AUTH_URI"],
@@ -253,7 +253,7 @@ CREDENTIALS = str(CREDENTIALS_DICT)
 #     json_data = json.load(j, strict=False)
 json_data = json.loads(CREDENTIALS)
 # the private_key needs to replace \n parsed as string literal with escaped newlines
-json_data['private_key'] = json_data['private_key'].replace('\\n', '\n')
+json_data['private_key'] = json_data['private_key']
 
 # use service_account to generate credentials object
 credentials = service_account.Credentials.from_service_account_info(
