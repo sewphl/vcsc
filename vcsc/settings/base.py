@@ -245,7 +245,7 @@ CREDENTIALS_DICT = {
 }
 print(CREDENTIALS_DICT)
 CREDENTIALS = str(CREDENTIALS_DICT)
-print(CREDENTIALS
+print(CREDENTIALS)
 
 # generate json - if there are errors here remove newlines
 #json_data = json.loads(json_str)
