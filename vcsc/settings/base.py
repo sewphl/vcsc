@@ -226,33 +226,41 @@ GS_DEFAULT_ACL = "publicRead"
 ## From StackOverflow: https://stackoverflow.com/questions/47446480/how-to-use-google-api-credentials-json-on-heroku
 
 # the json credentials stored as env variable
-#json_str = os.environ.get('GOOGLE_CREDENTIALS')  ##GOOGLE_APPLICATION_CREDENTIALS
+json_str = os.environ.get('GOOGLE_CREDENTIALS')  ##GOOGLE_APPLICATION_CREDENTIALS
 # project name
 gcp_project = os.environ.get('GCP_PROJECT') 
 
 # generate json - if there are errors here remove newlines
-#json_data = json.loads(json_str)
+json_data = json.loads(json_str)
 # the private_key needs to replace \n parsed as string literal with escaped newlines
-#json_data['private_key'] = json_data['private_key'].replace('\\n', '\n')
-
-CREDENTIALS = {
-    "type": os.environ["TYPE"],
-    "project_id": os.environ["PROJECT_ID"],
-    "private_key_id": os.environ["PRIVATE_KEY_ID"],
-    "private_key": os.environ["PRIVATE_KEY"].replace('\\n', '\n'),
-    "client_email": os.environ["CLIENT_EMAIL"],
-    "client_id": os.environ["CLIENT_ID"],
-    "auth_uri": os.environ["AUTH_URI"],
-    "token_uri": os.environ["TOKEN_URI"],
-    "auth_provider_x509_cert_url": os.environ["AUTH_PROVIDER_X509_CERT_URL"],
-    "client_x509_cert_url": os.environ["CLIENT_X509_CERT_URL"]
-}
+json_data['private_key'] = json_data['private_key'].replace('\\n', '\n')
 
 # use service_account to generate credentials object
-my_credentials = service_account.Credentials.from_service_account_info(CREDENTIALS) 
+credentials = service_account.Credentials.from_service_account_info(
+    json_data)
 
 # pass credentials AND project name to new client object
-storage_client = storage.Client(project=gcp_project, credentials=my_credentials)
+storage_client = storage.Client(
+    project=gcp_project, credentials=credentials)
+
+#CREDENTIALS = {
+#    "type": os.environ["TYPE"],
+#    "project_id": os.environ["PROJECT_ID"],
+#    "private_key_id": os.environ["PRIVATE_KEY_ID"],
+#    "private_key": os.environ["PRIVATE_KEY"].replace('\\n', '\n'),
+#    "client_email": os.environ["CLIENT_EMAIL"],
+#    "client_id": os.environ["CLIENT_ID"],
+#    "auth_uri": os.environ["AUTH_URI"],
+#    "token_uri": os.environ["TOKEN_URI"],
+#    "auth_provider_x509_cert_url": os.environ["AUTH_PROVIDER_X509_CERT_URL"],
+#    "client_x509_cert_url": os.environ["CLIENT_X509_CERT_URL"]
+#}
+
+# use service_account to generate credentials object
+# my_credentials = service_account.Credentials.from_service_account_info(CREDENTIALS) 
+
+# pass credentials AND project name to new client object
+#storage_client = storage.Client(project=gcp_project, credentials=my_credentials)
 
 
 # Wagtail settings
