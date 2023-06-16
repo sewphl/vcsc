@@ -254,9 +254,9 @@ GS_DEFAULT_ACL = "publicRead"
 #     json_data = json.loads(j.read())
 #with open(os.environ.get('GOOGLE_CREDENTIALS'), encoding='utf-8', errors='ignore') as j:
 #     json_data = json.load(j, strict=False)
-json_data = json.loads(CREDENTIALS)
+#json_data = json.loads(CREDENTIALS)
 # the private_key needs to replace \n parsed as string literal with escaped newlines
-json_data['private_key'] = json_data['private_key']
+#json_data['private_key'] = json_data['private_key']
 
 # use service_account to generate credentials object
 #credentials = service_account.Credentials.from_service_account_info(
