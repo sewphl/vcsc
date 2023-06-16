@@ -266,8 +266,6 @@ GS_DEFAULT_ACL = "publicRead"
 #storage_client = storage.Client(
 #    project=gcp_project, credentials=credentials)
 
-
-
 # use service_account to generate credentials object
 # my_credentials = service_account.Credentials.from_service_account_info(CREDENTIALS) 
 
