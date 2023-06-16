@@ -243,7 +243,9 @@ CREDENTIALS_DICT = {
     "auth_provider_x509_cert_url": os.environ["AUTH_PROVIDER_X509_CERT_URL"],
     "client_x509_cert_url": os.environ["CLIENT_X509_CERT_URL"]
 }
+print(CREDENTIALS_DICT)
 CREDENTIALS = str(CREDENTIALS_DICT)
+print(CREDENTIALS
 
 # generate json - if there are errors here remove newlines
 #json_data = json.loads(json_str)
