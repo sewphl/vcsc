@@ -226,7 +226,7 @@ GS_DEFAULT_ACL = "publicRead"
 ## From StackOverflow: https://stackoverflow.com/questions/47446480/how-to-use-google-api-credentials-json-on-heroku
 
 # the json credentials stored as env variable
-#json_str = os.environ.get('GOOGLE_APPLICATION_CREDENTIALS')  ##GOOGLE_APPLICATION_CREDENTIALS
+json_str = os.environ.get('GOOGLE_CREDENTIALS')  ##GOOGLE_APPLICATION_CREDENTIALS
 # project name
 gcp_project = os.environ.get('GCP_PROJECT') 
 
@@ -253,7 +253,8 @@ credentials = service_account.Credentials.from_service_account_info(
     CREDENTIALS)
 
 # pass credentials AND project name to new client object
-storage_client = storage.Client(project=gcp_project, credentials=CREDENTIALS)
+#storage_client = storage.Client(project=gcp_project, credentials=CREDENTIALS)
+storage_client = storage.Client.from_service_account_json(json_str)
 
 
 # Wagtail settings
