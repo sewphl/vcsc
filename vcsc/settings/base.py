@@ -226,7 +226,7 @@ GS_DEFAULT_ACL = "publicRead"
 ## From StackOverflow: https://stackoverflow.com/questions/47446480/how-to-use-google-api-credentials-json-on-heroku
 
 # the json credentials stored as env variable
-json_str = os.environ.get('GOOGLE_CREDENTIALS')  ##GOOGLE_APPLICATION_CREDENTIALS
+json_str = os.environ.get('GOOGLE_APPLICATION_CREDENTIALS')  ##GOOGLE_APPLICATION_CREDENTIALS
 # project name
 gcp_project = os.environ.get('GCP_PROJECT') 
 
