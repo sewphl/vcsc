@@ -245,6 +245,7 @@ CREDENTIALS_DICT = {
 }
 print(CREDENTIALS_DICT)
 CREDENTIALS = str(CREDENTIALS_DICT)
+CREDENTIALS = CREDENTIALS.replace("\'", "\"")
 print(CREDENTIALS)
 
 # generate json - if there are errors here remove newlines
