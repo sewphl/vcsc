@@ -253,8 +253,8 @@ credentials = service_account.Credentials.from_service_account_info(
     CREDENTIALS)
 
 # pass credentials AND project name to new client object
-storage_client = storage.Client(
-    project=gcp_project, credentials=CREDENTIALS)
+#storage_client = storage.Client(project=gcp_project, credentials=CREDENTIALS)
+storage_client = storage.Client(credentials=CREDENTIALS)
 
 
 # Wagtail settings
