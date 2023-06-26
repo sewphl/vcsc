@@ -1,1 +1,1 @@
-echo ${GOOGLE_CREDENTIALS} > /vcsc/google-credentials.json
+echo ${GOOGLE_CREDENTIALS} > /app/google-credentials.json
