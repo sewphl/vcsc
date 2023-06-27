@@ -1,1 +1,1 @@
-echo ${GOOGLE_CREDENTIALS} > .google/google-credentials.json
+echo ${GOOGLE_CREDENTIALS} > google-credentials.json
