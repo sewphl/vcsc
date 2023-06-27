@@ -100,7 +100,7 @@ MIDDLEWARE = [
 ##STATICFILES_STORAGE = "django.contrib.staticfiles.storage.ManifestStaticFilesStorage"
 ##STATICFILES_STORAGE = "whitenoise.storage.CompressedManifestStaticFilesStorage"
 
-GS_CREDENTIALS = json.load(os.environ.get('GOOGLE_CREDENTIALS'))
+GS_CREDENTIALS = json.loads(os.environ.get('GOOGLE_CREDENTIALS').read())
 
 # django < 4.2
 DEFAULT_FILE_STORAGE = "storages.backends.gcloud.GoogleCloudStorage"
