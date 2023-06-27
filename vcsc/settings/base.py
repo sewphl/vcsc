@@ -101,7 +101,7 @@ MIDDLEWARE = [
 ##STATICFILES_STORAGE = "whitenoise.storage.CompressedManifestStaticFilesStorage"
 
 GS_CREDENTIALS = service_account.Credentials.from_service_account_file(
-    ".google/credentials.json"
+    ".google/google-credentials.json"
 )
 
 # django < 4.2
