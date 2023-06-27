@@ -102,6 +102,9 @@ MIDDLEWARE = [
 
 # GS_CREDENTIALS = json.loads(os.environ.get('GOOGLE_CREDENTIALS'))
 
+credential_path = os.path.join(BASE_DIR, 'google-credentials.json')
+os.environ['GOOGLE_APPLICATION_CREDENTIALS'] = credential_path
+
 # django < 4.2
 DEFAULT_FILE_STORAGE = "storages.backends.gcloud.GoogleCloudStorage"
 # django < 4.2
