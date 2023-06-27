@@ -12,6 +12,7 @@ https://docs.djangoproject.com/en/4.0/ref/settings/
 from __future__ import absolute_import, unicode_literals
 from google.cloud import storage
 from google.oauth2 import service_account
+from django.core.files.storage import default_storage
 
 # Build paths inside the project like this: os.path.join(BASE_DIR, ...)
 import os
@@ -98,6 +99,10 @@ MIDDLEWARE = [
 ## With Django < 4.2:
 ##STATICFILES_STORAGE = "django.contrib.staticfiles.storage.ManifestStaticFilesStorage"
 ##STATICFILES_STORAGE = "whitenoise.storage.CompressedManifestStaticFilesStorage"
+
+GS_CREDENTIALS = service_account.Credentials.from_service_account_file(
+    ".google/credentials.json"
+)
 
 # django < 4.2
 DEFAULT_FILE_STORAGE = "storages.backends.gcloud.GoogleCloudStorage"
@@ -209,24 +214,25 @@ STATICFILES_DIRS = [
 
 # Prior to django-storages[google]:
 #STATICFILES_STORAGE = "django.contrib.staticfiles.storage.ManifestStaticFilesStorage"
-# With django-storages[google]: django >= 4.2
-#STORAGES = {"staticfiles": {"BACKEND": "storages.backends.gcloud.GoogleCloudStorage"}}
-# With django-storages[google]: django < 4.2
+
+# django < 4.2
 STATICFILES_STORAGE = "storages.backends.gcloud.GoogleCloudStorage"
+# django >= 4.2:
+# STORAGES = {"staticfiles": {"BACKEND": "storages.backends.gcloud.GoogleCloudStorage"}}
 
 # django < 4.2
 DEFAULT_FILE_STORAGE = "storages.backends.gcloud.GoogleCloudStorage"
 # django >= 4.2
 #STORAGES = {"default": {"BACKEND": "storages.backends.gcloud.GoogleCloudStorage"}}
 
+GS_BUCKET_NAME = "vcsc-bucket"
+GS_DEFAULT_ACL = "publicRead"
+
 STATIC_ROOT = os.path.join(BASE_DIR, "static")
 STATIC_URL = "/static/"
 
 MEDIA_ROOT = os.path.join(BASE_DIR, "media")
 MEDIA_URL = "/media/"
-
-GS_BUCKET_NAME = "vcsc-bucket"
-GS_DEFAULT_ACL = "publicRead"
 
 ## From StackOverflow: https://stackoverflow.com/questions/47446480/how-to-use-google-api-credentials-json-on-heroku
 
