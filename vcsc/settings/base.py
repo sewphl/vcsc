@@ -236,7 +236,7 @@ MEDIA_ROOT = os.path.join(BASE_DIR, "media")
 MEDIA_URL = "/media/"
 
 # env contains contents json keyfile (path)
-cred_env = os.environ['GOOGLE_CREDENTIALS']
+cred_env = os.environ['GOOGLE_APPLICATION_CREDENTIALS']
 cred = service_account.Credentials.from_service_account_file(cred_env)
 client = storage.Client(credentials=cred) # success
 
