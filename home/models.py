@@ -13,6 +13,7 @@ from streams import blocks as stream_blocks
 from wagtail.rich_text import RichText
 
 from vcsc.settings.base import ALL_RICHTEXT_FEATURES
+import dropbox 
 
 
 NEW_TABLE_OPTIONS = {
