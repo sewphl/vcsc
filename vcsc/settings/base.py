@@ -237,9 +237,7 @@ MEDIA_URL = "/media/"
 
 # env contains contents json keyfile (path)
 cred_env = os.environ['GOOGLE_CREDENTIALS']
-with io.open(cred_env, "r", encoding="utf-8") as json_file:
-    data = json.load(json_file)
-cred = service_account.Credentials.from_service_account_info(data)
+cred = service_account.Credentials.from_service_account_file(cred_env)
 client = storage.Client(credentials=cred) # success
 
 ## From StackOverflow: https://stackoverflow.com/questions/47446480/how-to-use-google-api-credentials-json-on-heroku
