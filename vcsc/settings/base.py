@@ -98,7 +98,8 @@ MIDDLEWARE = [
     ##"whitenoise.middleware.WhiteNoiseMiddleware",
 ]
 
-DEFAULT_FILE_STORAGE = "storages.backends.dropbox.DropboxStorage"
+##DEFAULT_FILE_STORAGE = "storages.backends.dropbox.DropboxStorage"
+DEFAULT_FILE_STORAGE = "storages.backends.dropbox.DropBoxStorage"
 
 ROOT_URLCONF = "vcsc.urls"
 
