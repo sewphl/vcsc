@@ -101,6 +101,11 @@ MIDDLEWARE = [
 ##DEFAULT_FILE_STORAGE = "storages.backends.dropbox.DropboxStorage"
 DEFAULT_FILE_STORAGE = "storages.backends.dropbox.DropBoxStorage"
 
+os.environ["DROPBOX_OAUTH2_TOKEN"] = DROPBOX_OAUTH2_TOKEN
+os.environ["DROPBOX_APP_KEY"] = DROPBOX_APP_KEY
+os.environ["DROPBOX_APP_SECRET"] = DROPBOX_APP_SECRET
+os.environ["DROPBOX_OAUTH2_REFRESH_TOKEN"] = DROPBOX_OAUTH2_REFRESH_TOKEN
+
 ROOT_URLCONF = "vcsc.urls"
 
 TEMPLATES = [
