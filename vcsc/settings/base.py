@@ -10,14 +10,16 @@ For the full list of settings and their values, see
 https://docs.djangoproject.com/en/4.0/ref/settings/
 """
 from __future__ import absolute_import, unicode_literals
-from google.cloud import storage
-from google.oauth2 import service_account
-from django.core.files.storage import default_storage
+##from google.cloud import storage
+##from google.oauth2 import service_account
+##from django.core.files.storage import default_storage
 
 # Build paths inside the project like this: os.path.join(BASE_DIR, ...)
 import os
 from dotenv import load_dotenv
 import json
+
+import dropbox 
 
 #env = os.environ.copy()
 load_dotenv()
@@ -96,27 +98,7 @@ MIDDLEWARE = [
     ##"whitenoise.middleware.WhiteNoiseMiddleware",
 ]
 
-## With Django < 4.2:
-##STATICFILES_STORAGE = "django.contrib.staticfiles.storage.ManifestStaticFilesStorage"
-##STATICFILES_STORAGE = "whitenoise.storage.CompressedManifestStaticFilesStorage"
-
-# GS_CREDENTIALS = json.loads(os.environ.get('GOOGLE_CREDENTIALS'))
-
-#credential_path = os.path.join(BASE_DIR, 'google-credentials.json')
-#os.environ['GOOGLE_APPLICATION_CREDENTIALS'] = credential_path
-
-# django < 4.2
-DEFAULT_FILE_STORAGE = "storages.backends.gcloud.GoogleCloudStorage"
-# django < 4.2
-STATICFILES_STORAGE = "storages.backends.gcloud.GoogleCloudStorage"
-
-## With Django 4.2+:
-##STORAGES = {
-##    # ...
-##    "staticfiles": {
-##        "BACKEND": "whitenoise.storage.CompressedManifestStaticFilesStorage",
-##    },
-##}
+DEFAULT_FILE_STORAGE = "storages.backends.dropbox.DropboxStorage"
 
 ROOT_URLCONF = "vcsc.urls"
 
@@ -213,32 +195,49 @@ STATICFILES_DIRS = [
 # JavaScript / CSS assets being served from cache (e.g. after a Wagtail upgrade).
 # See https://docs.djangoproject.com/en/4.0/ref/contrib/staticfiles/#manifeststaticfilesstorage
 
-# Prior to django-storages[google]:
-#STATICFILES_STORAGE = "django.contrib.staticfiles.storage.ManifestStaticFilesStorage"
-
-# django < 4.2
-STATICFILES_STORAGE = "storages.backends.gcloud.GoogleCloudStorage"
-# django >= 4.2:
-# STORAGES = {"staticfiles": {"BACKEND": "storages.backends.gcloud.GoogleCloudStorage"}}
-
-# django < 4.2
-DEFAULT_FILE_STORAGE = "storages.backends.gcloud.GoogleCloudStorage"
-# django >= 4.2
-#STORAGES = {"default": {"BACKEND": "storages.backends.gcloud.GoogleCloudStorage"}}
-
-GS_BUCKET_NAME = "vcsc-bucket"
-GS_DEFAULT_ACL = "publicRead"
-
 STATIC_ROOT = os.path.join(BASE_DIR, "static")
 STATIC_URL = "/static/"
 
 MEDIA_ROOT = os.path.join(BASE_DIR, "media")
 MEDIA_URL = "/media/"
 
-# env contains contents json keyfile (path)
-cred_env = os.environ['GOOGLE_APPLICATION_CREDENTIALS']
-cred = service_account.Credentials.from_service_account_file(cred_env)
-client = storage.Client(credentials=cred) # success
+## With Django < 4.2:
+##STATICFILES_STORAGE = "django.contrib.staticfiles.storage.ManifestStaticFilesStorage"
+##STATICFILES_STORAGE = "whitenoise.storage.CompressedManifestStaticFilesStorage"
+
+# GS_CREDENTIALS = json.loads(os.environ.get('GOOGLE_CREDENTIALS'))
+
+#credential_path = os.path.join(BASE_DIR, 'google-credentials.json')
+#os.environ['GOOGLE_APPLICATION_CREDENTIALS'] = credential_path
+
+# django < 4.2
+#DEFAULT_FILE_STORAGE = "storages.backends.gcloud.GoogleCloudStorage"
+# django < 4.2
+#STATICFILES_STORAGE = "storages.backends.gcloud.GoogleCloudStorage"
+
+## With Django 4.2+:
+##STORAGES = {
+##    # ...
+##    "staticfiles": {
+##        "BACKEND": "whitenoise.storage.CompressedManifestStaticFilesStorage",
+##    },
+##}
+
+# Prior to django-storages[google]:
+#STATICFILES_STORAGE = "django.contrib.staticfiles.storage.ManifestStaticFilesStorage"
+
+# django < 4.2
+#STATICFILES_STORAGE = "storages.backends.gcloud.GoogleCloudStorage"
+# django >= 4.2:
+# STORAGES = {"staticfiles": {"BACKEND": "storages.backends.gcloud.GoogleCloudStorage"}}
+
+# django < 4.2
+#DEFAULT_FILE_STORAGE = "storages.backends.gcloud.GoogleCloudStorage"
+# django >= 4.2
+#STORAGES = {"default": {"BACKEND": "storages.backends.gcloud.GoogleCloudStorage"}}
+
+#GS_BUCKET_NAME = "vcsc-bucket"
+#GS_DEFAULT_ACL = "publicRead"
 
 ## From StackOverflow: https://stackoverflow.com/questions/47446480/how-to-use-google-api-credentials-json-on-heroku
 
