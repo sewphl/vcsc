@@ -105,10 +105,6 @@ MIDDLEWARE = [
 #credential_path = os.path.join(BASE_DIR, 'google-credentials.json')
 #os.environ['GOOGLE_APPLICATION_CREDENTIALS'] = credential_path
 
-GOOGLE_APPLICATION_CREDENTIALS = service_account.Credentials.from_service_account_info(
-        get_secret["GOOGLE_CREDENTIALS"]
-    )
-
 # django < 4.2
 DEFAULT_FILE_STORAGE = "storages.backends.gcloud.GoogleCloudStorage"
 # django < 4.2
@@ -238,6 +234,13 @@ STATIC_URL = "/static/"
 
 MEDIA_ROOT = os.path.join(BASE_DIR, "media")
 MEDIA_URL = "/media/"
+
+# env contains contents json keyfile (path)
+cred_env = os.environ['GOOGLE_CREDENTIALS']
+with io.open(cred_env, "r", encoding="utf-8") as json_file:
+    data = json.load(json_file)
+cred = service_account.Credentials.from_service_account_info(data)
+client = storage.Client(credentials=cred) # success
 
 ## From StackOverflow: https://stackoverflow.com/questions/47446480/how-to-use-google-api-credentials-json-on-heroku
 
