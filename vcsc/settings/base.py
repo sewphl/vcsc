@@ -76,7 +76,7 @@ INSTALLED_APPS = [
     "allauth.account",
     "allauth.socialaccount",
 
-    ##"whitenoise.runserver_nostatic",
+    "whitenoise.runserver_nostatic",
 
     "fontawesomefree",
     "rest_framework",
@@ -95,7 +95,7 @@ MIDDLEWARE = [
     "wagtail.contrib.redirects.middleware.RedirectMiddleware",
     
     "django.middleware.security.SecurityMiddleware",
-    ##"whitenoise.middleware.WhiteNoiseMiddleware",
+    "whitenoise.middleware.WhiteNoiseMiddleware",
 ]
 
 ##DEFAULT_FILE_STORAGE = "storages.backends.dropbox.DropboxStorage"
@@ -209,7 +209,7 @@ MEDIA_URL = "/media/"
 
 ## With Django < 4.2:
 ##STATICFILES_STORAGE = "django.contrib.staticfiles.storage.ManifestStaticFilesStorage"
-##STATICFILES_STORAGE = "whitenoise.storage.CompressedManifestStaticFilesStorage"
+STATICFILES_STORAGE = "whitenoise.storage.CompressedManifestStaticFilesStorage"
 
 # GS_CREDENTIALS = json.loads(os.environ.get('GOOGLE_CREDENTIALS'))
 
