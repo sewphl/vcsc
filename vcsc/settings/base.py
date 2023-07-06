@@ -209,8 +209,8 @@ MEDIA_URL = "/media/"
 
 ## With Django < 4.2:
 ##STATICFILES_STORAGE = "django.contrib.staticfiles.storage.ManifestStaticFilesStorage"
-##STATICFILES_STORAGE = "whitenoise.storage.CompressedManifestStaticFilesStorage"
-STATICFILES_STORAGE = 'storages.backends.dropbox.DropBoxStorage'
+STATICFILES_STORAGE = "whitenoise.storage.CompressedManifestStaticFilesStorage"
+##STATICFILES_STORAGE = 'storages.backends.dropbox.DropBoxStorage'
 
 # GS_CREDENTIALS = json.loads(os.environ.get('GOOGLE_CREDENTIALS'))
 
