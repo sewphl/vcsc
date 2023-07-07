@@ -101,11 +101,6 @@ MIDDLEWARE = [
 ##DEFAULT_FILE_STORAGE = "storages.backends.dropbox.DropboxStorage"
 DEFAULT_FILE_STORAGE = "storages.backends.dropbox.DropBoxStorage"
 
-#DROPBOX_OAUTH2_TOKEN = os.environ.get('DROPBOX_OAUTH2_TOKEN') 
-#DROPBOX_APP_KEY = os.environ.get('DROPBOX_APP_KEY') 
-#DROPBOX_APP_SECRET = os.environ.get('DROPBOX_APP_SECRET') 
-#DROPBOX_OAUTH2_REFRESH_TOKEN = os.environ.get('DROPBOX_OAUTH2_REFRESH_TOKEN') 
-
 # Dropbox:
 DROPBOX_OAUTH2_TOKEN = os.getenv('DROPBOX_OAUTH2_TOKEN') 
 DROPBOX_APP_KEY = os.getenv('DROPBOX_APP_KEY') 
