@@ -12,6 +12,12 @@ DEBUG = True
 # SECURITY WARNING: keep the secret key used in production secret!
 SECRET_KEY = os.getenv('SECRET_KEY_DEV')
 
+# Dropbox:
+DROPBOX_OAUTH2_TOKEN = os.getenv('DROPBOX_OAUTH2_TOKEN') 
+DROPBOX_APP_KEY = os.getenv('DROPBOX_APP_KEY') 
+DROPBOX_APP_SECRET = os.getenv('DROPBOX_APP_SECRET') 
+DROPBOX_OAUTH2_REFRESH_TOKEN = os.getenv('DROPBOX_OAUTH2_REFRESH_TOKEN') 
+
 # SECURITY WARNING: define the correct hosts in production!
 ALLOWED_HOSTS = ["*"]
 

@@ -5,9 +5,16 @@ from .base import *
 
 import os
 from dotenv import load_dotenv
+import dropbox
 
 load_dotenv()
 SECRET_KEY = os.getenv('SECRET_KEY')
+
+# Dropbox:
+DROPBOX_OAUTH2_TOKEN = os.getenv('DROPBOX_OAUTH2_TOKEN') 
+DROPBOX_APP_KEY = os.getenv('DROPBOX_APP_KEY') 
+DROPBOX_APP_SECRET = os.getenv('DROPBOX_APP_SECRET') 
+DROPBOX_OAUTH2_REFRESH_TOKEN = os.getenv('DROPBOX_OAUTH2_REFRESH_TOKEN') 
 
 cwd = os.getcwd()
 CACHES = {

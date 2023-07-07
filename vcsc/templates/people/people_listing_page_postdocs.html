@@ -1,0 +1,93 @@
+
+{% extends "base.html" %}
+{% load wagtailimages_tags wagtailcore_tags %}
+
+
+  {% block content %}
+<div class="container mt-4">
+<div class="row">
+  <div class="col-sm-12">
+    <h1 class="cc-inner-title">{{ page.title }}</h1>
+    {% if page.lead_text %}
+      <span class="lead" id="lead">
+        {{ page.lead_text | richtext }}
+      </span>
+    {% endif %}
+
+    <hr>
+    <h2 id="phd-students">Postdocs</h2>
+
+<div class="row mt-4 bio-cards ">
+  {% for card in person_postdoc %}
+  <div class="col-md-6 col-lg-4 d-flex align-items-stretch">
+    <div class="card mb-3 bio-card" > <!--text-center-->
+      {% if card.internal_page %}
+        <a href="{{ card.internal_page.url }}" class="bio-img">
+    {% endif %}
+        <picture>  <!--fill-573x369 -->
+          {% image card.person_img fill-400x369 as card_img %}
+          <img src="{{ card_img.url }}" alt="{{ card_img.alt }}" class="lazy card-img-top">
+        </picture>
+        {% if card.internal_page %}
+            </a>
+        {% endif %}
+        {% if card.internal_page %}
+        <a href="{{ card.internal_page.url }}" >
+            {% endif %}
+        <div class="card-body py-3"> <!--px-3 adds padding to left/right of card-body-->
+
+          <h3 class="card-title" >{{ card.name }}</h3>
+          <p class="card-description">{{ card.title }}</p>
+          <p class="card-text"><small class="text-muted">
+            <!--for e in card.person_role.all ... e.role ... endfor-->
+            </small>
+          </p>
+        </div>
+        </a>
+    </div>
+  </div>
+  {% endfor %}
+</div> 
+
+<hr>
+<h2 id="phd-students">Former Postdocs</h2>
+
+<div class="row mt-4 bio-cards ">
+    {% for card in person_postdoc_former %}
+    <div class="col-md-6 col-lg-4 d-flex align-items-stretch">
+      <div class="card mb-3 bio-card" > <!--text-center-->
+        {% if card.internal_page %}
+          <a href="{{ card.internal_page.url }}" class="bio-img">
+      {% endif %}
+          <picture>  <!--fill-573x369 -->
+            {% image card.person_img fill-400x369 as card_img %}
+            <img src="{{ card_img.url }}" alt="{{ card_img.alt }}" class="lazy card-img-top">
+          </picture>
+          {% if card.internal_page %}
+              </a>
+          {% endif %}
+          {% if card.internal_page %}
+          <a href="{{ card.internal_page.url }}" >
+              {% endif %}
+          <div class="card-body py-3"> <!--px-3 adds padding to left/right of card-body-->
+  
+            <h3 class="card-title" >{{ card.name }}</h3>
+            <p class="card-description">{{ card.title }}</p>
+            <p class="card-text"><small class="text-muted">
+              <!--for e in card.person_role.all ... e.role ... endfor-->
+              </small>
+            </p>
+          </div>
+          </a>
+      </div>
+    </div>
+    {% endfor %}
+  </div> 
+
+</div> <!--container-->
+
+  {% for block in page.body %}
+    {% include_block block %}
+  {% endfor %}
+
+{% endblock content %}

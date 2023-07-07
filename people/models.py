@@ -97,7 +97,7 @@ class PeopleListingPagePostdoc(Page):
     """People listing page: Postdocs"""
     parent_page_types = ["subbanners.SubbannerPage"]
     subpage_types = ["people.PeoplePersonPage"]
-    template = "people/people_listing_page.html"
+    template = "people/people_listing_page_postdocs.html"
     max_count = 1
 
     lead_text = RichTextField(
@@ -114,7 +114,9 @@ class PeopleListingPagePostdoc(Page):
         context["person_role"] = PeopleRole.objects.all()
         context["people_all"] = PeoplePerson.objects.all()
         #context['person_page'] = PeoplePersonPage.objects.all() 
-        context["person"] = PeoplePerson.objects.filter(person_role__in=PeopleRole.objects.filter(slug='postdocs'))
+        ##context["person"] = PeoplePerson.objects.filter(person_role__in=PeopleRole.objects.filter(slug='postdocs'))
+        context["person_postdoc"] = PeoplePerson.objects.filter(person_role__in=PeopleRole.objects.filter(slug='postdocs'))
+        context["person_postdoc_former"] = PeoplePerson.objects.filter(person_role__in=PeopleRole.objects.filter(slug='postdocs-former'))
         return context 
     
     content_panels = Page.content_panels + [
