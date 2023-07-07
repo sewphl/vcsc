@@ -98,7 +98,6 @@ MIDDLEWARE = [
     "whitenoise.middleware.WhiteNoiseMiddleware",
 ]
 
-##DEFAULT_FILE_STORAGE = "storages.backends.dropbox.DropboxStorage"
 DEFAULT_FILE_STORAGE = "storages.backends.dropbox.DropBoxStorage"
 
 # Dropbox:
