@@ -12,11 +12,7 @@ from wagtail.snippets.blocks import SnippetChooserBlock
 from streams import blocks as stream_blocks
 from wagtail.rich_text import RichText
 
-##import dropbox 
 from vcsc.settings.base import ALL_RICHTEXT_FEATURES
-##DROPBOX_OAUTH2_TOKEN, DROPBOX_APP_KEY, DROPBOX_APP_SECRET, DROPBOX_OAUTH2_REFRESH_TOKEN
-
-
 
 NEW_TABLE_OPTIONS = {
     'minSpareRows': 0,
