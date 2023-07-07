@@ -25,7 +25,7 @@
         <a href="{{ card.internal_page.url }}" class="bio-img">
     {% endif %}
         <picture>  <!--fill-573x369 -->
-          {% image card.person_img fill-400x369 as card_img jpegquality-40 %}
+          {% image card.person_img fill-400x369 jpegquality-40 as card_img %}
           <img src="{{ card_img.url }}" alt="{{ card_img.alt }}" class="lazy card-img-top">
         </picture>
         {% if card.internal_page %}
