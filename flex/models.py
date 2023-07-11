@@ -20,6 +20,7 @@ class FlexPage(Page):
         ("title", stream_blocks.TitleBlock()),
         ("cards", stream_blocks.CardsBlock()),
         ("cards_text", stream_blocks.CardsTextBlock()),
+        ("accordions", stream_blocks.AccordionBlock()),
         ("image_and_text", stream_blocks.ImageAndTextBlock()),
         ("horizontal_card", stream_blocks.ImageBesideTextBlock()),
         ("image_beside_text",stream_blocks.ImageBesideTextBlockNoLink()),

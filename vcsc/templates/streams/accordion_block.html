@@ -1,0 +1,19 @@
+<div id="accordion">
+    {% for accordion in self.accordions %}
+    <div class="card">
+      <div class="card-header" id="{{ accordion.heading_id}}">
+        <h5 class="mb-0">
+          <button class="btn btn-link" data-toggle="collapse" data-target="#{{ accordion.div_id }}" aria-expanded="true" aria-controls="{{ accordion.div_id }}">
+            {{ accordion.title }}
+          </button>
+        </h5>
+      </div>
+
+      <div id="{{ accordion.div_id }}" class="collapse" aria-labelledby="{{ accordion.heading_id }}" data-parent="#accordion">
+        <div class="card-body">
+         {{ accordion.text }}
+        </div>
+      </div>
+    </div>
+    {% endfor %}
+  </div>

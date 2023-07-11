@@ -40,6 +40,11 @@ html,body
 
 /*end footer*/
 
+#accordion {
+   margin: 0 auto;
+   max-width: 500px;
+}
+
 .lead#lead {
    color: #212b36 !important;
    letter-spacing: normal;

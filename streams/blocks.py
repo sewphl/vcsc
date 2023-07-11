@@ -166,6 +166,38 @@ class CardsTextBlock(StructBlock):
         icon = "edit"
         label = "Card with Text Only"
 
+
+class Accordion(StructBlock):
+    title = CharBlock(
+        max_length=100,
+        help_text="Accordion dropdown title. Max length of 100 characters.",
+	)
+    text = RichTextBlock(
+        required=True,
+        features=ALL_RICHTEXT_FEATURES,
+        )
+    
+    heading_id = CharBlock(
+        maxLength=50,
+        help_text="Heading ID should be: headingOne, headingTwo, headingThree, etc.",
+    )
+
+    div_id = CharBlock(
+        max_length=50,
+        help_text="Div ID should be: collapseOne, collapseTwo, collapseThree, etc."
+    )
+
+class AccordionBlock(StructBlock):
+
+    accordions = ListBlock(
+        Accordion()
+    )
+
+    class Meta:
+        template = "streams/accordion_block.html"
+        icon = "collapse-down"
+        label = "Accordion Dropdown"
+
 class RadioSelectBlock(ChoiceBlock):
     def __init__(self, *args, **kwargs):
         super().__init__(*args, **kwargs)
