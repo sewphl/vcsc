@@ -10,9 +10,6 @@ For the full list of settings and their values, see
 https://docs.djangoproject.com/en/4.0/ref/settings/
 """
 from __future__ import absolute_import, unicode_literals
-##from google.cloud import storage
-##from google.oauth2 import service_account
-##from django.core.files.storage import default_storage
 
 # Build paths inside the project like this: os.path.join(BASE_DIR, ...)
 import os
@@ -207,20 +204,14 @@ STATIC_URL = "/static/"
 MEDIA_ROOT = os.path.join(BASE_DIR, "media")
 MEDIA_URL = "/media/"
 
+# Make low-quality images:
+WAGTAILIMAGES_JPEG_QUALITY = 40
+WAGTAILIMAGES_WEBP_QUALITY = 45
+
 ## With Django < 4.2:
 ##STATICFILES_STORAGE = "django.contrib.staticfiles.storage.ManifestStaticFilesStorage"
 STATICFILES_STORAGE = "whitenoise.storage.CompressedManifestStaticFilesStorage"
 ##STATICFILES_STORAGE = 'storages.backends.dropbox.DropBoxStorage'
-
-# GS_CREDENTIALS = json.loads(os.environ.get('GOOGLE_CREDENTIALS'))
-
-#credential_path = os.path.join(BASE_DIR, 'google-credentials.json')
-#os.environ['GOOGLE_APPLICATION_CREDENTIALS'] = credential_path
-
-# django < 4.2
-#DEFAULT_FILE_STORAGE = "storages.backends.gcloud.GoogleCloudStorage"
-# django < 4.2
-#STATICFILES_STORAGE = "storages.backends.gcloud.GoogleCloudStorage"
 
 ## With Django 4.2+:
 ##STORAGES = {
@@ -229,72 +220,6 @@ STATICFILES_STORAGE = "whitenoise.storage.CompressedManifestStaticFilesStorage"
 ##        "BACKEND": "whitenoise.storage.CompressedManifestStaticFilesStorage",
 ##    },
 ##}
-
-# Prior to django-storages[google]:
-#STATICFILES_STORAGE = "django.contrib.staticfiles.storage.ManifestStaticFilesStorage"
-
-# django < 4.2
-#STATICFILES_STORAGE = "storages.backends.gcloud.GoogleCloudStorage"
-# django >= 4.2:
-# STORAGES = {"staticfiles": {"BACKEND": "storages.backends.gcloud.GoogleCloudStorage"}}
-
-# django < 4.2
-#DEFAULT_FILE_STORAGE = "storages.backends.gcloud.GoogleCloudStorage"
-# django >= 4.2
-#STORAGES = {"default": {"BACKEND": "storages.backends.gcloud.GoogleCloudStorage"}}
-
-#GS_BUCKET_NAME = "vcsc-bucket"
-#GS_DEFAULT_ACL = "publicRead"
-
-## From StackOverflow: https://stackoverflow.com/questions/47446480/how-to-use-google-api-credentials-json-on-heroku
-
-# the json credentials stored as env variable
-#json_str = os.environ.get('GOOGLE_APPLICATION_CREDENTIALS')  ##GOOGLE_APPLICATION_CREDENTIALS
-
-# project name
-# gcp_project = os.environ.get('GCP_PROJECT') 
-
-#CREDENTIALS_DICT = {
-#    "type": os.environ["TYPE"],
-#    "project_id": os.environ["PROJECT_ID"],
-#    "private_key_id": os.environ["PRIVATE_KEY_ID"],
-#    "private_key": os.environ["PRIVATE_KEY"].replace('\\n', '\n'),
-#    "client_email": os.environ["CLIENT_EMAIL"],
-#    "client_id": os.environ["CLIENT_ID"],
-#    "auth_uri": os.environ["AUTH_URI"],
-#    "token_uri": os.environ["TOKEN_URI"],
-#    "auth_provider_x509_cert_url": os.environ["AUTH_PROVIDER_X509_CERT_URL"],
-#    "client_x509_cert_url": os.environ["CLIENT_X509_CERT_URL"]
-#}
-#print(CREDENTIALS_DICT)
-#CREDENTIALS = str(CREDENTIALS_DICT)
-#CREDENTIALS = CREDENTIALS.replace("\'", "\"")
-#print(CREDENTIALS)
-
-# generate json - if there are errors here remove newlines
-#json_data = json.loads(json_str)
-#with open(json_str, 'r') as j:
-#     json_data = json.loads(j.read())
-#with open(os.environ.get('GOOGLE_CREDENTIALS'), encoding='utf-8', errors='ignore') as j:
-#     json_data = json.load(j, strict=False)
-#json_data = json.loads(CREDENTIALS)
-# the private_key needs to replace \n parsed as string literal with escaped newlines
-#json_data['private_key'] = json_data['private_key']
-
-# use service_account to generate credentials object
-#credentials = service_account.Credentials.from_service_account_info(
-#    json_data)
-
-# pass credentials AND project name to new client object
-#storage_client = storage.Client(
-#    project=gcp_project, credentials=credentials)
-
-# use service_account to generate credentials object
-# my_credentials = service_account.Credentials.from_service_account_info(CREDENTIALS) 
-
-# pass credentials AND project name to new client object
-#storage_client = storage.Client(project=gcp_project, credentials=my_credentials)
-
 
 # Wagtail settings
 WAGTAIL_SITE_NAME = "vcsc"
