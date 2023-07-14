@@ -23,6 +23,18 @@ html,body
    }
  }
 
+ /*style external links: */
+ a[href]:not(:where(
+  /* exclude hash only links */
+  [href^="#"],
+  /* exclude relative but not double slash only links */
+  [href^="/"]:not([href^="//"]),
+  /* exclude social links: */
+  [class^="social"]
+)):after {
+  content: '\2197';
+}
+
 /*footer*/
 .cc-contact-footer-p {
    color: #fff !important;
