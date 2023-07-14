@@ -25,12 +25,16 @@ html,body
 
  /*style external links: */
  a[href]:not(:where(
-  /* exclude hash only links */
-  [href^="#"],
-  /* exclude relative but not double slash only links */
-  [href^="/"]:not([href^="//"]),
-  /* exclude social links: */
-  [class^="social"]
+  /* exclude: */
+  [class^="social"],
+  [class^="card-img"],
+  [class^="d-block"],
+  [class^="card-body-a"],
+  [class^="btn-primary"],
+   /* exclude hash only links */
+   [href^="#"],
+   /* exclude relative but not double slash only links */
+   [href^="/"]:not([href^="//"]),
 )):after {
   content: '\2197';
 }
