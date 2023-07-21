@@ -31,7 +31,7 @@ DEBUG = False
 ## SECURE_PROXY_SSL_HEADER = ('HTTP_X_FORWARDED_PROTO', 'https')
 
 # Allow all host headers for now (TODO: Add correct URL and IP address and remove *)
-ALLOWED_HOSTS = ['*']
+ALLOWED_HOSTS = ['afternoon-reef-17256.herokuapp.com']
 
 
 # Parse database configuration from $DATABASE_URL
