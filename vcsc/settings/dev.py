@@ -19,7 +19,7 @@ DROPBOX_APP_SECRET = os.getenv('DROPBOX_APP_SECRET')
 DROPBOX_OAUTH2_REFRESH_TOKEN = os.getenv('DROPBOX_OAUTH2_REFRESH_TOKEN') 
 
 # SECURITY WARNING: define the correct hosts in production!
-ALLOWED_HOSTS = ["*"]
+ALLOWED_HOSTS = ["afternoon-reef-17256.herokuapp.com"]
 
 EMAIL_BACKEND = "django.core.mail.backends.console.EmailBackend"
 

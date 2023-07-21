@@ -35,6 +35,8 @@ html,body
    [href^="#"],
    /* exclude relative but not double slash only links */
    [href^="/"]:not([href^="//"]),
+   /* exclude email links */
+   [href^='"mailto*']
 )):after {
   content: '\2197';
 }

@@ -144,7 +144,7 @@ DATABASES = {
         'NAME': 'dbpsql',
         'USER': os.getenv('DB_USER'),
         'PASSWORD': os.getenv('DB_PASSWORD'),
-        'HOST': '',
+        'HOST': 'afternoon-reef-17256.herokuapp.com',
         'PORT': '',
     }
 }
