@@ -234,7 +234,7 @@ WAGTAILSEARCH_BACKENDS = {
 
 # Base URL to use when referring to full URLs within the Wagtail admin backend -
 # e.g. in notification emails. Don't include '/admin' or a trailing slash
-WAGTAILADMIN_BASE_URL = "http://example.com"
+WAGTAILADMIN_BASE_URL = "https://afternoon-reef-17256.herokuapp.com"
 
 # Default RichText Features
 # see 3:28, https://www.youtube.com/watch?v=ei7ot_Wry3o
