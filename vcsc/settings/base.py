@@ -145,7 +145,7 @@ DATABASES = {
         'USER': os.getenv('DB_USER'),
         'PASSWORD': os.getenv('DB_PASSWORD'),
         'HOST': 'afternoon-reef-17256.herokuapp.com',
-        'PORT': 5432,
+        'PORT': '5432',
     }
 }
 
