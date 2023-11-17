@@ -1,7 +1,5 @@
 from wagtail.images.formats import Format, register_image_format, unregister_image_format
 
-##Note, update img-responsive to img-fluid 
-
 unregister_image_format('fullwidth')
 register_image_format(Format('fullwidth', 'Full width', 'richtext-image img-fluid full-width', 'width-700'))
 
