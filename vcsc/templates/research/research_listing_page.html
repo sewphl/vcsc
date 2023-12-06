@@ -4,7 +4,7 @@
 
   {% block content %}
 
-<div class="container mt-4">
+<div class="container mt-4"> 
 <div class="row">
   <div class="col-sm-12">
     <h1 class="cc-inner-title">{{ page.title }}</h1>
@@ -19,19 +19,32 @@
     <!-- a_special_link --> 
     <!-- </h2> -->
   
-    <!--Dropdown: Filter by Research Lab-->
-              <div class="dropdown show">
-                <a class="btn btn-secondary dropdown-toggle" href="#" role="button" id="dropdownMenuLink" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                  Filter by Research Lab
-                </a>
+    <!--Dropdown: Filter by Research Lab: Newest to Oldest-->
+    <div class="dropdown show mb-1">
+      <a class="btn btn-secondary dropdown-toggle" href="#" role="button" id="dropdownMenuLink" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+        Newest to oldest (filter by lab)
+      </a>
 
-                <div class="dropdown-menu" aria-labelledby="dropdownMenuLink">
-                  <a class="dropdown-item" href="{% pageurl page %}">All labs</a>
-                  {% for l in research_labs %}
-                  <a class="dropdown-item" href="{% routablepageurl page 'lab_view' l.slug %}">{{ l.lab_name }}</a>
-                  {% endfor %}
-                </div>
-              </div> 
+      <div class="dropdown-menu" aria-labelledby="dropdownMenuLink">
+        <a class="dropdown-item" href="{% pageurl page %}"><strong>All labs</strong></a>
+        {% for l in research_labs %}
+        <a class="dropdown-item" href="{% routablepageurl page 'lab_view' l.slug %}">{{ l.lab_name }}</a>
+        {% endfor %}
+      </div>
+    </div>
+
+          <!--Dropdown: Filter by Research Lab: Oldest to Newest-->
+    <div class="dropdown show mb-1">
+      <a class="btn btn-secondary dropdown-toggle" href="#" role="button" id="dropdownMenuLink" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+        Oldest to newest (filter by lab)
+      </a>
+      <div class="dropdown-menu" aria-labelledby="dropdownMenuLink">
+        <a class="dropdown-item" href="{% routablepageurl page 'oldest_first' %}"><strong>All labs</strong></a>
+        {% for l in research_labs %}
+        <a class="dropdown-item" href="{% routablepageurl page 'lab_view_reverse' l.slug %}">{{ l.lab_name }}</a>
+        {% endfor %}
+      </div>
+    </div>  
              
 
 

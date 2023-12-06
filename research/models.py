@@ -40,7 +40,7 @@ class ResearchPressListingPage(RoutablePageMixin, Page):
         context["researchitems"] = ResearchItem.objects.all()
         context["research_type"] = ResearchType.objects.all()
         context["authors"] = people_models.PeoplePerson.objects.all()
-        context["press"] = ResearchItem.objects.filter(research_type__in=ResearchType.objects.filter(slug='press'))
+        context["press"] = ResearchItem.objects.filter(research_type__in=ResearchType.objects.filter(slug='press')).order_by('-date')
         context["cards"] = context["press"]
 
         #context['a_special_link'] = self.reverse_subpage('latest_posts')
@@ -49,7 +49,7 @@ class ResearchPressListingPage(RoutablePageMixin, Page):
     
     class Meta:
         verbose_name = "Research press listing page"
-        verbose_name_plural = "Research press listing pages"
+        verbose_name_plural = "Research press listing pages" 
     
     #@route(r"^year/(\d+)/$", name="press_by_year")  #/(\d+)
     #def press_by_year(self, request, year=None):  #, month=None
@@ -60,6 +60,18 @@ class ResearchPressListingPage(RoutablePageMixin, Page):
     #    print(year)
     #    print(year)
     #    return render(request, "research/latest_posts.html", context)
+
+    @route('reverse_all/', name="oldest_first")
+    def oldest_first(self, request):
+
+        return self.render(
+            request,
+            context_overrides={
+                'cards': ResearchItem.objects.filter(research_type__in=ResearchType.objects.filter(slug='press')).order_by('date'),
+            },
+            template="research/research_listing_page.html",
+            
+        )
 
     @route(r"^lab/(?P<lab_slug>[-\w]*)/$", name="lab_view")
     def lab_view(self, request, lab_slug):
@@ -74,9 +86,25 @@ class ResearchPressListingPage(RoutablePageMixin, Page):
             pass
 
         #print(category.lab_name)
-        context["cards"] = ResearchItem.objects.filter(research_type__in=ResearchType.objects.filter(slug='press'), research_labs__in=[category])
+        context["cards"] = ResearchItem.objects.filter(research_type__in=ResearchType.objects.filter(slug='press'), research_labs__in=[category]).order_by('-date')
         return render(request, "research/research_listing_page.html", context)
-    
+
+    @route(r"^lab/(?P<lab_slug>[-\w]*)/reverse/$", name="lab_view_reverse")
+    def lab_view_reverse(self, request, lab_slug):
+        """Find blog posts based on a category."""
+        context = self.get_context(request)
+
+        try:
+            category = ResearchLab.objects.get(slug=lab_slug)
+        except Exception:
+            category = None
+        if category is None:
+            pass
+
+        #print(category.lab_name)
+        context["cards"] = ResearchItem.objects.filter(research_type__in=ResearchType.objects.filter(slug='press'), research_labs__in=[category]).order_by('date')
+        return render(request, "research/research_listing_page.html", context) 
+
     #@route(r'^latest-posts/$', name="latest_posts")
     #def the_subscribe_page(self, request, *args, **kwargs):
     #    context = self.get_context(request, *args, **kwargs)
@@ -97,9 +125,8 @@ class ResearchPublicationsListingPage(RoutablePageMixin, Page):
         context["researchitems"] = ResearchItem.objects.all()
         context["research_type"] = ResearchType.objects.all()
         context["authors"] = people_models.PeoplePerson.objects.all()
-        context["publications"] = ResearchItem.objects.filter(research_type__in=ResearchType.objects.filter(slug='publications'))
+        context["publications"] = ResearchItem.objects.filter(research_type__in=ResearchType.objects.filter(slug='publications')).order_by('-date')
         context["cards"] = context["publications"]
-        #context["media"] = ResearchItem.objects.filter(research_type__in=ResearchType.objects.filter(slug='media'))
 
         #context['a_special_link'] = self.reverse_subpage('latest_posts')
 
@@ -119,6 +146,18 @@ class ResearchPublicationsListingPage(RoutablePageMixin, Page):
     #    print(year)
     #    return render(request, "research/latest_posts.html", context)
 
+    @route('reverse_all/', name="oldest_first")
+    def oldest_first(self, request):
+
+        return self.render(
+            request,
+            context_overrides={
+                'cards': ResearchItem.objects.filter(research_type__in=ResearchType.objects.filter(slug='publications')).order_by('date'),
+            },
+            template="research/research_listing_page.html",
+            
+        )
+
     @route(r"^lab/(?P<lab_slug>[-\w]*)/$", name="lab_view")
     def lab_view(self, request, lab_slug):
         """Find blog posts based on a category."""
@@ -132,9 +171,24 @@ class ResearchPublicationsListingPage(RoutablePageMixin, Page):
             pass
 
         #print(category.lab_name)
-        context["cards"] = ResearchItem.objects.filter(research_type__in=ResearchType.objects.filter(slug='publications'), research_labs__in=[category])
+        context["cards"] = ResearchItem.objects.filter(research_type__in=ResearchType.objects.filter(slug='publications'), research_labs__in=[category]).order_by('-date')
         return render(request, "research/research_listing_page.html", context)
 
+    @route(r"^lab/(?P<lab_slug>[-\w]*)/reverse/$", name="lab_view_reverse")
+    def lab_view_reverse(self, request, lab_slug):
+        """Find blog posts based on a category."""
+        context = self.get_context(request)
+
+        try:
+            category = ResearchLab.objects.get(slug=lab_slug)
+        except Exception:
+            category = None
+        if category is None:
+            pass
+
+        #print(category.lab_name)
+        context["cards"] = ResearchItem.objects.filter(research_type__in=ResearchType.objects.filter(slug='publications'), research_labs__in=[category]).order_by('date')
+        return render(request, "research/research_listing_page.html", context)  
 
     #@route(r'^latest-posts/$', name="latest_posts")
     #def the_subscribe_page(self, request, *args, **kwargs):
