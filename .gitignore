@@ -9,6 +9,8 @@ __pycache__/
 .idea/
 .vscode/
 
+*.silk.ini
+.silk.ini
 *.swp
 *.pyc
 .DS_Store

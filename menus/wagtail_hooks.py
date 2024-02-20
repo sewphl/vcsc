@@ -1,5 +1,10 @@
-from wagtail.contrib.modeladmin.options import ModelAdmin, modeladmin_register
+## ModelAdmin is no longer part of Wagtail as of version 6.0. 
+## https://wagtail-modeladmin.readthedocs.io/en/latest/usage.html
+##from wagtail.contrib.modeladmin.options import ModelAdmin, modeladmin_register
+
+from wagtail_modeladmin.options import ModelAdmin, modeladmin_register
 from .models import Menu
+
 
 @modeladmin_register
 class MenuAdmin(ModelAdmin):
