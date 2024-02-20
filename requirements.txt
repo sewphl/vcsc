@@ -17,7 +17,6 @@ django-permissionedforms==0.1
 django-taggit==3.1.0
 django-treebeard==4.5.1
 djangorestframework==3.14.0
-dj-database-url
 draftjs-exporter==2.1.7
 et-xmlfile==1.1.0
 fontawesome-free==5.15.4
@@ -26,6 +25,9 @@ gunicorn==20.1.0
 html5lib==1.1
 idna==3.4
 l18n==2021.3
+mysqlclient
+mysql-connector-python
+pymysql
 oauthlib==3.2.2
 openpyxl==3.0.10
 Pillow==9.3.0
@@ -46,6 +48,7 @@ telepath==0.3
 typing_extensions==4.5.0
 urllib3==1.26.13
 wagtail>=5.2,<5.3
+wagtail-modeladmin
 wagtailmenus==3.1.3
 webencodings==0.5.1
 whitenoise

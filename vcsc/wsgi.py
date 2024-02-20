@@ -8,6 +8,12 @@ https://docs.djangoproject.com/en/4.0/howto/deployment/wsgi/
 """
 
 import os
+import sys
+
+path = '/users/c/m/cmplxsys/dev.cmplxsys.w3.uvm.edu-root/vcsc'
+if path not in sys.path:
+    sys.path.append(path)
+
 
 from django.core.wsgi import get_wsgi_application
 
