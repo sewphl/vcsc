@@ -31,19 +31,41 @@ DEBUG = False
 ## SECURE_PROXY_SSL_HEADER = ('HTTP_X_FORWARDED_PROTO', 'https')
 
 # Allow all host headers for now (TODO: Add correct URL and IP address and remove *)
-ALLOWED_HOSTS = ['afternoon-reef-17256.herokuapp.com']
+ALLOWED_HOSTS = ['*']
 
 # Parse database configuration from $DATABASE_URL
-import dj_database_url
+##import dj_database_url
+##DATABASES['default'] =  dj_database_url.config()
 
-#DATABASES['default'] =  dj_database_url.config()
 
 DATABASES = {
-    'default': dj_database_url.config(
-        conn_max_age=600,
-        conn_health_checks=True,
-    ),
+    'default': {
+        'ENGINE': os.getenv('DB_ENGINE'),
+        'NAME': os.getenv('DB_NAME'),
+        'USER': os.getenv('DB_USER'),
+        'PASSWORD': os.getenv('DB_PASSWORD'),
+        'HOST': os.getenv('DB_HOST'),
+        'PORT': os.getenv('DB_PORT'),
+    }
 }
+
+print(DATABASES)
+
+
+
+#DATABASE_URL = os.getenv('DATABASE_URL')
+#DATABASES['default'] = dj_database_url.config()
+
+#DATABASES = {
+#    'default': dj_database_url.config(default=DATABASE_URL)
+#}
+
+#DATABASES = {
+#    'default': dj_database_url.config(
+#        conn_max_age=600,
+#        conn_health_checks=True,
+#    ),
+#}
 
 #DATABASES = {
 #    'default': {

@@ -42,7 +42,7 @@ INSTALLED_APPS = [
     "subbanners",
     "research",
     "wagtail.contrib.forms",
-    "wagtail.contrib.modeladmin",
+    "wagtail_modeladmin",
     "wagtail.contrib.redirects",
     "wagtail.contrib.settings",
     "wagtail.contrib.sitemaps",
@@ -149,6 +149,19 @@ WSGI_APPLICATION = "vcsc.wsgi.application"
 #    }
 #}
 
+DATABASES = {
+    'default': {
+        'ENGINE': os.getenv('DB_ENGINE'),
+        'NAME': os.getenv('DB_NAME'),
+        'USER': os.getenv('DB_USER'),
+        'PASSWORD': os.getenv('DB_PASSWORD'),
+        'HOST': os.getenv('DB_HOST'),
+        'PORT': os.getenv('DB_PORT'),
+    }
+}
+
+##print(DATABASES)
+
 # Password validation
 # https://docs.djangoproject.com/en/4.0/ref/settings/#auth-password-validators
 
@@ -234,7 +247,7 @@ WAGTAILSEARCH_BACKENDS = {
 
 # Base URL to use when referring to full URLs within the Wagtail admin backend -
 # e.g. in notification emails. Don't include '/admin' or a trailing slash
-WAGTAILADMIN_BASE_URL = "https://afternoon-reef-17256.herokuapp.com"
+#WAGTAILADMIN_BASE_URL = "https://afternoon-reef-17256.herokuapp.com"
 
 # Default RichText Features
 # see 3:28, https://www.youtube.com/watch?v=ei7ot_Wry3o

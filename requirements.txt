@@ -31,9 +31,10 @@ pymysql
 oauthlib==3.2.2
 openpyxl==3.0.10
 Pillow==9.3.0
+##Pillow==10.2.0
 pycparser==2.21
 PyJWT==2.6.0
-pyscopg2==66.0.0
+##pyscopg2==66.0.0
 python-dotenv==1.0.0
 python3-openid==3.2.0
 pytz==2022.7
@@ -44,7 +45,8 @@ six==1.16.0
 soupsieve==2.3.2.post1
 sqlparse==0.4.3
 tablib==3.3.0
-telepath==0.3
+##telepath==0.3
+telepath<1,>=0.3.1
 typing_extensions==4.5.0
 urllib3==1.26.13
 wagtail>=5.2,<5.3
